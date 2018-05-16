@@ -3,6 +3,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController } from 'ionic-angular';
 
 import { Tab1Root, Tab2Root, Tab3Root } from '../';
+import { ChartPage } from '../chart/chart'
+
 
 @IonicPage()
 @Component({
@@ -12,7 +14,7 @@ import { Tab1Root, Tab2Root, Tab3Root } from '../';
 export class TabsPage {
   tab1Root: any = Tab1Root;
   tab2Root: any = Tab2Root;
-  tab3Root: any = Tab3Root;
+  tab3Root: any = ChartPage;
 
   tab1Title = " ";
   tab2Title = " ";
