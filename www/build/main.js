@@ -1,4 +1,4 @@
-webpackJsonp([17],{
+webpackJsonp([18],{
 
 /***/ 126:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -43,70 +43,74 @@ webpackEmptyAsyncContext.id = 138;
 var map = {
 	"../pages/cards/cards.module": [
 		517,
-		16
+		17
 	],
 	"../pages/chart/chart.module": [
 		518,
-		15
+		16
 	],
 	"../pages/content/content.module": [
 		519,
-		14
+		15
 	],
 	"../pages/item-create/item-create.module": [
 		520,
-		13
+		14
 	],
 	"../pages/item-detail/item-detail.module": [
 		521,
-		12
+		13
 	],
 	"../pages/list-master/list-master.module": [
 		522,
-		11
+		12
 	],
 	"../pages/login/login.module": [
 		523,
-		10
+		11
 	],
 	"../pages/menu/menu.module": [
 		524,
-		9
+		10
 	],
 	"../pages/new-chart/new-chart.module": [
 		525,
-		8
+		9
 	],
 	"../pages/profile/profile.module": [
 		526,
-		7
+		8
 	],
 	"../pages/saved/saved.module": [
 		527,
-		6
+		7
 	],
 	"../pages/search/search.module": [
 		528,
-		5
+		6
 	],
 	"../pages/settings/settings.module": [
 		529,
-		4
+		5
 	],
 	"../pages/signup/signup.module": [
 		530,
-		3
+		4
 	],
 	"../pages/tabs/tabs.module": [
 		531,
+		3
+	],
+	"../pages/tester/tester.module": [
+		532,
 		2
 	],
 	"../pages/tutorial/tutorial.module": [
-		532,
+		533,
 		1
 	],
 	"../pages/welcome/welcome.module": [
-		533,
+		534,
 		0
 	]
 };
@@ -425,6 +429,7 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/tabs/tabs.module#TabsPageModule', name: 'TabsPage', segment: 'tabs', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/tester/tester.module#TesterPageModule', name: 'TesterPage', segment: 'tester', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/tutorial/tutorial.module#TutorialPageModule', name: 'TutorialPage', segment: 'tutorial', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/welcome/welcome.module#WelcomePageModule', name: 'WelcomePage', segment: 'welcome', priority: 'low', defaultHistory: [] }
                     ]
@@ -985,7 +990,8 @@ var MyApp = /** @class */ (function () {
             { title: 'Tutorial', component: 'TutorialPage' },
             { title: 'Profile', component: 'ProfilePage' },
             { title: 'New Chart', component: 'ChartPage' },
-            { title: 'Saved Charts', component: 'SavedPage' }
+            { title: 'Saved Charts', component: 'SavedPage' },
+            { title: 'Tasty Test', component: 'TesterPage' }
         ];
         platform.ready().then(function () {
             // Okay, so the platform is ready and our plugins are available.

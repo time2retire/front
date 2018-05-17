@@ -1,15 +1,14 @@
 webpackJsonp([2],{
 
-/***/ 531:
+/***/ 532:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TabsPageModule", function() { return TabsPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TesterPageModule", function() { return TesterPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tabs__ = __webpack_require__(548);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tester__ = __webpack_require__(550);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -19,40 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
-var TabsPageModule = /** @class */ (function () {
-    function TabsPageModule() {
+var TesterPageModule = /** @class */ (function () {
+    function TesterPageModule() {
     }
-    TabsPageModule = __decorate([
+    TesterPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_3__tabs__["a" /* TabsPage */],
+                __WEBPACK_IMPORTED_MODULE_2__tester__["a" /* TesterPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__tabs__["a" /* TabsPage */]),
-                __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["b" /* TranslateModule */].forChild()
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__tester__["a" /* TesterPage */]),
             ],
-            exports: [
-                __WEBPACK_IMPORTED_MODULE_3__tabs__["a" /* TabsPage */]
-            ]
         })
-    ], TabsPageModule);
-    return TabsPageModule;
+    ], TesterPageModule);
+    return TesterPageModule;
 }());
 
-//# sourceMappingURL=tabs.module.js.map
+//# sourceMappingURL=tester.module.js.map
 
 /***/ }),
 
-/***/ 548:
+/***/ 550:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TesterPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3____ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(124);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -64,35 +56,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
-var TabsPage = /** @class */ (function () {
-    function TabsPage(navCtrl, translateService) {
-        var _this = this;
+/**
+ * Generated class for the TesterPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var TesterPage = /** @class */ (function () {
+    function TesterPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
-        this.translateService = translateService;
-        this.tab1Root = __WEBPACK_IMPORTED_MODULE_3____["c" /* Tab1Root */];
-        this.tab2Root = __WEBPACK_IMPORTED_MODULE_3____["d" /* Tab2Root */];
-        this.tab3Root = __WEBPACK_IMPORTED_MODULE_3____["e" /* Tab3Root */];
-        this.tab1Title = " ";
-        this.tab2Title = " ";
-        this.tab3Title = " ";
-        translateService.get(['TAB1_TITLE', 'TAB2_TITLE', 'TAB3_TITLE']).subscribe(function (values) {
-            _this.tab1Title = values['TAB1_TITLE'];
-            _this.tab2Title = values['TAB2_TITLE'];
-            _this.tab3Title = values['TAB3_TITLE'];
-        });
+        this.navParams = navParams;
     }
-    TabsPage = __decorate([
+    TesterPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad TesterPage');
+    };
+    TesterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-tabs',template:/*ion-inline-start:"C:\Users\Rob\Documents\softstack\time2retire\front\src\pages\tabs\tabs.html"*/'<ion-tabs>\n\n  <ion-tab [root]="tab1Root" [tabTitle]="tab1Title" tabIcon="home"></ion-tab>\n\n  <ion-tab [root]="tab2Root" [tabTitle]="tab2Title" tabIcon="search"></ion-tab>\n\n  <ion-tab [root]="tab3Root" [tabTitle]="tab3Title" tabIcon="cog"></ion-tab>\n\n</ion-tabs>'/*ion-inline-end:"C:\Users\Rob\Documents\softstack\time2retire\front\src\pages\tabs\tabs.html"*/
+            selector: 'page-tester',template:/*ion-inline-start:"C:\Users\David\Documents\Workspace\ionic\time2Retire\front\src\pages\tester\tester.html"*/'<!--\n  Generated template for the TesterPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>testerPage</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\David\Documents\Workspace\ionic\time2Retire\front\src\pages\tester\tester.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */]])
-    ], TabsPage);
-    return TabsPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]])
+    ], TesterPage);
+    return TesterPage;
 }());
 
-//# sourceMappingURL=tabs.js.map
+//# sourceMappingURL=tester.js.map
 
 /***/ })
 

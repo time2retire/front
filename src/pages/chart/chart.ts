@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject'
+//import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 @IonicPage()
 @Component({
   selector: 'page-chart',

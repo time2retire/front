@@ -1,14 +1,15 @@
 webpackJsonp([6],{
 
-/***/ 527:
+/***/ 528:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SavedPageModule", function() { return SavedPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchPageModule", function() { return SearchPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__saved__ = __webpack_require__(544);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__search__ = __webpack_require__(546);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +19,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var SavedPageModule = /** @class */ (function () {
-    function SavedPageModule() {
+
+var SearchPageModule = /** @class */ (function () {
+    function SearchPageModule() {
     }
-    SavedPageModule = __decorate([
+    SearchPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__saved__["a" /* SavedPage */],
+                __WEBPACK_IMPORTED_MODULE_3__search__["a" /* SearchPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__saved__["a" /* SavedPage */]),
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__search__["a" /* SearchPage */]),
+                __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["b" /* TranslateModule */].forChild()
             ],
+            exports: [
+                __WEBPACK_IMPORTED_MODULE_3__search__["a" /* SearchPage */]
+            ]
         })
-    ], SavedPageModule);
-    return SavedPageModule;
+    ], SearchPageModule);
+    return SearchPageModule;
 }());
 
-//# sourceMappingURL=saved.module.js.map
+//# sourceMappingURL=search.module.js.map
 
 /***/ }),
 
-/***/ 544:
+/***/ 546:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SavedPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers__ = __webpack_require__(126);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,30 +63,45 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-/**
- * Generated class for the SavedPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var SavedPage = /** @class */ (function () {
-    function SavedPage(navCtrl, navParams) {
+
+var SearchPage = /** @class */ (function () {
+    function SearchPage(navCtrl, navParams, items) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.items = items;
+        this.currentItems = [];
     }
-    SavedPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad SavedPage');
+    /**
+     * Perform a service for the proper items.
+     */
+    SearchPage.prototype.getItems = function (ev) {
+        var val = ev.target.value;
+        if (!val || !val.trim()) {
+            this.currentItems = [];
+            return;
+        }
+        this.currentItems = this.items.query({
+            name: val
+        });
     };
-    SavedPage = __decorate([
+    /**
+     * Navigate to the detail page for this item.
+     */
+    SearchPage.prototype.openItem = function (item) {
+        this.navCtrl.push('ItemDetailPage', {
+            item: item
+        });
+    };
+    SearchPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-saved',template:/*ion-inline-start:"C:\Users\Rob\Documents\softstack\time2retire\front\src\pages\saved\saved.html"*/'<!--\n\n  Generated template for the SavedPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n      <button ion-button menuToggle color="primary">\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n    <ion-title>saved</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <img src="https://i.imgur.com/tJ8sBWn.png">\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Rob\Documents\softstack\time2retire\front\src\pages\saved\saved.html"*/,
+            selector: 'page-search',template:/*ion-inline-start:"C:\Users\David\Documents\Workspace\ionic\time2Retire\front\src\pages\search\search.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ \'SEARCH_TITLE\' | translate }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n  <ion-searchbar (ionInput)="getItems($event)" placeholder="{{ \'SEARCH_PLACEHOLDER\' | translate }}"></ion-searchbar>\n\n  <ion-list>\n\n    <button ion-item (click)="openItem(item)" *ngFor="let item of currentItems">\n\n      <ion-avatar item-start>\n\n        <img [src]="item.profilePic" />\n\n      </ion-avatar>\n\n      <h2>{{item.name}}</h2>\n\n      <p>{{item.about}}</p>\n\n      <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>\n\n    </button>\n\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"C:\Users\David\Documents\Workspace\ionic\time2Retire\front\src\pages\search\search.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]])
-    ], SavedPage);
-    return SavedPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers__["b" /* Items */]])
+    ], SearchPage);
+    return SearchPage;
 }());
 
-//# sourceMappingURL=saved.js.map
+//# sourceMappingURL=search.js.map
 
 /***/ })
 

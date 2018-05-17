@@ -1,15 +1,15 @@
 webpackJsonp([5],{
 
-/***/ 528:
+/***/ 529:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchPageModule", function() { return SearchPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SettingsPageModule", function() { return SettingsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__search__ = __webpack_require__(545);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__settings__ = __webpack_require__(547);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20,38 +20,40 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var SearchPageModule = /** @class */ (function () {
-    function SearchPageModule() {
+var SettingsPageModule = /** @class */ (function () {
+    function SettingsPageModule() {
     }
-    SearchPageModule = __decorate([
+    SettingsPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_3__search__["a" /* SearchPage */],
+                __WEBPACK_IMPORTED_MODULE_3__settings__["a" /* SettingsPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__search__["a" /* SearchPage */]),
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__settings__["a" /* SettingsPage */]),
                 __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["b" /* TranslateModule */].forChild()
             ],
             exports: [
-                __WEBPACK_IMPORTED_MODULE_3__search__["a" /* SearchPage */]
+                __WEBPACK_IMPORTED_MODULE_3__settings__["a" /* SettingsPage */]
             ]
         })
-    ], SearchPageModule);
-    return SearchPageModule;
+    ], SettingsPageModule);
+    return SettingsPageModule;
 }());
 
-//# sourceMappingURL=search.module.js.map
+//# sourceMappingURL=settings.module.js.map
 
 /***/ }),
 
-/***/ 545:
+/***/ 547:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers__ = __webpack_require__(126);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -64,44 +66,89 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var SearchPage = /** @class */ (function () {
-    function SearchPage(navCtrl, navParams, items) {
+
+
+/**
+ * The Settings page is a simple form that syncs with a Settings provider
+ * to enable the user to customize settings for the app.
+ *
+ */
+var SettingsPage = /** @class */ (function () {
+    function SettingsPage(navCtrl, settings, formBuilder, navParams, translate) {
         this.navCtrl = navCtrl;
+        this.settings = settings;
+        this.formBuilder = formBuilder;
         this.navParams = navParams;
-        this.items = items;
-        this.currentItems = [];
+        this.translate = translate;
+        this.settingsReady = false;
+        this.profileSettings = {
+            page: 'profile',
+            pageTitleKey: 'SETTINGS_PAGE_PROFILE'
+        };
+        this.page = 'main';
+        this.pageTitleKey = 'SETTINGS_TITLE';
+        this.subSettings = SettingsPage_1;
     }
-    /**
-     * Perform a service for the proper items.
-     */
-    SearchPage.prototype.getItems = function (ev) {
-        var val = ev.target.value;
-        if (!val || !val.trim()) {
-            this.currentItems = [];
-            return;
+    SettingsPage_1 = SettingsPage;
+    SettingsPage.prototype._buildForm = function () {
+        var _this = this;
+        var group = {
+            option1: [this.options.option1],
+            option2: [this.options.option2],
+            option3: [this.options.option3]
+        };
+        switch (this.page) {
+            case 'main':
+                break;
+            case 'profile':
+                group = {
+                    option4: [this.options.option4]
+                };
+                break;
         }
-        this.currentItems = this.items.query({
-            name: val
+        this.form = this.formBuilder.group(group);
+        // Watch the form for changes, and
+        this.form.valueChanges.subscribe(function (v) {
+            _this.settings.merge(_this.form.value);
         });
     };
-    /**
-     * Navigate to the detail page for this item.
-     */
-    SearchPage.prototype.openItem = function (item) {
-        this.navCtrl.push('ItemDetailPage', {
-            item: item
+    SettingsPage.prototype.ionViewDidLoad = function () {
+        // Build an empty form for the template to render
+        this.form = this.formBuilder.group({});
+    };
+    SettingsPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        // Build an empty form for the template to render
+        this.form = this.formBuilder.group({});
+        this.page = this.navParams.get('page') || this.page;
+        this.pageTitleKey = this.navParams.get('pageTitleKey') || this.pageTitleKey;
+        this.translate.get(this.pageTitleKey).subscribe(function (res) {
+            _this.pageTitle = res;
+        });
+        this.settings.load().then(function () {
+            _this.settingsReady = true;
+            _this.options = _this.settings.allSettings;
+            _this._buildForm();
         });
     };
-    SearchPage = __decorate([
+    SettingsPage.prototype.ngOnChanges = function () {
+        console.log('Ng All Changes');
+    };
+    SettingsPage = SettingsPage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-search',template:/*ion-inline-start:"C:\Users\Rob\Documents\softstack\time2retire\front\src\pages\search\search.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ \'SEARCH_TITLE\' | translate }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n  <ion-searchbar (ionInput)="getItems($event)" placeholder="{{ \'SEARCH_PLACEHOLDER\' | translate }}"></ion-searchbar>\n\n  <ion-list>\n\n    <button ion-item (click)="openItem(item)" *ngFor="let item of currentItems">\n\n      <ion-avatar item-start>\n\n        <img [src]="item.profilePic" />\n\n      </ion-avatar>\n\n      <h2>{{item.name}}</h2>\n\n      <p>{{item.about}}</p>\n\n      <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>\n\n    </button>\n\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Rob\Documents\softstack\time2retire\front\src\pages\search\search.html"*/
+            selector: 'page-settings',template:/*ion-inline-start:"C:\Users\David\Documents\Workspace\ionic\time2Retire\front\src\pages\settings\settings.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ pageTitle }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content>\n\n\n\n  <form [formGroup]="form" *ngIf="settingsReady">\n\n    <ion-list *ngIf="page == \'main\'">\n\n      <ion-item>\n\n        <ion-label>{{ \'SETTINGS_OPTION1\' | translate }}</ion-label>\n\n        <ion-toggle formControlName="option1"></ion-toggle>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label>{{ \'SETTINGS_OPTION2\' | translate }}</ion-label>\n\n        <ion-input formControlName="option2"></ion-input>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label>{{ \'SETTINGS_OPTION3\' | translate }}</ion-label>\n\n        <ion-select formControlName="option3">\n\n          <ion-option value="1" checked="true">1</ion-option>\n\n          <ion-option value="2">2</ion-option>\n\n          <ion-option value="3">3</ion-option>\n\n        </ion-select>\n\n      </ion-item>\n\n\n\n      <button ion-item [navPush]="subSettings" [navParams]="profileSettings">\n\n        {{ \'SETTINGS_PROFILE_BUTTON\' | translate }}\n\n      </button>\n\n    </ion-list>\n\n\n\n    <ion-list *ngIf="page == \'profile\'">\n\n      <ion-item>\n\n        <ion-label>{{ \'SETTINGS_OPTION4\' | translate }}</ion-label>\n\n        <ion-input formControlName="option4"></ion-input>\n\n      </ion-item>\n\n    </ion-list>\n\n  </form>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\David\Documents\Workspace\ionic\time2Retire\front\src\pages\settings\settings.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers__["b" /* Items */]])
-    ], SearchPage);
-    return SearchPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["i" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_4__providers__["c" /* Settings */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["j" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */]])
+    ], SettingsPage);
+    return SettingsPage;
+    var SettingsPage_1;
 }());
 
-//# sourceMappingURL=search.js.map
+//# sourceMappingURL=settings.js.map
 
 /***/ })
 
