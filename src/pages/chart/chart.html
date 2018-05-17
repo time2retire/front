@@ -1,18 +1,23 @@
-<!--
-  Generated template for the ChartPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>chart</ion-title>
+    <ion-title>Chart</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <div style = "display: block">
+  <canvas class = "chart" baseChart width="400" height="400"
+  [datasets]="barChartData"
+  [labels]="barChartLabels"
+  [options]="barChartOptions"
+  [legend]="barChartLegend"
+  [chartType]="barChartType"
+  (chartHover)="chartHovered($event)"
+  (chartClick)="chartClicked($event)">
+</canvas>
+</div>
+<input [(ngModel)]="x"><button (click)="randomize()">+</button>
 </ion-content>

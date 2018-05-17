@@ -25678,6 +25678,10 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+page-chart .chartContainer {
+  display: block;
+}
+
 page-item-create .profile-image-wrapper {
   text-align: center;
   margin: 20px 0;
