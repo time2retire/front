@@ -57,6 +57,7 @@ typings/
 
 # dotenv environment variables file
 .env
+<<<<<<< HEAD
 
 =======
 # Specifies intentionally untracked files to ignore when using Git
@@ -95,3 +96,5 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 >>>>>>> Initial commit
+=======
+>>>>>>> chart
