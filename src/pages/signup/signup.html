@@ -8,7 +8,8 @@
 
 
 <ion-content>
-  <form (submit)="doSignup()">
+
+  <!-- <form (submit)="doSignup()">
     <ion-list>
 
       <ion-item>
@@ -21,14 +22,14 @@
         <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
       </ion-item>
 
-      <!--
+      
       Want to add a Username? Here you go:
 
       <ion-item>
         <ion-label floating>Username</ion-label>
         <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>
       </ion-item>
-      -->
+     
 
       <ion-item>
         <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
@@ -40,5 +41,50 @@
       </div>
 
     </ion-list>
+  </form> -->
+
+  <form (submit)='newSignup()'>
+
+    <ion-list>
+
+      <h5 *ngIf="signupAttempt" style="color: #ea6153;">Please fill out all details</h5>
+
+      <ion-item>
+        <ion-label fixed>First Name</ion-label>
+        <ion-input type='text' [(ngModel)]='newUser.firstName' name='firstName'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Last Name</ion-label>
+        <ion-input type='text' [(ngModel)]='newUser.lastName' name='lastName'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Username</ion-label>
+        <ion-input type='text' [(ngModel)]='newUser.userName' name='userName'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Birthday</ion-label>
+        <ion-input type='text' [(ngModel)]='newUser.birthday' name='birthday'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Email</ion-label>
+        <ion-input type='email' [(ngModel)]='newUser.email' name='email'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Password</ion-label>
+        <ion-input type='password' [(ngModel)]='newUser.password' name='password'></ion-input>
+      </ion-item>
+
+      <div padding>
+        <button ion-button color="primary" block>Sign Up</button>
+      </div>
+
+    </ion-list>
+
   </form>
+
 </ion-content>
