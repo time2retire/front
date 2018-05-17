@@ -37,7 +37,9 @@
     </ion-list>
   </form> -->
 
-  <h5 *ngIf="submitAttempt" style="color: #ea6153;">Invalid email or password</h5>
+  <div align='center'>
+    <h5 *ngIf="submitAttempt" style="color: #ea6153;">Invalid email or password</h5>
+  </div>
 
   <form (submit)='loginUser()'>
 
