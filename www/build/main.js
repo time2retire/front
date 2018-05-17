@@ -43,55 +43,71 @@ webpackEmptyAsyncContext.id = 138;
 var map = {
 	"../pages/cards/cards.module": [
 		517,
-		31
+		16
+	],
+	"../pages/chart/chart.module": [
+		518,
+		3
 	],
 	"../pages/content/content.module": [
 		519,
-		30
+		15
 	],
 	"../pages/item-create/item-create.module": [
 		520,
-		29
+		14
 	],
 	"../pages/item-detail/item-detail.module": [
 		521,
-		28
+		13
 	],
 	"../pages/list-master/list-master.module": [
 		522,
-		27
+		12
 	],
 	"../pages/login/login.module": [
 		523,
-		26
+		11
 	],
 	"../pages/menu/menu.module": [
 		524,
-		25
+		10
+	],
+	"../pages/new-chart/new-chart.module": [
+		525,
+		2
+	],
+	"../pages/profile/profile.module": [
+		526,
+		1
+	],
+	"../pages/saved/saved.module": [
+		527,
+		0
 	],
 	"../pages/search/search.module": [
 		528,
-		24
+		9
 	],
 	"../pages/settings/settings.module": [
 		529,
-		23
+		8
 	],
 	"../pages/signup/signup.module": [
 		530,
-		22
+		7
 	],
 	"../pages/tabs/tabs.module": [
 		531,
-		21
+		6
 	],
 	"../pages/tutorial/tutorial.module": [
 		532,
-		20
+		5
 	],
 	"../pages/welcome/welcome.module": [
 		533,
-		19
+		4
 	]
 };
 function webpackAsyncContext(req) {
@@ -834,7 +850,8 @@ var Settings = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_toPromise__ = __webpack_require__(498);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_api__ = __webpack_require__(319);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_api__ = __webpack_require__(319);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -844,6 +861,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -867,44 +885,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * If the `status` field is not `success`, then an error is detected and returned.
  */
 var User = /** @class */ (function () {
-    function User(api) {
+    function User(api, http) {
         this.api = api;
+        this.http = http;
+        this.my_url = 'http://localhost:3000/api/userModels/';
+        this.base_url_for_team = 'http://localhost:3000/api/appUser';
+        this.token = sessionStorage.getItem('token');
+        this.userID = sessionStorage.getItem('userId');
     }
-    /**
-     * Send a POST request to our login endpoint with the data
-     * the user entered on the form.
-     */
-    User.prototype.login = function (accountInfo) {
-        var _this = this;
-        var seq = this.api.post('login', accountInfo).share();
-        seq.subscribe(function (res) {
-            // If the API returned a successful response, mark the user as logged in
-            if (res.status == 'success') {
-                _this._loggedIn(res);
-            }
-            else {
-            }
-        }, function (err) {
-            console.error('ERROR', err);
-        });
-        return seq;
+    User.prototype.loginCustom = function (user) {
+        return this.http.post(this.base_url_for_team + 'login', user);
     };
-    /**
-     * Send a POST request to our signup endpoint with the data
-     * the user entered on the form.
-     */
-    User.prototype.signup = function (accountInfo) {
-        var _this = this;
-        var seq = this.api.post('signup', accountInfo).share();
-        seq.subscribe(function (res) {
-            // If the API returned a successful response, mark the user as logged in
-            if (res.status == 'success') {
-                _this._loggedIn(res);
-            }
-        }, function (err) {
-            console.error('ERROR', err);
-        });
-        return seq;
+    User.prototype.signupCustom = function (signupUser) {
+        return this.http.post(this.base_url_for_team, signupUser);
     };
     /**
      * Log the user out, which forgets the session
@@ -920,9 +913,10 @@ var User = /** @class */ (function () {
     };
     User = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__api_api__["a" /* Api */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__api_api__["a" /* Api */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__api_api__["a" /* Api */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]) === "function" && _b || Object])
     ], User);
     return User;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=user.js.map

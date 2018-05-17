@@ -28,7 +28,7 @@ export class User {
   _user: any;
 
   my_url: string = 'http://localhost:3000/api/userModels/'
-  base_url_for_team = 'http://localhost:3000/api/<insert your model here>/'
+  base_url_for_team = 'http://localhost:3000/api/appUser'
 
   token = sessionStorage.getItem('token');
   userID = sessionStorage.getItem('userId');
@@ -36,11 +36,11 @@ export class User {
   constructor(public api: Api, public http: HttpClient) { }
 
   loginCustom(user) {
-    return this.http.post(this.my_url + 'login', user)
+    return this.http.post(this.base_url_for_team + 'login', user)
   }
 
   signupCustom(signupUser) {
-    return this.http.post(this.my_url, signupUser)
+    return this.http.post(this.base_url_for_team, signupUser)
   }
 
   /**
