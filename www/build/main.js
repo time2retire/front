@@ -42,11 +42,11 @@ webpackEmptyAsyncContext.id = 131;
 
 var map = {
 	"../pages/cards/cards.module": [
-		330,
+		331,
 		12
 	],
 	"../pages/content/content.module": [
-		331,
+		330,
 		11
 	],
 	"../pages/item-create/item-create.module": [
@@ -390,8 +390,8 @@ var AppModule = /** @class */ (function () {
                 }),
                 __WEBPACK_IMPORTED_MODULE_9_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_12__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/cards/cards.module#CardsPageModule', name: 'CardsPage', segment: 'cards', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/content/content.module#ContentPageModule', name: 'ContentPage', segment: 'content', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/cards/cards.module#CardsPageModule', name: 'CardsPage', segment: 'cards', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/item-create/item-create.module#ItemCreatePageModule', name: 'ItemCreatePage', segment: 'item-create', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/item-detail/item-detail.module#ItemDetailPageModule', name: 'ItemDetailPage', segment: 'item-detail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/list-master/list-master.module#ListMasterPageModule', name: 'ListMasterPage', segment: 'list-master', priority: 'low', defaultHistory: [] },
@@ -597,43 +597,12 @@ var User = /** @class */ (function () {
         this.http = http;
         this.my_url = 'http://localhost:3000/api/userModels/';
         this.base_url_for_team = 'http://localhost:3000/api/<insert your model here>/';
+        this.token = sessionStorage.getItem('token');
+        this.userID = sessionStorage.getItem('userId');
     }
-    /**
-     * Send a POST request to our login endpoint with the data
-     * the user entered on the form.
-     */
-    // login(accountInfo: any) {
-    //   let seq = this.api.post('login', accountInfo).share();
-    //   seq.subscribe((res: any) => {
-    //     // If the API returned a successful response, mark the user as logged in
-    //     if (res.status == 'success') {
-    //       this._loggedIn(res);
-    //     } else {
-    //     }
-    //   }, err => {
-    //     console.error('ERROR', err);
-    //   });
-    //   return seq;
-    // }
     User.prototype.loginCustom = function (user) {
         return this.http.post(this.my_url + 'login', user);
     };
-    /**
-     * Send a POST request to our signup endpoint with the data
-     * the user entered on the form.
-     */
-    // signup(accountInfo: any) {
-    //   let seq = this.api.post('signup', accountInfo).share();
-    //   seq.subscribe((res: any) => {
-    //     // If the API returned a successful response, mark the user as logged in
-    //     if (res.status == 'success') {
-    //       this._loggedIn(res);
-    //     }
-    //   }, err => {
-    //     console.error('ERROR', err);
-    //   });
-    //   return seq;
-    // }
     User.prototype.signupCustom = function (signupUser) {
         return this.http.post(this.my_url, signupUser);
     };

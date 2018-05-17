@@ -30,50 +30,14 @@ export class User {
   my_url: string = 'http://localhost:3000/api/userModels/'
   base_url_for_team = 'http://localhost:3000/api/<insert your model here>/'
 
+  token = sessionStorage.getItem('token');
+  userID = sessionStorage.getItem('userId');
+
   constructor(public api: Api, public http: HttpClient) { }
-
-  /**
-   * Send a POST request to our login endpoint with the data
-   * the user entered on the form.
-   */
-  // login(accountInfo: any) {
-  //   let seq = this.api.post('login', accountInfo).share();
-
-  //   seq.subscribe((res: any) => {
-  //     // If the API returned a successful response, mark the user as logged in
-  //     if (res.status == 'success') {
-  //       this._loggedIn(res);
-  //     } else {
-  //     }
-  //   }, err => {
-  //     console.error('ERROR', err);
-  //   });
-
-  //   return seq;
-  // }
 
   loginCustom(user) {
     return this.http.post(this.my_url + 'login', user)
   }
-
-  /**
-   * Send a POST request to our signup endpoint with the data
-   * the user entered on the form.
-   */
-  // signup(accountInfo: any) {
-  //   let seq = this.api.post('signup', accountInfo).share();
-
-  //   seq.subscribe((res: any) => {
-  //     // If the API returned a successful response, mark the user as logged in
-  //     if (res.status == 'success') {
-  //       this._loggedIn(res);
-  //     }
-  //   }, err => {
-  //     console.error('ERROR', err);
-  //   });
-
-  //   return seq;
-  // }
 
   signupCustom(signupUser) {
     return this.http.post(this.my_url, signupUser)

@@ -11,15 +11,6 @@ import { MainPage } from '../';
   templateUrl: 'signup.html'
 })
 export class SignupPage {
-  // The account fields for the login form.
-  // If you're using the username field with or without email, make
-  // sure to add it to the type
-  // account: { name: string, email: string, password: string } = {
-  //   name: 'Test Human',
-  //   email: 'test@example.com',
-  //   password: 'test'
-  // };
-
   newUser: any = {
     firstName: '',
     lastName: '',
@@ -44,30 +35,16 @@ export class SignupPage {
     })
   }
 
-  // doSignup() {
-  //   // Attempt to login in through our User service
-  //   this.user.signup(this.account).subscribe((resp) => {
-  //     this.navCtrl.push(MainPage);
-  //   }, (err) => {
-
-  //     this.navCtrl.push(MainPage);
-
-  //     // Unable to sign up
-  //     let toast = this.toastCtrl.create({
-  //       message: this.signupErrorString,
-  //       duration: 3000,
-  //       position: 'top'
-  //     });
-  //     toast.present();
-  //   });
-  // }
-
   newSignup() {
 
     return this.user.signupCustom(this.newUser).subscribe(
-      newUser => {
+      (newUser: any) => {
         console.log(newUser, 'Signup Successful');
-        this.navCtrl.push(MainPage);
+
+        sessionStorage.setItem('token', newUser.token)
+        sessionStorage.setItem('userId', newUser.userId)
+
+        this.navCtrl.setRoot(MainPage);
       }, (err) => {
 
         this.signupAttempt = true;

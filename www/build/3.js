@@ -75,14 +75,6 @@ var SignupPage = /** @class */ (function () {
         this.user = user;
         this.toastCtrl = toastCtrl;
         this.translateService = translateService;
-        // The account fields for the login form.
-        // If you're using the username field with or without email, make
-        // sure to add it to the type
-        // account: { name: string, email: string, password: string } = {
-        //   name: 'Test Human',
-        //   email: 'test@example.com',
-        //   password: 'test'
-        // };
         this.newUser = {
             firstName: '',
             lastName: '',
@@ -96,26 +88,13 @@ var SignupPage = /** @class */ (function () {
             _this.signupErrorString = value;
         });
     }
-    // doSignup() {
-    //   // Attempt to login in through our User service
-    //   this.user.signup(this.account).subscribe((resp) => {
-    //     this.navCtrl.push(MainPage);
-    //   }, (err) => {
-    //     this.navCtrl.push(MainPage);
-    //     // Unable to sign up
-    //     let toast = this.toastCtrl.create({
-    //       message: this.signupErrorString,
-    //       duration: 3000,
-    //       position: 'top'
-    //     });
-    //     toast.present();
-    //   });
-    // }
     SignupPage.prototype.newSignup = function () {
         var _this = this;
         return this.user.signupCustom(this.newUser).subscribe(function (newUser) {
             console.log(newUser, 'Signup Successful');
-            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4____["b" /* MainPage */]);
+            sessionStorage.setItem('token', newUser.token);
+            sessionStorage.setItem('userId', newUser.userId);
+            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4____["b" /* MainPage */]);
         }, function (err) {
             _this.signupAttempt = true;
             var toast = _this.toastCtrl.create({
@@ -136,12 +115,10 @@ var SignupPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-signup',template:/*ion-inline-start:"C:\Users\galen\Documents\Visual Studio Code\myProjects\groupProject\time2retire\front\front\src\pages\signup\signup.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ \'SIGNUP_TITLE\' | translate }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n\n\n  <!-- <form (submit)="doSignup()">\n\n    <ion-list>\n\n\n\n      <ion-item>\n\n        <ion-label fixed>{{ \'NAME\' | translate }}</ion-label>\n\n        <ion-input type="text" [(ngModel)]="account.name" name="name"></ion-input>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label fixed>{{ \'EMAIL\' | translate }}</ion-label>\n\n        <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>\n\n      </ion-item>\n\n\n\n      \n\n      Want to add a Username? Here you go:\n\n\n\n      <ion-item>\n\n        <ion-label floating>Username</ion-label>\n\n        <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>\n\n      </ion-item>\n\n     \n\n\n\n      <ion-item>\n\n        <ion-label fixed>{{ \'PASSWORD\' | translate }}</ion-label>\n\n        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>\n\n      </ion-item>\n\n\n\n      <div padding>\n\n        <button ion-button color="primary" block>{{ \'SIGNUP_BUTTON\' | translate }}</button>\n\n      </div>\n\n\n\n    </ion-list>\n\n  </form> -->\n\n\n\n  <form (submit)=\'newSignup()\'>\n\n\n\n    <ion-list>\n\n\n\n      <h5 *ngIf="signupAttempt" style="color: #ea6153;">Please fill out all details</h5>\n\n\n\n      <ion-item>\n\n        <ion-label fixed>First Name</ion-label>\n\n        <ion-input type=\'text\' [(ngModel)]=\'newUser.firstName\' name=\'firstName\'></ion-input>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label fixed>Last Name</ion-label>\n\n        <ion-input type=\'text\' [(ngModel)]=\'newUser.lastName\' name=\'lastName\'></ion-input>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label fixed>Username</ion-label>\n\n        <ion-input type=\'text\' [(ngModel)]=\'newUser.userName\' name=\'userName\'></ion-input>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label fixed>Birthday</ion-label>\n\n        <ion-input type=\'text\' [(ngModel)]=\'newUser.birthday\' name=\'birthday\'></ion-input>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label fixed>Email</ion-label>\n\n        <ion-input type=\'email\' [(ngModel)]=\'newUser.email\' name=\'email\'></ion-input>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label fixed>Password</ion-label>\n\n        <ion-input type=\'password\' [(ngModel)]=\'newUser.password\' name=\'password\'></ion-input>\n\n      </ion-item>\n\n\n\n      <div padding>\n\n        <button ion-button color="primary" block>Sign Up</button>\n\n      </div>\n\n\n\n    </ion-list>\n\n\n\n  </form>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\galen\Documents\Visual Studio Code\myProjects\groupProject\time2retire\front\front\src\pages\signup\signup.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_3__providers__["d" /* User */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__providers__["d" /* User */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers__["d" /* User */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* ToastController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */]) === "function" && _d || Object])
     ], SignupPage);
     return SignupPage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=signup.js.map
