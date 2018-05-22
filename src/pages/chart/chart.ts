@@ -15,7 +15,10 @@ export class ChartPage {
   data2: any = 2055;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
-  
+
+  ngOnInit() {
+    Chart.pluginService.register(ChartLabels);
+  }
   public barChartOptions:any = {
     plugins: {
       datalabels: {
