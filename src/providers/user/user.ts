@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/toPromise';
 
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
 import { Api } from '../api/api';
 
 /**
@@ -27,45 +27,20 @@ import { Api } from '../api/api';
 export class User {
   _user: any;
 
-  constructor(public api: Api) { }
+  login_url: string = 'https://nameless-wave-33070.herokuapp.com/api/appUsers/login?access_token='
+  register_url: string = 'https://nameless-wave-33070.herokuapp.com/api/appUsers?access_token='
 
-  /**
-   * Send a POST request to our login endpoint with the data
-   * the user entered on the form.
-   */
-  login(accountInfo: any) {
-    let seq = this.api.post('login', accountInfo).share();
+  token = sessionStorage.getItem('token');
+  userID = sessionStorage.getItem('userId');
 
-    seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      } else {
-      }
-    }, err => {
-      console.error('ERROR', err);
-    });
+  constructor(public api: Api, public http: HttpClient) { }
 
-    return seq;
+  loginCustom(user) {
+    return this.http.post(this.login_url + this.token, user)
   }
 
-  /**
-   * Send a POST request to our signup endpoint with the data
-   * the user entered on the form.
-   */
-  signup(accountInfo: any) {
-    let seq = this.api.post('signup', accountInfo).share();
-
-    seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      }
-    }, err => {
-      console.error('ERROR', err);
-    });
-
-    return seq;
+  signupCustom(signupUser) {
+    return this.http.post(this.register_url + this.token, signupUser)
   }
 
   /**
