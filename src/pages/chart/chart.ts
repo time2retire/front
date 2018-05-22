@@ -15,6 +15,17 @@ export class ChartPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
   
   public barChartOptions:any = {
+    plugins: {
+      datalabels: {
+        display: true,
+        align: 'end',
+        anchor: 'end',
+        font: {
+          weight: 'bold',
+          size: 25,
+        }
+      }
+    },
     responsive: true,
     maintainAspectRatio: true,
     legend: {
