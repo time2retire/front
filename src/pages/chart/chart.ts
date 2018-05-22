@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-//import { BehaviorSubject } from 'rxjs/BehaviorSubject'
+import { Chart } from 'chart.js'
+import * as ChartLabels from 'chartjs-plugin-datalabels';
+
 @IonicPage()
 @Component({
   selector: 'page-chart',
