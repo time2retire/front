@@ -19,6 +19,7 @@ export class ChartPage {
   ngOnInit() {
     Chart.pluginService.register(ChartLabels);
   }
+  
   public barChartOptions:any = {
     plugins: {
       datalabels: {
