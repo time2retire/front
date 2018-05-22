@@ -27,8 +27,10 @@ import { Api } from '../api/api';
 export class User {
   _user: any;
 
-  my_url: string = 'http://localhost:3000/api/userModels/'
-  base_url_for_team = 'http://localhost:3000/api/appUser'
+  my_url: string = 'http://localhost:8000/api/userModels/'
+  base_url_for_team = 'http://localhost:3000/api/appUsers/'
+  login_url: string = 'http://localhost:3000/api/appUsers/login?access_token='
+  register_url: string = 'http://localhost:3000/api/appUsers?access_token='
 
   token = sessionStorage.getItem('token');
   userID = sessionStorage.getItem('userId');
@@ -36,11 +38,11 @@ export class User {
   constructor(public api: Api, public http: HttpClient) { }
 
   loginCustom(user) {
-    return this.http.post(this.base_url_for_team + 'login', user)
+    return this.http.post(this.login_url + this.token, user)
   }
 
   signupCustom(signupUser) {
-    return this.http.post(this.base_url_for_team, signupUser)
+    return this.http.post(this.register_url + this.token, signupUser)
   }
 
   /**
