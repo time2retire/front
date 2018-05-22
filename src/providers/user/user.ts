@@ -27,10 +27,8 @@ import { Api } from '../api/api';
 export class User {
   _user: any;
 
-  my_url: string = 'http://localhost:8000/api/userModels/'
-  base_url_for_team = 'http://localhost:3000/api/appUsers/'
-  login_url: string = 'http://localhost:3000/api/appUsers/login?access_token='
-  register_url: string = 'http://localhost:3000/api/appUsers?access_token='
+  login_url: string = 'https://nameless-wave-33070.herokuapp.com/api/appUsers/login?access_token='
+  register_url: string = 'https://nameless-wave-33070.herokuapp.com/api/appUsers?access_token='
 
   token = sessionStorage.getItem('token');
   userID = sessionStorage.getItem('userId');
