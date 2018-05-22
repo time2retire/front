@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject'
+import { Chart } from 'chart.js'
+import * as ChartLabels from 'chartjs-plugin-datalabels';
+
 @IonicPage()
 @Component({
   selector: 'page-chart',
@@ -13,8 +15,23 @@ export class ChartPage {
   data2: any = 2055;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
+
+  ngOnInit() {
+    Chart.pluginService.register(ChartLabels);
+  }
   
   public barChartOptions:any = {
+    plugins: {
+      datalabels: {
+        display: true,
+        align: 'end',
+        anchor: 'end',
+        font: {
+          weight: 'bold',
+          size: 25,
+        }
+      }
+    },
     responsive: true,
     maintainAspectRatio: true,
     legend: {
