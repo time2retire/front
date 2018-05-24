@@ -6,11 +6,17 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class Api {
-  url: string = 'https://example.com/api/v1';
+  url: string = 'assets/data/retirement.json';
 
   constructor(public http: HttpClient) {
   }
 
+  getRetire() {
+    return this.http.get(this.url);
+  }
+ 
+ 
+ 
   get(endpoint: string, params?: any, reqOpts?: any) {
     if (!reqOpts) {
       reqOpts = {

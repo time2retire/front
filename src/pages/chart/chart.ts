@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js'
 import * as ChartLabels from 'chartjs-plugin-datalabels';
+import { Api } from '../../providers/api/api';
 
 @IonicPage()
 @Component({
@@ -24,7 +25,9 @@ export class ChartPage {
   totalBenefit: number = this.yearlyBenefit * this.retRange;
   
   constructor(public navCtrl: NavController, 
-              public navParams: NavParams) {}
+              public navParams: NavParams,
+              public _api: Api,
+            ) {}
   
   public barChartOptions:any = {
     plugins: {
@@ -105,6 +108,10 @@ export class ChartPage {
   }
 
   ionViewDidLoad() {
+    this._api.getRetire()
+    .subscribe(data => {
+      console.log(data)
+    })
     Chart.pluginService.register(ChartLabels);
   }
 
