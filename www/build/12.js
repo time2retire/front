@@ -89,7 +89,7 @@ var LoginPage = /** @class */ (function () {
         return this.user.loginCustom(this.userLogin).subscribe(function (userLog) {
             //console.log(userLog, 'Login Successful')
             _this.user.user = userLog;
-            console.log(_this.user.user);
+            console.log("userLog test", _this.user.user);
             sessionStorage.setItem('token', userLog.token);
             sessionStorage.setItem('userId', userLog.userId);
             _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4____["b" /* MainPage */]);

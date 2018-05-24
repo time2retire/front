@@ -893,16 +893,13 @@ var User = /** @class */ (function () {
     function User(api, http) {
         this.api = api;
         this.http = http;
-        this.base_url = "https://nameless-wave-33070.herokuapp.com/api/appUsers/";
-        this.token_url = "?access_token=";
-        this.login_url = "login?include=user&access_token=";
+        this.login_url = 'https://nameless-wave-33070.herokuapp.com/api/appUsers/login?access_token=';
         this.register_url = 'https://nameless-wave-33070.herokuapp.com/api/appUsers?access_token=';
-        this.helloWorld = "hello world";
         this.token = sessionStorage.getItem('token');
         this.userID = sessionStorage.getItem('userId');
     }
     User.prototype.loginCustom = function (user) {
-        return this.http.post(this.base_url + this.login_url + this.token, user);
+        return this.http.post(this.login_url + this.token, user);
     };
     User.prototype.signupCustom = function (signupUser) {
         return this.http.post(this.register_url + this.token, signupUser);
@@ -921,10 +918,9 @@ var User = /** @class */ (function () {
     };
     User = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__api_api__["a" /* Api */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__api_api__["a" /* Api */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__api_api__["a" /* Api */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]])
     ], User);
     return User;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=user.js.map
