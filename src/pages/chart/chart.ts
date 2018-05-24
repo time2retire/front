@@ -19,10 +19,10 @@ export class ChartPage {
   retYear: number = 2050;
   croakYear: number = 2080;
   retRange: number = this.croakYear - this.retYear;
+  benefitObject: any;
 
-  monthlyBenefit: number = 1870;
-  yearlyBenefit: number =  this.monthlyBenefit * 12;
-  totalBenefit: number = this.yearlyBenefit * this.retRange;
+  monthlyBenefit: number;
+  totalBenefit: number;
   
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -37,7 +37,7 @@ export class ChartPage {
         anchor: 'end',
         font: {
           weight: 'bold',
-          size: 25,
+          size: 20,
         },
         formatter: function(value, context) {
           let currency = (value + '').replace(/(\d)(?=(\d{3})+$)/g, '$1,');
@@ -68,9 +68,9 @@ export class ChartPage {
           type: 'linear',
           position: 'right',
           ticks: {
-            max: 1000000,
-            min: 50000,
-            stepSize: 50000
+            max: 800000,
+            min: 100000,
+            stepSize: 100000
           },
           gridLines: {
             display: false
@@ -107,10 +107,27 @@ export class ChartPage {
     this.barChartData = _barChartData;
   }
 
+  goSlider(sliderVal){
+    this.monthlyBenefit = this.benefitObject[sliderVal].monthlyBen;
+    this.totalBenefit = this.monthlyBenefit * 12 * this.retRange;
+    this.barChartData = [
+      {data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID:'A'},
+      {data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B'}
+    ];
+
+  }
+
   ionViewDidLoad() {
     this._api.getRetire()
     .subscribe(data => {
       console.log(data)
+      this.benefitObject = data;
+      this.monthlyBenefit = data[63].monthlyBen
+      this.totalBenefit = this.monthlyBenefit * 12 * this.retRange;
+      this.barChartData = [
+        {data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID:'A'},
+        {data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B'}
+      ];
     })
     Chart.pluginService.register(ChartLabels);
   }
