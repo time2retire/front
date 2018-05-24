@@ -34,8 +34,9 @@ export class LoginPage {
   loginUser() {
     return this.user.loginCustom(this.userLogin).subscribe(
       (userLog: any) => {
-        console.log(userLog, 'Login Successful')
-
+        //console.log(userLog, 'Login Successful')
+        this.user.user = userLog
+        console.log(this.user.user)
         sessionStorage.setItem('token', userLog.token)
         sessionStorage.setItem('userId', userLog.userId)
 

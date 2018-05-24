@@ -7,15 +7,18 @@
 <ion-header>
 
   <ion-navbar>
-      <button ion-button menuToggle color="primary">
-          <ion-icon name="menu"></ion-icon>
-        </button>
+    <button ion-button menuToggle color="primary">
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Profile</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <img src="https://i.imgur.com/yebyUGP.png">
+<ion-content *ngIf="_user.user" padding>
+  <div>First name: {{ _user.user.firstName | async }}
+  </div>
+  <div>Last name: </div>
+  <!--<img src="https://i.imgur.com/yebyUGP.png"> -->
 </ion-content>

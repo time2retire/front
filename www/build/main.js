@@ -46,11 +46,11 @@ var map = {
 		17
 	],
 	"../pages/chart/chart.module": [
-		518,
+		519,
 		0
 	],
 	"../pages/content/content.module": [
-		519,
+		518,
 		16
 	],
 	"../pages/item-create/item-create.module": [
@@ -66,11 +66,11 @@ var map = {
 		13
 	],
 	"../pages/login/login.module": [
-		524,
+		523,
 		12
 	],
 	"../pages/menu/menu.module": [
-		523,
+		524,
 		11
 	],
 	"../pages/new-chart/new-chart.module": [
@@ -94,15 +94,15 @@ var map = {
 		6
 	],
 	"../pages/signup/signup.module": [
-		531,
+		530,
 		5
 	],
 	"../pages/tabs/tabs.module": [
-		530,
+		532,
 		4
 	],
 	"../pages/tester/tester.module": [
-		532,
+		531,
 		3
 	],
 	"../pages/tutorial/tutorial.module": [
@@ -415,21 +415,21 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_9_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_13__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/cards/cards.module#CardsPageModule', name: 'CardsPage', segment: 'cards', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/chart/chart.module#ChartPageModule', name: 'ChartPage', segment: 'chart', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/content/content.module#ContentPageModule', name: 'ContentPage', segment: 'content', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/chart/chart.module#ChartPageModule', name: 'ChartPage', segment: 'chart', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/item-create/item-create.module#ItemCreatePageModule', name: 'ItemCreatePage', segment: 'item-create', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/item-detail/item-detail.module#ItemDetailPageModule', name: 'ItemDetailPage', segment: 'item-detail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/list-master/list-master.module#ListMasterPageModule', name: 'ListMasterPage', segment: 'list-master', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/menu/menu.module#MenuPageModule', name: 'MenuPage', segment: 'menu', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/menu/menu.module#MenuPageModule', name: 'MenuPage', segment: 'menu', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/new-chart/new-chart.module#NewChartPageModule', name: 'NewChartPage', segment: 'new-chart', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/profile/profile.module#ProfilePageModule', name: 'ProfilePage', segment: 'profile', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/saved/saved.module#SavedPageModule', name: 'SavedPage', segment: 'saved', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/search/search.module#SearchPageModule', name: 'SearchPage', segment: 'search', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/tabs/tabs.module#TabsPageModule', name: 'TabsPage', segment: 'tabs', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/tester/tester.module#TesterPageModule', name: 'TesterPage', segment: 'tester', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/tabs/tabs.module#TabsPageModule', name: 'TabsPage', segment: 'tabs', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/tutorial/tutorial.module#TutorialPageModule', name: 'TutorialPage', segment: 'tutorial', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/welcome/welcome.module#WelcomePageModule', name: 'WelcomePage', segment: 'welcome', priority: 'low', defaultHistory: [] }
                     ]
@@ -893,13 +893,16 @@ var User = /** @class */ (function () {
     function User(api, http) {
         this.api = api;
         this.http = http;
-        this.login_url = 'https://nameless-wave-33070.herokuapp.com/api/appUsers/login?access_token=';
+        this.base_url = "https://nameless-wave-33070.herokuapp.com/api/appUsers/";
+        this.token_url = "?access_token=";
+        this.login_url = "login?include=user&access_token=";
         this.register_url = 'https://nameless-wave-33070.herokuapp.com/api/appUsers?access_token=';
+        this.helloWorld = "hello world";
         this.token = sessionStorage.getItem('token');
         this.userID = sessionStorage.getItem('userId');
     }
     User.prototype.loginCustom = function (user) {
-        return this.http.post(this.login_url + this.token, user);
+        return this.http.post(this.base_url + this.login_url + this.token, user);
     };
     User.prototype.signupCustom = function (signupUser) {
         return this.http.post(this.register_url + this.token, signupUser);
@@ -918,9 +921,10 @@ var User = /** @class */ (function () {
     };
     User = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__api_api__["a" /* Api */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__api_api__["a" /* Api */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__api_api__["a" /* Api */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]) === "function" && _b || Object])
     ], User);
     return User;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=user.js.map
