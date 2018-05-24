@@ -19,8 +19,9 @@ export class ChartPage {
   croakYear: number = 2080;
   retRange: number = this.croakYear - this.retYear;
 
-  monthlyBen: number = 1870;
-  totalBen: number = this.monthlyBen * 12 * this.retRange;
+  monthlyBenefit: number = 1870;
+  yearlyBenefit: number =  this.monthlyBenefit * 12;
+  totalBenefit: number = this.yearlyBenefit * this.retRange;
   
   constructor(public navCtrl: NavController, 
               public navParams: NavParams) {}
@@ -88,11 +89,11 @@ export class ChartPage {
   }
 
   public barChartData:any[] = [
-    {data: [this.monthlyBen], label: 'Monthly Benefit Amt.', yAxisID:'A'},
-    {data: [this.totalBen], label: 'Total Benefit', yAxisID: 'B'}
+    {data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID:'A'},
+    {data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B'}
   ];
 
-  public randomize():void {
+  public slider():void {
     let _barChartData:Array<any> = new Array(this.barChartData.length);
     for (let i = 0; i < this.barChartData.length; i++) {
       _barChartData[i] = {data: new Array(this.barChartData[i].data.length), label: this.barChartData[i].label};
