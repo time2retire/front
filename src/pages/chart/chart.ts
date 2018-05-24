@@ -24,7 +24,9 @@ export class ChartPage {
   totalBen: number = this.monthlyBen * 12 * this.retRange;
   
   constructor(public navCtrl: NavController, 
-              public navParams: NavParams) {}
+              public navParams: NavParams,
+              public _api: Api,
+            ) {}
   
   public barChartOptions:any = {
     plugins: {
@@ -105,6 +107,10 @@ export class ChartPage {
   }
 
   ionViewDidLoad() {
+    this._api.getRetire()
+    .subscribe(data => {
+      console.log(data)
+    })
     Chart.pluginService.register(ChartLabels);
   }
 
