@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js'
 import * as ChartLabels from 'chartjs-plugin-datalabels';
+import { Api } from '../../providers/api/api';
 
 @IonicPage()
 @Component({
@@ -14,9 +15,16 @@ export class ChartPage {
   data1: number = 3300 + this.x;
   data2: any = 2055;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public _api: Api,
+  ) {}
 
   ngOnInit() {
+    this._api.getRetire()
+    .subscribe(data => {
+      console.log(data);
+    })
     Chart.pluginService.register(ChartLabels);
   }
   
