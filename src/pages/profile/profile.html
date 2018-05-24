@@ -16,9 +16,9 @@
 </ion-header>
 
 
-<ion-content *ngIf="_user.user" padding>
-  <div>First name: {{ _user.user.firstName | async }}
+<ion-content padding>
+  <div *ngIf="_user.user">First name: {{ _user.user.firstName }}
   </div>
-  <div>Last name: </div>
+  <div>Last name: {{_user.user.lastName}}</div>
   <!--<img src="https://i.imgur.com/yebyUGP.png"> -->
 </ion-content>

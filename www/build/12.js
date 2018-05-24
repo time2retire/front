@@ -69,10 +69,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var LoginPage = /** @class */ (function () {
-    function LoginPage(navCtrl, user, toastCtrl, translateService) {
+    function LoginPage(navCtrl, _user, toastCtrl, translateService) {
         var _this = this;
         this.navCtrl = navCtrl;
-        this.user = user;
+        this._user = _user;
         this.toastCtrl = toastCtrl;
         this.translateService = translateService;
         this.userLogin = {
@@ -86,16 +86,16 @@ var LoginPage = /** @class */ (function () {
     }
     LoginPage.prototype.loginUser = function () {
         var _this = this;
-        return this.user.loginCustom(this.userLogin).subscribe(function (userLog) {
+        return this._user.loginCustom(this.userLogin).subscribe(function (userLog) {
             //console.log(userLog, 'Login Successful')
-            _this.user.user = userLog;
-            console.log("userLog test", _this.user.user);
+            _this._user.user = userLog.user;
+            console.log("userLog test", _this._user.user);
             sessionStorage.setItem('token', userLog.token);
             sessionStorage.setItem('userId', userLog.userId);
             _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4____["b" /* MainPage */]);
         }, function (err) {
             _this.submitAttempt = true;
-            console.log(err);
+            console.log(err, "error");
             var toast = _this.toastCtrl.create({
                 message: 'Invalid email or password',
                 duration: 2000,
