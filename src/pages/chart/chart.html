@@ -19,5 +19,10 @@
   (chartClick)="chartClicked($event)">
 </canvas>
 </div>
-<input [(ngModel)]="x"><button (click)="randomize()">+</button>
+<ion-item>
+  <ion-range min="62" max="70" (ionChange)="slideRetAge($event)">
+    <ion-label range-left>62</ion-label>
+    <ion-label range-right>70</ion-label>
+  </ion-range>
+</ion-item>
 </ion-content>
