@@ -1,15 +1,15 @@
 webpackJsonp([6],{
 
-/***/ 529:
+/***/ 530:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SettingsPageModule", function() { return SettingsPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignupPageModule", function() { return SignupPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__settings__ = __webpack_require__(548);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__signup__ = __webpack_require__(550);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20,40 +20,40 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var SettingsPageModule = /** @class */ (function () {
-    function SettingsPageModule() {
+var SignupPageModule = /** @class */ (function () {
+    function SignupPageModule() {
     }
-    SettingsPageModule = __decorate([
+    SignupPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_3__settings__["a" /* SettingsPage */],
+                __WEBPACK_IMPORTED_MODULE_3__signup__["a" /* SignupPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__settings__["a" /* SettingsPage */]),
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__signup__["a" /* SignupPage */]),
                 __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["b" /* TranslateModule */].forChild()
             ],
             exports: [
-                __WEBPACK_IMPORTED_MODULE_3__settings__["a" /* SettingsPage */]
+                __WEBPACK_IMPORTED_MODULE_3__signup__["a" /* SignupPage */]
             ]
         })
-    ], SettingsPageModule);
-    return SettingsPageModule;
+    ], SignupPageModule);
+    return SignupPageModule;
 }());
 
-//# sourceMappingURL=settings.module.js.map
+//# sourceMappingURL=signup.module.js.map
 
 /***/ }),
 
-/***/ 548:
+/***/ 550:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignupPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4____ = __webpack_require__(360);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -68,87 +68,59 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-/**
- * The Settings page is a simple form that syncs with a Settings provider
- * to enable the user to customize settings for the app.
- *
- */
-var SettingsPage = /** @class */ (function () {
-    function SettingsPage(navCtrl, settings, formBuilder, navParams, translate) {
+var SignupPage = /** @class */ (function () {
+    function SignupPage(navCtrl, user, toastCtrl, translateService) {
+        var _this = this;
         this.navCtrl = navCtrl;
-        this.settings = settings;
-        this.formBuilder = formBuilder;
-        this.navParams = navParams;
-        this.translate = translate;
-        this.settingsReady = false;
-        this.profileSettings = {
-            page: 'profile',
-            pageTitleKey: 'SETTINGS_PAGE_PROFILE'
+        this.user = user;
+        this.toastCtrl = toastCtrl;
+        this.translateService = translateService;
+        this.newUser = {
+            firstName: '',
+            lastName: '',
+            userName: '',
+            birthday: '',
+            email: '',
+            password: ''
         };
-        this.page = 'main';
-        this.pageTitleKey = 'SETTINGS_TITLE';
-        this.subSettings = SettingsPage_1;
+        this.signupAttempt = false;
+        this.translateService.get('SIGNUP_ERROR').subscribe(function (value) {
+            _this.signupErrorString = value;
+        });
     }
-    SettingsPage_1 = SettingsPage;
-    SettingsPage.prototype._buildForm = function () {
+    SignupPage.prototype.newSignup = function () {
         var _this = this;
-        var group = {
-            option1: [this.options.option1],
-            option2: [this.options.option2],
-            option3: [this.options.option3]
-        };
-        switch (this.page) {
-            case 'main':
-                break;
-            case 'profile':
-                group = {
-                    option4: [this.options.option4]
-                };
-                break;
-        }
-        this.form = this.formBuilder.group(group);
-        // Watch the form for changes, and
-        this.form.valueChanges.subscribe(function (v) {
-            _this.settings.merge(_this.form.value);
+        return this.user.signupCustom(this.newUser).subscribe(function (newUser) {
+            console.log(newUser, 'Signup Successful');
+            sessionStorage.setItem('token', newUser.token);
+            sessionStorage.setItem('userId', newUser.userId);
+            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4____["b" /* MainPage */]);
+        }, function (err) {
+            _this.signupAttempt = true;
+            var toast = _this.toastCtrl.create({
+                message: 'Please fill out all details',
+                duration: 2000,
+                position: 'top'
+            });
+            toast.present();
+            _this.newUser.firstName = '';
+            _this.newUser.lastName = '';
+            _this.newUser.birthday = '';
+            _this.newUser.email = '';
+            _this.newUser.password = '';
         });
     };
-    SettingsPage.prototype.ionViewDidLoad = function () {
-        // Build an empty form for the template to render
-        this.form = this.formBuilder.group({});
-    };
-    SettingsPage.prototype.ionViewWillEnter = function () {
-        var _this = this;
-        // Build an empty form for the template to render
-        this.form = this.formBuilder.group({});
-        this.page = this.navParams.get('page') || this.page;
-        this.pageTitleKey = this.navParams.get('pageTitleKey') || this.pageTitleKey;
-        this.translate.get(this.pageTitleKey).subscribe(function (res) {
-            _this.pageTitle = res;
-        });
-        this.settings.load().then(function () {
-            _this.settingsReady = true;
-            _this.options = _this.settings.allSettings;
-            _this._buildForm();
-        });
-    };
-    SettingsPage.prototype.ngOnChanges = function () {
-        console.log('Ng All Changes');
-    };
-    SettingsPage = SettingsPage_1 = __decorate([
+    SignupPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-settings',template:/*ion-inline-start:"/Users/waynelester/Dropbox/Coding/Time2Retire/front/src/pages/settings/settings.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ pageTitle }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n  <form [formGroup]="form" *ngIf="settingsReady">\n    <ion-list *ngIf="page == \'main\'">\n      <ion-item>\n        <ion-label>{{ \'SETTINGS_OPTION1\' | translate }}</ion-label>\n        <ion-toggle formControlName="option1"></ion-toggle>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>{{ \'SETTINGS_OPTION2\' | translate }}</ion-label>\n        <ion-input formControlName="option2"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>{{ \'SETTINGS_OPTION3\' | translate }}</ion-label>\n        <ion-select formControlName="option3">\n          <ion-option value="1" checked="true">1</ion-option>\n          <ion-option value="2">2</ion-option>\n          <ion-option value="3">3</ion-option>\n        </ion-select>\n      </ion-item>\n\n      <button ion-item [navPush]="subSettings" [navParams]="profileSettings">\n        {{ \'SETTINGS_PROFILE_BUTTON\' | translate }}\n      </button>\n    </ion-list>\n\n    <ion-list *ngIf="page == \'profile\'">\n      <ion-item>\n        <ion-label>{{ \'SETTINGS_OPTION4\' | translate }}</ion-label>\n        <ion-input formControlName="option4"></ion-input>\n      </ion-item>\n    </ion-list>\n  </form>\n\n</ion-content>'/*ion-inline-end:"/Users/waynelester/Dropbox/Coding/Time2Retire/front/src/pages/settings/settings.html"*/
+            selector: 'page-signup',template:/*ion-inline-start:"/Users/waynelester/Dropbox/Coding/Time2Retire/front/src/pages/signup/signup.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'SIGNUP_TITLE\' | translate }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <!-- <form (submit)="doSignup()">\n    <ion-list>\n\n      <ion-item>\n        <ion-label fixed>{{ \'NAME\' | translate }}</ion-label>\n        <ion-input type="text" [(ngModel)]="account.name" name="name"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>{{ \'EMAIL\' | translate }}</ion-label>\n        <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>\n      </ion-item>\n\n      \n      Want to add a Username? Here you go:\n\n      <ion-item>\n        <ion-label floating>Username</ion-label>\n        <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>\n      </ion-item>\n     \n\n      <ion-item>\n        <ion-label fixed>{{ \'PASSWORD\' | translate }}</ion-label>\n        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>\n      </ion-item>\n\n      <div padding>\n        <button ion-button color="primary" block>{{ \'SIGNUP_BUTTON\' | translate }}</button>\n      </div>\n\n    </ion-list>\n  </form> -->\n\n  <form (submit)=\'newSignup()\'>\n\n    <ion-list>\n\n      <div align=\'center\'>\n        <h5 *ngIf="signupAttempt" style="color: #ea6153;">Please fill out all details</h5>\n      </div>\n\n      <ion-item>\n\n        <ion-input placeholder="First Name" type=\'text\' [(ngModel)]=\'newUser.firstName\' name=\'firstName\'></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-input placeholder="Last Name" type=\'text\' [(ngModel)]=\'newUser.lastName\' name=\'lastName\'></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label> Birth Date</ion-label>\n        <ion-input placeholder="Birthday" type=\'date\' [(ngModel)]=\'newUser.birthday\' name=\'birthday\'></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-input placeholder="Email" type=\'email\' [(ngModel)]=\'newUser.email\' name=\'email\'></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-input placeholder="Password" type=\'password\' [(ngModel)]=\'newUser.password\' name=\'password\'></ion-input>\n      </ion-item>\n\n      <div padding>\n        <button ion-button color="primary" block>Sign Up</button>\n      </div>\n\n    </ion-list>\n\n  </form>\n\n</ion-content>'/*ion-inline-end:"/Users/waynelester/Dropbox/Coding/Time2Retire/front/src/pages/signup/signup.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["i" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_4__providers__["c" /* Settings */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["j" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */]])
-    ], SettingsPage);
-    return SettingsPage;
-    var SettingsPage_1;
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__providers__["d" /* User */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers__["d" /* User */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* ToastController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */]) === "function" && _d || Object])
+    ], SignupPage);
+    return SignupPage;
+    var _a, _b, _c, _d;
 }());
 
-//# sourceMappingURL=settings.js.map
+//# sourceMappingURL=signup.js.map
 
 /***/ })
 

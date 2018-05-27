@@ -47,18 +47,18 @@ var map = {
 	],
 	"../pages/chart/chart.module": [
 		518,
-		0
+		1
 	],
 	"../pages/content/content.module": [
 		519,
 		16
 	],
 	"../pages/item-create/item-create.module": [
-		521,
+		520,
 		15
 	],
 	"../pages/item-detail/item-detail.module": [
-		520,
+		521,
 		14
 	],
 	"../pages/list-master/list-master.module": [
@@ -79,39 +79,39 @@ var map = {
 	],
 	"../pages/profile/profile.module": [
 		526,
-		9
+		0
 	],
 	"../pages/saved/saved.module": [
+		527,
+		9
+	],
+	"../pages/search/search.module": [
 		528,
 		8
 	],
-	"../pages/search/search.module": [
-		527,
-		7
-	],
 	"../pages/settings/settings.module": [
 		529,
-		6
+		7
 	],
 	"../pages/signup/signup.module": [
 		530,
-		5
+		6
 	],
 	"../pages/tabs/tabs.module": [
 		531,
-		4
+		5
 	],
 	"../pages/tester/tester.module": [
 		532,
-		3
+		4
 	],
 	"../pages/tutorial/tutorial.module": [
 		533,
-		2
+		3
 	],
 	"../pages/welcome/welcome.module": [
 		534,
-		1
+		2
 	]
 };
 function webpackAsyncContext(req) {
@@ -367,7 +367,8 @@ var User = /** @class */ (function () {
         this.base_url = "https://nameless-wave-33070.herokuapp.com/api/appUsers/";
         this.token_url = "?access_token=";
         this.login_url = "login?include=user&access_token=";
-        this.register_url = 'https://nameless-wave-33070.herokuapp.com/api/appUsers?access_token=';
+        this.logout_url = "logout?access_token=";
+        this.register_url = "https://nameless-wave-33070.herokuapp.com/api/appUsers?access_token=";
         this.helloWorld = "hello world";
         this.token = sessionStorage.getItem('token');
         this.userID = sessionStorage.getItem('userId');
@@ -381,8 +382,9 @@ var User = /** @class */ (function () {
     /**
      * Log the user out, which forgets the session
      */
-    User.prototype.logout = function () {
+    User.prototype.logout = function (user) {
         this._user = null;
+        return this.http.post(this.base_url + this.logout_url + this.token, user);
     };
     /**
      * Process a login/signup response to store user data
@@ -392,10 +394,9 @@ var User = /** @class */ (function () {
     };
     User = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__api_api__["a" /* Api */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__api_api__["a" /* Api */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__api_api__["a" /* Api */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]])
     ], User);
     return User;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=user.js.map
@@ -501,15 +502,15 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/cards/cards.module#CardsPageModule', name: 'CardsPage', segment: 'cards', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/chart/chart.module#ChartPageModule', name: 'ChartPage', segment: 'chart', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/content/content.module#ContentPageModule', name: 'ContentPage', segment: 'content', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/item-detail/item-detail.module#ItemDetailPageModule', name: 'ItemDetailPage', segment: 'item-detail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/item-create/item-create.module#ItemCreatePageModule', name: 'ItemCreatePage', segment: 'item-create', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/item-detail/item-detail.module#ItemDetailPageModule', name: 'ItemDetailPage', segment: 'item-detail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/list-master/list-master.module#ListMasterPageModule', name: 'ListMasterPage', segment: 'list-master', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/menu/menu.module#MenuPageModule', name: 'MenuPage', segment: 'menu', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/new-chart/new-chart.module#NewChartPageModule', name: 'NewChartPage', segment: 'new-chart', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/profile/profile.module#ProfilePageModule', name: 'ProfilePage', segment: 'profile', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/search/search.module#SearchPageModule', name: 'SearchPage', segment: 'search', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/saved/saved.module#SavedPageModule', name: 'SavedPage', segment: 'saved', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/search/search.module#SearchPageModule', name: 'SearchPage', segment: 'search', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/tabs/tabs.module#TabsPageModule', name: 'TabsPage', segment: 'tabs', priority: 'low', defaultHistory: [] },
@@ -522,7 +523,7 @@ var AppModule = /** @class */ (function () {
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_9_ionic_angular__["b" /* IonicApp */]],
             entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_13__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_13__app_component__["a" /* MyApp */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_12__providers__["a" /* Api */],
@@ -971,8 +972,7 @@ var MyApp = /** @class */ (function () {
             { title: 'Tutorial', component: 'TutorialPage' },
             { title: 'Profile', component: 'ProfilePage' },
             { title: 'New Chart', component: 'ChartPage' },
-            { title: 'Saved Charts', component: 'SavedPage' },
-            { title: 'Tasty Test', component: 'TesterPage' }
+            { title: 'Saved Charts', component: 'SavedPage' }
         ];
         platform.ready().then(function () {
             // Okay, so the platform is ready and our plugins are available.

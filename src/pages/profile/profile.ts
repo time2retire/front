@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../providers/user/user';
 import { HttpClient } from '@angular/common/http';
-import { NgForm } from '@angular/forms';
+//import { NgForm } from '@angular/forms';
+
+import { WelcomePage } from '../welcome/welcome';
+import { SavedPage } from '../saved/saved';
 
 /**
  * Generated class for the ProfilePage page.
@@ -35,5 +38,12 @@ export class ProfilePage {
     console.log('ionViewDidLoad ProfilePage');
     console.log(this._user.user)
   }
-
+  logoutUser(user) {
+    this._user.logout(user);
+    console.log(this._user.user.email, " logged out");
+    this.navCtrl.setRoot(WelcomePage);
+  }
+  mySavedCharts() {
+    this.navCtrl.setRoot(SavedPage);
+  }
 }

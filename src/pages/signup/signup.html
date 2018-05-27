@@ -52,33 +52,25 @@
       </div>
 
       <ion-item>
-        <ion-label fixed>First Name</ion-label>
-        <ion-input type='text' [(ngModel)]='newUser.firstName' name='firstName'></ion-input>
+
+        <ion-input placeholder="First Name" type='text' [(ngModel)]='newUser.firstName' name='firstName'></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label fixed>Last Name</ion-label>
-        <ion-input type='text' [(ngModel)]='newUser.lastName' name='lastName'></ion-input>
+        <ion-input placeholder="Last Name" type='text' [(ngModel)]='newUser.lastName' name='lastName'></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label fixed>Username</ion-label>
-        <ion-input type='text' [(ngModel)]='newUser.userName' name='userName'></ion-input>
+        <ion-label> Birth Date</ion-label>
+        <ion-input placeholder="Birthday" type='date' [(ngModel)]='newUser.birthday' name='birthday'></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label fixed>Birthday</ion-label>
-        <ion-input type='date' [(ngModel)]='newUser.birthday' name='birthday'></ion-input>
+        <ion-input placeholder="Email" type='email' [(ngModel)]='newUser.email' name='email'></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label fixed>Email</ion-label>
-        <ion-input type='email' [(ngModel)]='newUser.email' name='email'></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label fixed>Password</ion-label>
-        <ion-input type='password' [(ngModel)]='newUser.password' name='password'></ion-input>
+        <ion-input placeholder="Password" type='password' [(ngModel)]='newUser.password' name='password'></ion-input>
       </ion-item>
 
       <div padding>

@@ -29,7 +29,8 @@ export class User {
   base_url: string = "https://nameless-wave-33070.herokuapp.com/api/appUsers/"
   token_url: string = "?access_token="
   login_url: string = "login?include=user&access_token="
-  register_url: string = 'https://nameless-wave-33070.herokuapp.com/api/appUsers?access_token='
+  logout_url: string = "logout?access_token="
+  register_url: string = "https://nameless-wave-33070.herokuapp.com/api/appUsers?access_token="
   user: any;
   helloWorld: string = "hello world"
 
@@ -49,8 +50,9 @@ export class User {
   /**
    * Log the user out, which forgets the session
    */
-  logout() {
+  logout(user) {
     this._user = null;
+    return this.http.post(this.base_url + this.logout_url + this.token, user)
   }
 
   /**

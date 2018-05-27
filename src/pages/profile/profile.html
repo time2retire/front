@@ -17,8 +17,27 @@
 
 
 <ion-content padding>
-  <div *ngIf="_user.user">First name: {{ _user.user.firstName }}
-  </div>
-  <div>Last name: {{_user.user.lastName}}</div>
+  <h1 align="center">Hello, {{_user.user.firstName}}!</h1>
+  <ion-grid>
+
+    <div *ngIf="_user.user">
+      <ion-row>
+        Name: {{ _user.user.firstName }} {{ _user.user.lastName }}
+      </ion-row>
+      <ion-row>
+        <div>Birthday: {{_user.user.birthday | date }}</div>
+      </ion-row>
+      <ion-row>
+        <div>Annual Income: </div>
+      </ion-row>
+
+      <ion-col col-6>
+        <button ion-button color="secondary" (click)="mySavedCharts()">My Saved Charts</button>
+      </ion-col>
+      <ion-col col-6>
+        <button align="center" ion-button color="danger" (click)="logoutUser()">Logout</button>
+      </ion-col>
+    </div>
+  </ion-grid>
   <!--<img src="https://i.imgur.com/yebyUGP.png"> -->
 </ion-content>
