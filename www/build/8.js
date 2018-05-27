@@ -1,15 +1,14 @@
 webpackJsonp([8],{
 
-/***/ 528:
+/***/ 522:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchPageModule", function() { return SearchPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NewChartPageModule", function() { return NewChartPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__search__ = __webpack_require__(548);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__new_chart__ = __webpack_require__(538);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -19,39 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
-var SearchPageModule = /** @class */ (function () {
-    function SearchPageModule() {
+var NewChartPageModule = /** @class */ (function () {
+    function NewChartPageModule() {
     }
-    SearchPageModule = __decorate([
+    NewChartPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_3__search__["a" /* SearchPage */],
+                __WEBPACK_IMPORTED_MODULE_2__new_chart__["a" /* NewChartPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__search__["a" /* SearchPage */]),
-                __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["b" /* TranslateModule */].forChild()
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__new_chart__["a" /* NewChartPage */]),
             ],
-            exports: [
-                __WEBPACK_IMPORTED_MODULE_3__search__["a" /* SearchPage */]
-            ]
         })
-    ], SearchPageModule);
-    return SearchPageModule;
+    ], NewChartPageModule);
+    return NewChartPageModule;
 }());
 
-//# sourceMappingURL=search.module.js.map
+//# sourceMappingURL=new-chart.module.js.map
 
 /***/ }),
 
-/***/ 548:
+/***/ 538:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewChartPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers__ = __webpack_require__(127);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63,45 +56,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-var SearchPage = /** @class */ (function () {
-    function SearchPage(navCtrl, navParams, items) {
+/**
+ * Generated class for the NewChartPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var NewChartPage = /** @class */ (function () {
+    function NewChartPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.items = items;
-        this.currentItems = [];
     }
-    /**
-     * Perform a service for the proper items.
-     */
-    SearchPage.prototype.getItems = function (ev) {
-        var val = ev.target.value;
-        if (!val || !val.trim()) {
-            this.currentItems = [];
-            return;
-        }
-        this.currentItems = this.items.query({
-            name: val
-        });
+    NewChartPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad NewChartPage');
     };
-    /**
-     * Navigate to the detail page for this item.
-     */
-    SearchPage.prototype.openItem = function (item) {
-        this.navCtrl.push('ItemDetailPage', {
-            item: item
-        });
-    };
-    SearchPage = __decorate([
+    NewChartPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-search',template:/*ion-inline-start:"/Users/waynelester/Dropbox/Coding/Time2Retire/front/src/pages/search/search.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'SEARCH_TITLE\' | translate }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <ion-searchbar (ionInput)="getItems($event)" placeholder="{{ \'SEARCH_PLACEHOLDER\' | translate }}"></ion-searchbar>\n  <ion-list>\n    <button ion-item (click)="openItem(item)" *ngFor="let item of currentItems">\n      <ion-avatar item-start>\n        <img [src]="item.profilePic" />\n      </ion-avatar>\n      <h2>{{item.name}}</h2>\n      <p>{{item.about}}</p>\n      <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>\n    </button>\n  </ion-list>\n</ion-content>'/*ion-inline-end:"/Users/waynelester/Dropbox/Coding/Time2Retire/front/src/pages/search/search.html"*/
+            selector: 'page-new-chart',template:/*ion-inline-start:"/Users/waynelester/Dropbox/Coding/Time2Retire/front/src/pages/new-chart/new-chart.html"*/'<!--\n  Generated template for the NewChartPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n      <button ion-button menuToggle color="primary">\n          <ion-icon name="menu"></ion-icon>\n        </button>\n    <ion-title>newChart</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <img src="https://i.imgur.com/PY9AmbM.png">\n</ion-content>\n'/*ion-inline-end:"/Users/waynelester/Dropbox/Coding/Time2Retire/front/src/pages/new-chart/new-chart.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers__["b" /* Items */]])
-    ], SearchPage);
-    return SearchPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
+    ], NewChartPage);
+    return NewChartPage;
 }());
 
-//# sourceMappingURL=search.js.map
+//# sourceMappingURL=new-chart.js.map
 
 /***/ })
 

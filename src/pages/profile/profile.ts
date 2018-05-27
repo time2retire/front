@@ -39,10 +39,12 @@ export class ProfilePage {
     console.log(this._user.user)
   }
   logoutUser(user) {
+    console.log("user " + user, this._user, this._user.user)
     this._user.logout(user);
     console.log(this._user.user.email, " logged out");
     this.navCtrl.setRoot(WelcomePage);
   }
+
   mySavedCharts() {
     this.navCtrl.setRoot(SavedPage);
   }

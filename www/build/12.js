@@ -1,15 +1,15 @@
 webpackJsonp([12],{
 
-/***/ 523:
+/***/ 517:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CardsPageModule", function() { return CardsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login__ = __webpack_require__(544);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cards__ = __webpack_require__(532);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20,40 +20,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var LoginPageModule = /** @class */ (function () {
-    function LoginPageModule() {
+var CardsPageModule = /** @class */ (function () {
+    function CardsPageModule() {
     }
-    LoginPageModule = __decorate([
+    CardsPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_3__login__["a" /* LoginPage */],
+                __WEBPACK_IMPORTED_MODULE_3__cards__["a" /* CardsPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__login__["a" /* LoginPage */]),
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__cards__["a" /* CardsPage */]),
                 __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["b" /* TranslateModule */].forChild()
             ],
             exports: [
-                __WEBPACK_IMPORTED_MODULE_3__login__["a" /* LoginPage */]
+                __WEBPACK_IMPORTED_MODULE_3__cards__["a" /* CardsPage */]
             ]
         })
-    ], LoginPageModule);
-    return LoginPageModule;
+    ], CardsPageModule);
+    return CardsPageModule;
 }());
 
-//# sourceMappingURL=login.module.js.map
+//# sourceMappingURL=cards.module.js.map
 
 /***/ }),
 
-/***/ 544:
+/***/ 532:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CardsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4____ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(125);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -65,60 +62,49 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
-
-var LoginPage = /** @class */ (function () {
-    function LoginPage(navCtrl, _user, toastCtrl, translateService) {
-        var _this = this;
+var CardsPage = /** @class */ (function () {
+    function CardsPage(navCtrl) {
         this.navCtrl = navCtrl;
-        this._user = _user;
-        this.toastCtrl = toastCtrl;
-        this.translateService = translateService;
-        this.userLogin = {
-            email: '',
-            password: ''
-        };
-        this.submitAttempt = false;
-        this.translateService.get('LOGIN_ERROR').subscribe(function (value) {
-            _this.loginErrorString = value;
-        });
+        this.cardItems = [
+            {
+                user: {
+                    avatar: 'assets/img/marty-avatar.png',
+                    name: 'Marty McFly'
+                },
+                date: 'November 5, 1955',
+                image: 'assets/img/advance-card-bttf.png',
+                content: 'Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.',
+            },
+            {
+                user: {
+                    avatar: 'assets/img/sarah-avatar.png.jpeg',
+                    name: 'Sarah Connor'
+                },
+                date: 'May 12, 1984',
+                image: 'assets/img/advance-card-tmntr.jpg',
+                content: 'I face the unknown future, with a sense of hope. Because if a machine, a Terminator, can learn the value of human life, maybe we can too.'
+            },
+            {
+                user: {
+                    avatar: 'assets/img/ian-avatar.png',
+                    name: 'Dr. Ian Malcolm'
+                },
+                date: 'June 28, 1990',
+                image: 'assets/img/advance-card-jp.jpg',
+                content: 'Your scientists were so preoccupied with whether or not they could, that they didn\'t stop to think if they should.'
+            }
+        ];
     }
-    LoginPage.prototype.loginUser = function () {
-        var _this = this;
-        return this._user.loginCustom(this.userLogin).subscribe(function (userLog) {
-            //console.log(userLog, 'Login Successful')
-            _this._user.user = userLog.user;
-            console.log("userLog test", _this._user.user);
-            sessionStorage.setItem('token', userLog.token);
-            sessionStorage.setItem('userId', userLog.userId);
-            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4____["b" /* MainPage */]);
-        }, function (err) {
-            _this.submitAttempt = true;
-            console.log(err, "error");
-            var toast = _this.toastCtrl.create({
-                message: 'Invalid email or password',
-                duration: 2000,
-                position: 'top'
-            });
-            toast.present();
-            _this.userLogin.email = '';
-            _this.userLogin.password = '';
-        });
-    };
-    LoginPage = __decorate([
+    CardsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-login',template:/*ion-inline-start:"/Users/waynelester/Dropbox/Coding/Time2Retire/front/src/pages/login/login.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'LOGIN_TITLE\' | translate }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <!-- <form (submit)="doLogin()">\n    <ion-list>\n\n      <ion-item>\n        <ion-label fixed>{{ \'EMAIL\' | translate }}</ion-label>\n        <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>\n      </ion-item>\n\n\n      Want to use a Username instead of an Email? Here you go:\n\n      <ion-item>\n        <ion-label floating>{{ \'USERNAME\' | translate }}</ion-label>\n        <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>\n      </ion-item>\n\n\n      <ion-item>\n        <ion-label fixed>{{ \'PASSWORD\' | translate }}</ion-label>\n        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>\n      </ion-item>\n\n      <div padding>\n        <button ion-button color="secondary" block>{{ \'LOGIN_BUTTON\' | translate }}</button>\n      </div>\n\n    </ion-list>\n  </form> -->\n\n  <div align=\'center\'>\n    <h5 *ngIf="submitAttempt" style="color: #ea6153;">Invalid email or password</h5>\n  </div>\n\n  <form (submit)=\'loginUser()\'>\n\n    <ion-list>\n\n      <ion-item>\n        <ion-input placeholder="Email" type=\'email\' name=\'email\' [(ngModel)]=\'userLogin.email\'></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-input placeholder="Password" type=\'password\' name=\'password\' [(ngModel)]=\'userLogin.password\'></ion-input>\n      </ion-item>\n\n      <div padding>\n        <button ion-button color=\'primary\' block>Sign In</button>\n      </div>\n\n    </ion-list>\n\n  </form>\n</ion-content>'/*ion-inline-end:"/Users/waynelester/Dropbox/Coding/Time2Retire/front/src/pages/login/login.html"*/
+            selector: 'page-cards',template:/*ion-inline-start:"/Users/waynelester/Dropbox/Coding/Time2Retire/front/src/pages/cards/cards.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'CARDS_TITLE\' | translate }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <ion-card *ngFor="let item of cardItems">\n\n    <ion-item>\n      <ion-avatar item-start>\n        <img [src]="item.user.avatar">\n      </ion-avatar>\n      <h2>{{item.user.name}}</h2>\n      <p>{{item.date}}</p>\n    </ion-item>\n\n    <img [src]="item.image">\n\n    <ion-card-content>\n      <p>{{item.content}}</p>\n    </ion-card-content>\n\n    <ion-row>\n      <ion-col>\n        <button ion-button color="primary" clear small icon-start>\n            <ion-icon name=\'thumbs-up\'></ion-icon>\n            12 Likes\n          </button>\n      </ion-col>\n      <ion-col>\n        <button ion-button color="primary" clear small icon-start>\n            <ion-icon name=\'text\'></ion-icon>\n            4 Comments\n          </button>\n      </ion-col>\n      <ion-col center text-center>\n        <ion-note>\n          11h ago\n        </ion-note>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n</ion-content>'/*ion-inline-end:"/Users/waynelester/Dropbox/Coding/Time2Retire/front/src/pages/cards/cards.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_3__providers__["d" /* User */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */]])
-    ], LoginPage);
-    return LoginPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]])
+    ], CardsPage);
+    return CardsPage;
 }());
 
-//# sourceMappingURL=login.js.map
+//# sourceMappingURL=cards.js.map
 
 /***/ })
 
