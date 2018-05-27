@@ -20,6 +20,7 @@ export class ChartPage {
   croakYear: number = 2080;
   retRange: number = this.croakYear - this.retYear;
   benefitObject: any;
+  slider: any;
 
   monthlyBenefit: number;
   totalBenefit: number;
@@ -96,19 +97,20 @@ export class ChartPage {
     {data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B'}
   ];
 
-  public slider():void {
-    let _barChartData:Array<any> = new Array(this.barChartData.length);
-    for (let i = 0; i < this.barChartData.length; i++) {
-      _barChartData[i] = {data: new Array(this.barChartData[i].data.length), label: this.barChartData[i].label};
-      for (let j = 0; j < this.barChartData[0].data.length; j++) {
-        _barChartData[i].data[j]
-      }
-    }
-    this.barChartData = _barChartData;
-  }
+  // public randomize():void {
+  //   let _barChartData:Array<any> = new Array(this.barChartData.length);
+  //   for (let i = 0; i < this.barChartData.length; i++) {
+  //     _barChartData[i] = {data: new Array(this.barChartData[i].data.length), label: this.barChartData[i].label};
+  //     for (let j = 0; j < this.barChartData[0].data.length; j++) {
+  //       _barChartData[i].data[j]
+  //     }
+  //   }
+  //   this.barChartData = _barChartData;
+  // }
 
-  goSlider(sliderVal){
-    this.monthlyBenefit = this.benefitObject[sliderVal].monthlyBen;
+  goSlider(){
+    console.log(this.slider)
+    this.monthlyBenefit = this.benefitObject[this.slider].monthlyBen;
     this.totalBenefit = this.monthlyBenefit * 12 * this.retRange;
     this.barChartData = [
       {data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID:'A'},

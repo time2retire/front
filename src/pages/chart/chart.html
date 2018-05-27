@@ -19,5 +19,5 @@
   (chartClick)="chartClicked($event)">
 </canvas>
 </div>
-<input [(ngModel)]="x"><button (click)="slider()">+</button>
+<ion-range min="62" max="70" [(ngModel)]="slider" (ionChange)='goSlider()' color="primary"></ion-range>
 </ion-content>
