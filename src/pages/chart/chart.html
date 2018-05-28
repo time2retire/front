@@ -19,5 +19,11 @@
   (chartClick)="chartClicked($event)">
 </canvas>
 </div>
-<ion-range min="62" max="70" [(ngModel)]="slider" (ionChange)='goSlider()' color="primary"></ion-range>
+<ion-range
+  min="62" max="70" 
+  [(ngModel)]="slider" 
+  (ionChange)='goSlider()' 
+  steps="1"
+  color="primary">
+</ion-range>
 </ion-content>
