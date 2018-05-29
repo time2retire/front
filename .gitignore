@@ -60,7 +60,7 @@ typings/
 .env
 <<<<<<< HEAD
 # Envrionment Variables
-#**/environment.*
+**/environment.dev.*
 #!**/environment.model.ts
 
 =======
