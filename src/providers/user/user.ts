@@ -52,7 +52,7 @@ export class User {
    */
   logout(user) {
     console.log("logout function fires")
-    this._user = null;
+    this.user = null;
     return this.http.post(this.base_url + this.logout_url + this.token, user)
   }
 
