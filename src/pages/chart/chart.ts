@@ -20,8 +20,8 @@ export class ChartPage {
   croakYear: number = 2080;
   retRange: number = this.croakYear - this.retYear;
   benefitObject: any;
-  monthlyBen: number = 1870;
-  totalBen: number = this.monthlyBen * 12 * this.retRange;
+  monthlyBen: number;
+  totalBen: number;
   
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -119,10 +119,10 @@ export class ChartPage {
   }
 
   ionViewDidLoad() {
-    this._api.getRetire()
+    this._api.getRetire('1954', '1400', 'true')
     .subscribe(data => {
       this.benefitObject = data;
-      console.log('i ran')
+      console.log(data[63].monthlyBen)
       this.setChartData(data[63].monthlyBen)
     })
     Chart.pluginService.register(ChartLabels);

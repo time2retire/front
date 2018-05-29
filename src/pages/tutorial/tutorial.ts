@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, MenuController, NavController, Platform } from 'ionic-angular';
 
 import { TranslateService } from '@ngx-translate/core';
+import { ENV } from '@app/env'
 
 export interface Slide {
   title: string;
@@ -29,7 +30,8 @@ export class TutorialPage {
       "TUTORIAL_SLIDE3_DESCRIPTION",
     ]).subscribe(
       (values) => {
-        console.log('Loaded values', values);
+        console.log(ENV)
+        // console.log('Loaded values', values);
         this.slides = [
           {
             title: values.TUTORIAL_SLIDE1_TITLE,
