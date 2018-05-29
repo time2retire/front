@@ -25,6 +25,7 @@
   (chartClick)="chartClicked($event)">
 </canvas>
 </div>
+<<<<<<< HEAD
 <ion-range min="62" max="85" 
   [(ngModel)]="slider" (ionChange)='goSlider()'
   color="primary" snaps="true"
@@ -36,4 +37,12 @@
 <p>...Temp...</p>
 <p>Retirement Age: {{slider.lower}}</p>
 <p>Retirement Cessation: {{slider.upper}}</p>
+=======
+<ion-item>
+  <ion-range min="62" max="70" (ionChange)="slideRetAge($event)">
+    <ion-label range-left>62</ion-label>
+    <ion-label range-right>70</ion-label>
+  </ion-range>
+</ion-item>
+>>>>>>> 802bb59ae7e3a58712f17d93d640eeccf82d9ea7
 </ion-content>
