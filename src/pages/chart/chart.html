@@ -1,42 +1,39 @@
 <ion-header>
-
   <ion-navbar>
     <button ion-button menuToggle color="primary">
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Chart</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-<<<<<<< HEAD
+    <ion-card>
+    <ion-card-content class="impStuff">
+      <div><strong>Best-Year:</strong>{{croakYear}}</div>
+      <div><strong>Break-Even:</strong>{{retYear}}</div>
+    </ion-card-content>
+  </ion-card>
   <div style = "display: block">
-  <canvas class = "chart" baseChart width="400" height="400"
-  [datasets]="barChartData"
-  [labels]="barChartLabels"
-  [options]="barChartOptions"
-  [legend]="barChartLegend"
-  [chartType]="barChartType"
-  (chartHover)="chartHovered($event)"
-  (chartClick)="chartClicked($event)">
-</canvas>
-</div>
-<ion-item>
-  <ion-range min="62" max="70" (ionChange)="slideRetAge($event)">
-    <ion-label range-left>62</ion-label>
-    <ion-label range-right>70</ion-label>
-  </ion-range>
-</ion-item>
-</ion-content>
-=======
-  <div style="display: block">
-    <canvas class="chart" baseChart width="400" height="400" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-      [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+    <canvas class = "chart" baseChart width="400" height="400"
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [legend]="barChartLegend"
+      [chartType]="barChartType"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)">
     </canvas>
   </div>
-  <input [(ngModel)]="x">
-  <button (click)="randomize()">+</button>
+  <ion-range 
+    min="62" max="85" [(ngModel)]="slider" 
+    (ionChange)='goSlider()' color="primary" 
+    dualKnobs="true" pin="true">
+  <ion-label range-left>62</ion-label>
+  <ion-label range-right>85</ion-label>
+</ion-range>
+<p>...Temp...</p>
+<p>Retirement Age: {{slider.lower}}</p>
+<p>Retirement Cessation: {{slider.upper}}</p>
 </ion-content>
->>>>>>> feature-profile
+

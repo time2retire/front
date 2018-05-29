@@ -20,13 +20,14 @@ export class ChartPage {
   croakYear: number = 2080;
   retRange: number = this.croakYear - this.retYear;
   benefitObject: any;
-  monthlyBen: number;
-  totalBen: number;
+  slider: any = {lower: 62, upper: 85};
+  monthlyBenefit: number;
+  totalBenefit: number;
   
   constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
-              public _api: Api,
-            ) {}
+    public navParams: NavParams,
+    public _api: Api,
+  ){}
   
   public barChartOptions:any = {
     plugins: {
@@ -36,7 +37,7 @@ export class ChartPage {
         anchor: 'end',
         font: {
           weight: 'bold',
-          size: 25,
+          size: 18,
         },
         formatter: function(value, context) {
           let currency = (value + '').replace(/(\d)(?=(\d{3})+$)/g, '$1,');
@@ -67,9 +68,9 @@ export class ChartPage {
           type: 'linear',
           position: 'right',
           ticks: {
-            max: 1000000,
-            min: 50000,
-            stepSize: 50000
+            max: 800000,
+            min: 100000,
+            stepSize: 100000
           },
           gridLines: {
             display: false
@@ -83,47 +84,54 @@ export class ChartPage {
   public barChartLegend: boolean = true;
 
   // events
-  public chartClicked(e: any): void {
-    console.log(e);
+  public chartClicked(e:any):void {
+    console.log(e); 
   }
   public chartHovered(e:any):void {
     console.log(e);
   }
-
   public barChartData:any[] = [
-    {data: [this.monthlyBen], label: 'Monthly Benefit Amt.', yAxisID:'A'},
-    {data: [this.totalBen], label: 'Total Benefit', yAxisID: 'B'}
+    {data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID:'A'},
+    {data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B'}
   ];
 
-  // public randomize():void {
-  //   let _barChartData:Array<any> = new Array(this.barChartData.length);
-  //   for (let i = 0; i < this.barChartData.length; i++) {
-  //     _barChartData[i] = {data: new Array(this.barChartData[i].data.length), label: this.barChartData[i].label};
-  //     for (let j = 0; j < this.barChartData[0].data.length; j++) {
-  //       _barChartData[i].data[j]
-  //     }
-  //   }
-  //   this.barChartData = _barChartData;
-  // }
-
-  setChartData(monthlyBen) {
-    let totalBen = monthlyBen * 12 * this.retRange
+  goSlider(){
+    //fires with ionChange
+    this.restrictValue();
+    this.updateChart();
+  }
+  restrictValue () {
+    /*restricts lower value from 
+    going out of the bounds of
+    the bebefitObject*/
+    if (this.slider.lower >= 70) {
+      this.slider.lower = 70;
+    }
+  }
+  updateChart(){
+    /*Updates Bar chart and card
+    based on sliders upper and lower
+    values*/
+    console.log(this.slider)
+    this.monthlyBenefit = this.benefitObject[this.slider.lower].monthlyBen;
+    this.totalBenefit = this.monthlyBenefit * 12 * this.retRange;
     this.barChartData = [
-      {data: [monthlyBen], label: 'Monthly Benefit Amt.', yAxisID:'A'},
-      {data: [totalBen], label: 'Total Benefit', yAxisID: 'B'}
+      {data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID:'A'},
+      {data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B'}
     ];
   }
-
-  slideRetAge(event) {
-    this.setChartData(this.benefitObject[event.value].monthlyBen);
-  }
-
+  
   ionViewDidLoad() {
     this._api.getRetire('1954', '1400', 'true')
     .subscribe(data => {
+      console.log(data)
       this.benefitObject = data;
-      console.log(data[63].monthlyBen)
-      this.setChartData(data[63].monthlyBen)
+      this.monthlyBenefit = data[63].monthlyBen
+      this.totalBenefit = this.monthlyBenefit * 12 * this.retRange;
+      this.barChartData = [
+        {data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID:'A'},
+        {data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B'}
+      ];
     })
     Chart.pluginService.register(ChartLabels);
   }
