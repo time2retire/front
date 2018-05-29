@@ -1,11 +1,8 @@
 <ion-header>
-
   <ion-navbar>
     <ion-title>Chart</ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content padding>
     <ion-card>
@@ -15,34 +12,24 @@
     </ion-card-content>
   </ion-card>
   <div style = "display: block">
-  <canvas class = "chart" baseChart width="400" height="400"
-  [datasets]="barChartData"
-  [labels]="barChartLabels"
-  [options]="barChartOptions"
-  [legend]="barChartLegend"
-  [chartType]="barChartType"
-  (chartHover)="chartHovered($event)"
-  (chartClick)="chartClicked($event)">
-</canvas>
-</div>
-<<<<<<< HEAD
-<ion-range min="62" max="85" 
-  [(ngModel)]="slider" (ionChange)='goSlider()'
-  color="primary" snaps="true"
-  dualKnobs="true"
-  pin="true">
-  <!-- <ion-label range-left>62</ion-label>
-  <ion-label range-right>85</ion-label> -->
+    <canvas class = "chart" baseChart width="400" height="400"
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [legend]="barChartLegend"
+      [chartType]="barChartType"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)">
+    </canvas>
+  </div>
+  <ion-range 
+    min="62" max="85" [(ngModel)]="slider" 
+    (ionChange)='goSlider()' color="primary" 
+    dualKnobs="true" pin="true">
+  <ion-label range-left>62</ion-label>
+  <ion-label range-right>85</ion-label>
 </ion-range>
 <p>...Temp...</p>
 <p>Retirement Age: {{slider.lower}}</p>
 <p>Retirement Cessation: {{slider.upper}}</p>
-=======
-<ion-item>
-  <ion-range min="62" max="70" (ionChange)="slideRetAge($event)">
-    <ion-label range-left>62</ion-label>
-    <ion-label range-right>70</ion-label>
-  </ion-range>
-</ion-item>
->>>>>>> 802bb59ae7e3a58712f17d93d640eeccf82d9ea7
 </ion-content>
