@@ -22,7 +22,7 @@ export class LoginPage {
   private loginErrorString: string;
 
   constructor(public navCtrl: NavController,
-    public user: User,
+    public _user: User,
     public toastCtrl: ToastController,
     public translateService: TranslateService) {
 
@@ -32,10 +32,11 @@ export class LoginPage {
   }
 
   loginUser() {
-    return this.user.loginCustom(this.userLogin).subscribe(
+    return this._user.loginCustom(this.userLogin).subscribe(
       (userLog: any) => {
-        console.log(userLog, 'Login Successful')
-
+        //console.log(userLog, 'Login Successful')
+        this._user.user = userLog.user
+        console.log("userLog test", this._user.user)
         sessionStorage.setItem('token', userLog.token)
         sessionStorage.setItem('userId', userLog.userId)
 
@@ -43,7 +44,7 @@ export class LoginPage {
       }, (err) => {
         this.submitAttempt = true;
 
-        console.log(err);
+        console.log(err, "error");
         let toast = this.toastCtrl.create({
           message: 'Invalid email or password',
           duration: 2000,

@@ -26,9 +26,13 @@ import { Api } from '../api/api';
 @Injectable()
 export class User {
   _user: any;
-
-  login_url: string = 'https://nameless-wave-33070.herokuapp.com/api/appUsers/login?access_token='
-  register_url: string = 'https://nameless-wave-33070.herokuapp.com/api/appUsers?access_token='
+  base_url: string = "https://nameless-wave-33070.herokuapp.com/api/appUsers/"
+  token_url: string = "?access_token="
+  login_url: string = "login?include=user&access_token="
+  logout_url: string = "logout?access_token="
+  register_url: string = "https://nameless-wave-33070.herokuapp.com/api/appUsers?access_token="
+  user: any;
+  helloWorld: string = "hello world"
 
   token = sessionStorage.getItem('token');
   userID = sessionStorage.getItem('userId');
@@ -36,7 +40,7 @@ export class User {
   constructor(public api: Api, public http: HttpClient) { }
 
   loginCustom(user) {
-    return this.http.post(this.login_url + this.token, user)
+    return this.http.post(this.base_url + this.login_url + this.token, user)
   }
 
   signupCustom(signupUser) {
@@ -46,8 +50,9 @@ export class User {
   /**
    * Log the user out, which forgets the session
    */
-  logout() {
+  logout(user) {
     this._user = null;
+    return this.http.post(this.base_url + this.logout_url + this.token, user)
   }
 
   /**

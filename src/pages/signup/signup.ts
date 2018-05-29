@@ -58,7 +58,6 @@ export class SignupPage {
 
         this.newUser.firstName = '';
         this.newUser.lastName = '';
-        this.newUser.userName = '';
         this.newUser.birthday = '';
         this.newUser.email = '';
         this.newUser.password = '';
