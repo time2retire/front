@@ -36,8 +36,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
-www
-.sourcemaps
+
 
 # Typescript v1 declaration files
 typings/
@@ -60,6 +59,9 @@ typings/
 # dotenv environment variables file
 .env
 <<<<<<< HEAD
+# Envrionment Variables
+**/environment.*
+!**/environment.model.ts
 
 =======
 # Specifies intentionally untracked files to ignore when using Git
@@ -92,6 +94,7 @@ plugins/
 plugins/android.json
 plugins/ios.json
 www/
+.sourcemaps
 $RECYCLE.BIN/
 
 .DS_Store
