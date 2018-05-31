@@ -4,8 +4,8 @@ import { User } from '../../providers/user/user';
 import { HttpClient } from '@angular/common/http';
 //import { NgForm } from '@angular/forms';
 
-import { WelcomePage } from '../welcome/welcome';
-import { SavedPage } from '../saved/saved';
+// import { WelcomePage } from '../welcome/welcome';
+// import { SavedPage } from '../saved/saved';
 
 /**
  * Generated class for the ProfilePage page.
@@ -39,11 +39,14 @@ export class ProfilePage {
     console.log(this._user.user)
   }
   logoutUser(user) {
-    this._user.logout(user);
-    console.log(this._user.user.email, " logged out");
-    this.navCtrl.setRoot(WelcomePage);
+    this.navCtrl.setRoot("WelcomePage")
+      .then(() => {
+        this._user.logout(user);
+        sessionStorage.clear();
+        console.log("User is logged out", user)
+      });
   }
   mySavedCharts() {
-    this.navCtrl.setRoot(SavedPage);
+    this.navCtrl.setRoot("SavedPage");
   }
 }
