@@ -60,8 +60,8 @@ typings/
 .env
 <<<<<<< HEAD
 # Envrionment Variables
-#**/environment.*
-#!**/environment.model.ts
+**/environment.dev.ts*
+!**/environment.model.ts
 
 =======
 # Specifies intentionally untracked files to ignore when using Git
