@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -58,12 +57,12 @@ typings/
 
 # dotenv environment variables file
 .env
-<<<<<<< HEAD
+
+
 # Envrionment Variables
 **/environment.dev.ts*
 !**/environment.model.ts
 
-=======
 # Specifies intentionally untracked files to ignore when using Git
 # http://git-scm.com/docs/gitignore
 
@@ -100,6 +99,4 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
->>>>>>> Initial commit
-=======
->>>>>>> chart
+
