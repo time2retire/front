@@ -14,6 +14,7 @@ export class Api {
   }
 
   logout() {
+    console.log(this.url)
     this.http.post(this.url, {})
   }
 
