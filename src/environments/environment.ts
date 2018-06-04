@@ -1,4 +1,4 @@
 export const ENV = {
   mode: 'Production',
-  URL: 'https://time2retire-back.herokuapp.com/'
+  URL: 'https://nameless-wave-33070.herokuapp.com/'
 }
