@@ -3,6 +3,7 @@ import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Api } from '../api/api';
+import { ENV } from '@app/env';
 
 /**
  * Most apps have the concept of a User. This is a simple provider
@@ -26,9 +27,9 @@ import { Api } from '../api/api';
 @Injectable()
 export class User {
   _user: any;
-  base_url: string = "https://nameless-wave-33070.herokuapp.com/api/appUsers/"
+  base_url: string = ENV.URL;
   token_url: string = "?access_token="
-  login_url: string = "login?include=user&access_token="
+  login_url: string = "api/appUsers/login?include=user"
   logout_url: string = "logout?access_token="
   register_url: string = "https://nameless-wave-33070.herokuapp.com/api/appUsers?access_token="
   user: any;
@@ -40,7 +41,7 @@ export class User {
   constructor(public api: Api, public http: HttpClient) { }
 
   loginCustom(user) {
-    return this.http.post(this.base_url + this.login_url + this.token, user)
+    return this.http.post(this.base_url + this.login_url, user)
   }
 
   signupCustom(signupUser) {
