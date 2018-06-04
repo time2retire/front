@@ -27,7 +27,9 @@ import { ENV } from '@app/env';
 @Injectable()
 export class User {
   _user: any;
+
   base_url: string = ENV.URL;
+  appUsers_url: string = "api/appUsers/"
   token_url: string = "?access_token="
   login_url: string = "api/appUsers/login?include=user"
   logout_url: string = "logout?access_token="
@@ -41,7 +43,7 @@ export class User {
   constructor(public api: Api, public http: HttpClient) { }
 
   loginCustom(user) {
-    return this.http.post(this.base_url + this.login_url, user)
+    return this.http.post(this.base_url + this.appUsers_url + this.login_url + this.token, user)
   }
 
   signupCustom(signupUser) {
@@ -54,7 +56,7 @@ export class User {
   logout(user) {
     console.log("logout function fires")
     this.user = null;
-    return this.http.post(this.base_url + this.logout_url + this.token, user)
+    return this.http.post(this.base_url + this.appUsers_url + this.logout_url + this.token, user)
   }
 
   /**
