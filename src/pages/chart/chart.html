@@ -8,6 +8,8 @@
 </ion-header>
 
 <ion-content padding>
+  <input-form [form]='inputForm' (submitForm)="sendChartData()" *ngIf="!haveData"></input-form>
+  <div *ngIf="haveData">
   <ion-card>
     <ion-card-content class="impStuff">
       <div>
@@ -29,4 +31,4 @@
       <button ion-button color="primary">Save Chart</button>
       <button ion-button color="danger">Clear Chart</button>
     </div>
-</ion-content>
+<!-- </ion-content> -->

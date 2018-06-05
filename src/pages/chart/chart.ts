@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Chart } from 'chart.js'
 import * as ChartLabels from 'chartjs-plugin-datalabels';
 import { Api } from '../../providers/api/api';
@@ -10,7 +11,8 @@ import { Api } from '../../providers/api/api';
   templateUrl: 'chart.html',
 })
 export class ChartPage {
-
+  inputForm;
+  haveData: Boolean = false;
   dateOfBirth: string;
   breakEvenYear: number;
   amtInvested: number;
@@ -26,8 +28,16 @@ export class ChartPage {
   
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
+    public formBuilder: FormBuilder,
     public _api: Api,
-  ){}
+  ){
+    this.inputForm = formBuilder.group({
+      dateOfBirth: [''],
+      amountPaid: [''],
+      avgIncome: [''],
+      // lengthOfRetirement: ['']
+    })
+  }
   
   public barChartOptions:any = {
     plugins: {
@@ -95,6 +105,34 @@ export class ChartPage {
     {data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B'}
   ];
 
+  sendChartData() {
+    let dob = Number(this.inputForm.value.dateOfBirth.substr(0,4))
+    let income = this.inputForm.value.avgIncome
+    this.croakYear = dob + 85;
+    this._api.getRetire(dob, income, 'true')
+    .subscribe(data => {
+      let high = 0;
+      let highYear;
+      this.benefitObject = data;
+      Object.keys(data).forEach(year => {
+        this.retYear = dob + Number(year);
+        if ((data[year].monthlyBen * 12)  * this.retRange > high) {
+          high = (data[year].monthlyBen * 12)  * this.retRange;
+          highYear = year
+        }
+      })
+      this.monthlyBenefit = this.benefitObject[highYear].monthlyBen;
+      console.log(this.monthlyBenefit)
+      this.totalBenefit = high;
+      this.barChartData = [
+        {data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID:'A'},
+        {data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B'}
+      ];
+      this.slider.lower = highYear
+      this.haveData = true
+    })
+  }
+
   goSlider(){
     //fires with ionChange
     this.restrictValue();
@@ -114,7 +152,7 @@ export class ChartPage {
     values*/
     console.log(this.slider)
     this.monthlyBenefit = this.benefitObject[this.slider.lower].monthlyBen;
-    this.totalBenefit = this.monthlyBenefit * 12 * this.retRange;
+    this.totalBenefit = (this.monthlyBenefit * 12) * this.retRange;
     this.barChartData = [
       {data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID:'A'},
       {data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B'}

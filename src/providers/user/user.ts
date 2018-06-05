@@ -31,9 +31,9 @@ export class User {
   base_url: string = ENV.URL;
   appUsers_url: string = "api/appUsers/"
   token_url: string = "?access_token="
-  login_url: string = "login?include=user&access_token="
+  login_url: string = "api/appUsers/login?include=user"
   logout_url: string = "logout?access_token="
-  register_url: string = "https://nameless-wave-33070.herokuapp.com/api/appUsers?access_token="
+  register_url: string = "api/appUsers"
   user: any;
   helloWorld: string = "hello world"
 
@@ -43,11 +43,11 @@ export class User {
   constructor(public api: Api, public http: HttpClient) { }
 
   loginCustom(user) {
-    return this.http.post(this.base_url + this.appUsers_url + this.login_url + this.token, user)
+    return this.http.post(this.base_url + this.login_url, user)
   }
 
   signupCustom(signupUser) {
-    return this.http.post(this.register_url + this.token, signupUser)
+    return this.http.post(this.base_url + this.register_url, signupUser)
   }
 
   /**

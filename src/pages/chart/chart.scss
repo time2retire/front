@@ -6,8 +6,8 @@ page-chart {
     .chartContainer{
         display: block;
     }
-    .chartOptions{
-        display: flex;
-        justify-content: space-around;
+
+    .info-button {
+        align-self: start;
     }
 }

@@ -28,8 +28,6 @@ export class ProfilePage {
   //   return this._http.get(this.name_url + this.token);
   // }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
-    console.log(this._user.user)
   }
   logoutUser(user) {
     this.navCtrl.setRoot("WelcomePage")
