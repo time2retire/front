@@ -37,6 +37,8 @@ export class User {
   user: any;
   helloWorld: string = "hello world"
   chart: any[];
+  chart_url: string = "/charts?access_token="
+
 
   token = sessionStorage.getItem('token');
   userID = sessionStorage.getItem('userId');
@@ -66,7 +68,10 @@ export class User {
   _loggedIn(resp) {
     this._user = resp.user;
   }
-  saveChart(chart) {
-    this._user.chart = []
+  savedChart(chart) {
+    console.log("what is the chart info?", chart)
+    return this.http.post(this.base_url + this.appUsers_url + this.userID, this.chart_url, chart)
+    // https://nameless-wave-33070.herokuapp.com/api/appUsers/5afd09bbd0ac6b3a779a11cb/charts?access_token=jo8H66VjJb9VCn72CR7uk5mUStox9NyqrpRGmfV2F9xEHYvvUHiaxKOSZ9dm6Jr1
+
   }
 }

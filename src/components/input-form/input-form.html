@@ -1,29 +1,33 @@
 <ion-list no-lines>
- 
-    <form [formGroup]="form">
-  
-      <ion-item>
-          <ion-label stacked>Date of Birth</ion-label>
-          <ion-input formControlName="dateOfBirth" type="date"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-          <ion-label stacked>Amount Paid to Social Security</ion-label>
-          <button class="info-button" item-right ion-button icon-only clear (click)="alert('amountPaid')">
-            <ion-icon name="information-circle"></ion-icon>
-          </button>
-          <ion-input formControlName="amountPaid" type="number"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-          <ion-label stacked>Average Income</ion-label>
-          <button class="info-button" item-right ion-button icon-only clear (click)="alert('avgIncome')">
-            <ion-icon name="information-circle"></ion-icon>
-          </button>
-          <ion-input formControlName="avgIncome" type="number"></ion-input>
-      </ion-item>
 
-      <!-- <ion-item>
+  <form [formGroup]="form">
+
+    <!-- <ion-item>
+      <ion-label stacked>Date of Birth</ion-label>
+      <ion-input formControlName="dateOfBirth" type="date"></ion-input>
+    </ion-item> -->
+    <ion-item>
+      <ion-datetime placeholder="{{_user.user.birthday | date:'shortDate' }}" displayFormat="MM/DD/YYYY" [(ngModel)]="dateOfBirth"
+        [ngModelOptions]="{standalone: true}"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Amount Paid to Social Security</ion-label>
+      <button class="info-button" item-right ion-button icon-only clear (click)="alert('amountPaid')">
+        <ion-icon name="information-circle"></ion-icon>
+      </button>
+      <ion-input formControlName="amountPaid" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Average Income</ion-label>
+      <button class="info-button" item-right ion-button icon-only clear (click)="alert('avgIncome')">
+        <ion-icon name="information-circle"></ion-icon>
+      </button>
+      <ion-input formControlName="avgIncome" type="number"></ion-input>
+    </ion-item>
+
+    <!-- <ion-item>
           <ion-label stacked>Length of Retirement</ion-label>
           <button class="info-button" item-right ion-button icon-only clear (click)="alert('lengthOfRetirement')">
             <ion-icon name="information-circle"></ion-icon>
@@ -31,8 +35,8 @@
           <ion-input formControlName="lengthOfRetirement" type="number"></ion-input>
       </ion-item>
    -->
-      <button ion-button full color="primary" (click)="submit()">Create Account!</button>
-      
-    </form>
-   
-  </ion-list>
+    <button ion-button full color="primary" (click)="submit()">Create Account!</button>
+
+  </form>
+
+</ion-list>

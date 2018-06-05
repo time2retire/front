@@ -5,6 +5,7 @@ import { Chart } from 'chart.js'
 import * as ChartLabels from 'chartjs-plugin-datalabels';
 import { Api } from '../../providers/api/api';
 import { User } from '../../providers/user/user';
+import { HttpClientModule } from '@angular/common/http';
 
 @IonicPage()
 @Component({
@@ -31,7 +32,8 @@ export class ChartPage {
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public _api: Api,
-    public _user: User
+    public _user: User,
+    public _http: HttpClientModule
   ) {
     this.inputForm = formBuilder.group({
       dateOfBirth: [''],
@@ -160,7 +162,10 @@ export class ChartPage {
       { data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B' }
     ];
   }
-
+  saveChart(chart) {
+    this._user.savedChart(chart);
+    console.log(chart)
+  }
   ionViewDidLoad() {
     this._api.getRetire('1954', '1400', 'true')
       .subscribe(data => {
