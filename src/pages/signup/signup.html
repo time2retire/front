@@ -59,11 +59,13 @@
       <ion-item>
         <ion-input placeholder="Last Name" type='text' [(ngModel)]='newUser.lastName' name='lastName'></ion-input>
       </ion-item>
-
       <ion-item>
+        <ion-datetime placeholder="Date of Birth (MM/DD/YYYY)" displayFormat="MM/DD/YYYY" [(ngModel)]="newUser.birthday" [ngModelOptions]="{standalone: true}"></ion-datetime>
+      </ion-item>
+      <!-- <ion-item>
         <ion-label> Birth Date</ion-label>
         <ion-input placeholder="Birthday" type='date' [(ngModel)]='newUser.birthday' name='birthday'></ion-input>
-      </ion-item>
+      </ion-item> -->
 
       <ion-item>
         <ion-input placeholder="Email" type='email' [(ngModel)]='newUser.email' name='email'></ion-input>
