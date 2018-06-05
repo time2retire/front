@@ -36,6 +36,7 @@ export class LoginPage {
       (userLog: any) => {
         //console.log(userLog, 'Login Successful')
         this._user.user = userLog.user
+        console.log(userLog.user)
         console.log("userLog test", this._user.user)
         sessionStorage.setItem('token', userLog.token)
         sessionStorage.setItem('userId', userLog.userId)

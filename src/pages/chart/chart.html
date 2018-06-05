@@ -8,6 +8,8 @@
 </ion-header>
 
 <ion-content padding>
+  <input-form [form]='inputForm' (submitForm)="sendChartData()" *ngIf="!haveData"></input-form>
+  <div *ngIf="haveData">
   <ion-card>
     <ion-card-content class="impStuff">
       <div>
@@ -37,5 +39,6 @@
   <p>...Temp...</p>
   <p>Retirement Age: {{slider.lower}}</p>
   <p>Retirement Cessation: {{slider.upper}}</p>
+</div>
 </ion-content>
 
