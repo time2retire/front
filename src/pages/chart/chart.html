@@ -23,20 +23,12 @@
       [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
     </canvas>
   </div>
-  <ion-range min="62" max="85" [(ngModel)]="slider" (ionChange)='goSlider()' color="primary" dualKnobs="true" pin="true">
+  <ion-range min="62" max="100" [(ngModel)]="slider" (ionChange)='goSlider()' color="primary" dualKnobs="true" pin="true">
     <ion-label range-left>62</ion-label>
-    <ion-label range-right>85</ion-label>
+    <ion-label range-right>100</ion-label>
   </ion-range>
     <div class="chartOptions" >
       <button ion-button color="primary">Save Chart</button>
       <button ion-button color="danger">Clear Chart</button>
     </div>
-  <p>...Temp...</p>
-  <p>Retirement Age: {{slider.lower}}</p>
-  <p>Retirement Cessation: {{slider.upper}}</p>
-
-</div>
-
 </ion-content>
-
-
