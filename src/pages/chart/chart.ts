@@ -15,18 +15,19 @@ import { HttpClientModule } from '@angular/common/http';
 export class ChartPage {
   inputForm;
   haveData: Boolean = false;
-  dateOfBirth: string;
+  birthYear: number;
   breakEvenYear: number;
   amtInvested: number;
   avgIncome: number;
-  fullRetAge: number;
-  retYear: number = 2050;
-  croakYear: number = 2080;
-  retRange: number = this.croakYear - this.retYear;
+  retYear: number;
+  bucketYear: number;
+  retRange: number;
   benefitObject: any;
   slider: any = { lower: 62, upper: 85 };
   monthlyBenefit: number;
+  yearlyBenefit: number;
   totalBenefit: number;
+  bestYear: number;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -92,7 +93,6 @@ export class ChartPage {
       }]
     }
   };
-
   public barChartLabels: string[] = [];
   public barChartType: string = 'bar';
   public barChartLegend: boolean = true;
@@ -112,7 +112,7 @@ export class ChartPage {
   sendChartData() {
     let dob = Number(this.inputForm.value.dateOfBirth.substr(0, 4))
     let income = this.inputForm.value.avgIncome
-    this.croakYear = dob + 85;
+    this.bucketYear = dob + 85;
     this._api.getRetire(dob, income, 'true')
       .subscribe(data => {
         let high = 0;
@@ -120,13 +120,20 @@ export class ChartPage {
         this.benefitObject = data;
         Object.keys(data).forEach(year => {
           this.retYear = dob + Number(year);
+          this.retRange = this.bucketYear - this.retYear;
           if ((data[year].monthlyBen * 12) * this.retRange > high) {
             high = (data[year].monthlyBen * 12) * this.retRange;
-            highYear = year
+            highYear = parseInt(year);
           }
         })
+
+        this.retYear = dob + highYear;
+        this.bestYear = highYear;
+        this.retRange = this.bucketYear - this.retYear;
         this.monthlyBenefit = this.benefitObject[highYear].monthlyBen;
-        console.log(this.monthlyBenefit)
+        this.yearlyBenefit = this.monthlyBenefit * 12;
+        console.log(this.retYear, this.retRange, this.monthlyBenefit, this.yearlyBenefit, highYear)
+        this.breakEvenYear = this.calcBreakEven(highYear, this.retRange, this.yearlyBenefit)
         this.totalBenefit = high;
         this.barChartData = [
           { data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID: 'A' },
@@ -143,41 +150,45 @@ export class ChartPage {
     this.updateChart();
   }
   restrictValue() {
-    /*restricts lower value from 
-    going out of the bounds of
-    the bebefitObject*/
+    /*restricts lower value from going out of the bounds of the bebefitObject*/
     if (this.slider.lower >= 70) {
       this.slider.lower = 70;
     }
   }
   updateChart() {
-    /*Updates Bar chart and card
-    based on sliders upper and lower
-    values*/
+    /*Updates Bar chart and card based on sliders upper and lower values*/
     console.log(this.slider)
     this.monthlyBenefit = this.benefitObject[this.slider.lower].monthlyBen;
-    this.totalBenefit = (this.monthlyBenefit * 12) * this.retRange;
+    this.yearlyBenefit = this.monthlyBenefit * 12;
+    this.retRange = this.slider.upper - this.slider.lower;
+    this.totalBenefit = this.yearlyBenefit * this.retRange;
+    this.breakEvenYear = this.calcBreakEven(this.slider.lower, this.retRange, this.yearlyBenefit)
     this.barChartData = [
       { data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID: 'A' },
       { data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B' }
     ];
   }
-  saveChart(chart) {
-    this._user.savedChart(chart);
-    console.log(chart)
+
+  calcBreakEven(retYear, retRange, yearlyBenefit): number {
+    let amtInvested = this.inputForm.value.amountPaid;
+    console.log(retYear, retRange, amtInvested)
+    let breakEvenYear = 0;
+    for (let i = 1; i <= retRange; i++) {
+      let yearCheck = yearlyBenefit * i;
+      if (yearCheck >= amtInvested) {
+        breakEvenYear = i;
+        break;
+      }
+    }
+    console.log(retYear + breakEvenYear)
+
+    if (breakEvenYear) {
+      return retYear + breakEvenYear;
+    }
+
   }
+
   ionViewDidLoad() {
-    this._api.getRetire('1954', '1400', 'true')
-      .subscribe(data => {
-        console.log(data)
-        this.benefitObject = data;
-        this.monthlyBenefit = data[63].monthlyBen
-        this.totalBenefit = this.monthlyBenefit * 12 * this.retRange;
-        this.barChartData = [
-          { data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID: 'A' },
-          { data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B' }
-        ];
-      })
     Chart.pluginService.register(ChartLabels);
   }
 }
