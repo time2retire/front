@@ -7,13 +7,6 @@ import { HttpClient } from '@angular/common/http';
 // import { WelcomePage } from '../welcome/welcome';
 // import { SavedPage } from '../saved/saved';
 
-/**
- * Generated class for the ProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-profile',
@@ -26,7 +19,7 @@ export class ProfilePage {
     public _user: User,
     public _http: HttpClient) {
   }
-  name_url: string = "https://nameless-wave-33070.herokuapp.com/api/appUsers?access_token="
+  name_url: string = "https://guarded-meadow-99845.herokuapp.com/api/appUsers?access_token="
   //user: this._user
   token = sessionStorage.getItem('token');
 
