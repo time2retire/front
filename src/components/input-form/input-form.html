@@ -4,7 +4,8 @@
   
       <ion-item>
           <ion-label stacked>Date of Birth</ion-label>
-          <ion-input formControlName="dateOfBirth" type="date"></ion-input>
+          <ion-datetime displayFormat="MMM DD, YYYY" formControlName="dateOfBirth" placeholder="MM/DD/YYYY"></ion-datetime>
+          <!-- <ion-input formControlName="dateOfBirth" type="date"></ion-input> -->
       </ion-item>
   
       <ion-item>
@@ -31,7 +32,7 @@
           <ion-input formControlName="lengthOfRetirement" type="number"></ion-input>
       </ion-item>
    -->
-      <button ion-button full color="primary" (click)="submit()">Create Account!</button>
+      <button ion-button full color="primary" (click)="submit()">See Results</button>
       
     </form>
    

@@ -43,7 +43,7 @@ export class SignupPage {
 
         sessionStorage.setItem('token', newUser.token)
         sessionStorage.setItem('userId', newUser.userId)
-
+        this.user.user = this.newUser;
         this.navCtrl.setRoot(MainPage);
       }, (err) => {
 
