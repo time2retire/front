@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { User } from '../../providers';
 import { MainPage } from '../';
@@ -14,7 +15,6 @@ export class SignupPage {
   newUser: any = {
     firstName: '',
     lastName: '',
-    userName: '',
     birthday: '',
     email: '',
     password: ''
@@ -26,9 +26,10 @@ export class SignupPage {
   private signupErrorString: string;
 
   constructor(public navCtrl: NavController,
-    public user: User,
+    public _user: User,
     public toastCtrl: ToastController,
-    public translateService: TranslateService) {
+    public translateService: TranslateService,
+    public formBuilder: FormBuilder) {
 
     this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
       this.signupErrorString = value;
@@ -37,10 +38,10 @@ export class SignupPage {
 
   newSignup() {
 
-    return this.user.signupCustom(this.newUser).subscribe(
+    return this._user.signupCustom(this.newUser).subscribe(
       (newUser: any) => {
         console.log(newUser, 'Signup Successful');
-
+        this._user.user = newUser;
         sessionStorage.setItem('token', newUser.token)
         sessionStorage.setItem('userId', newUser.userId)
         this.user.user = this.newUser;
