@@ -36,6 +36,7 @@ export class User {
   register_url: string = "api/appUsers"
   user: any;
   helloWorld: string = "hello world"
+  chart: any[];
 
   token = sessionStorage.getItem('token');
   userID = sessionStorage.getItem('userId');
@@ -64,5 +65,8 @@ export class User {
    */
   _loggedIn(resp) {
     this._user = resp.user;
+  }
+  saveChart(chart) {
+    this._user.chart = []
   }
 }

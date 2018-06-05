@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Chart } from 'chart.js'
 import * as ChartLabels from 'chartjs-plugin-datalabels';
 import { Api } from '../../providers/api/api';
+import { User } from '../../providers/user/user';
 
 @IonicPage()
 @Component({
@@ -21,7 +22,7 @@ export class ChartPage {
   bucketYear: number;
   retRange: number;
   benefitObject: any;
-  slider: any = {lower: 62, upper: 85};
+  slider: any = { lower: 62, upper: 85 };
   monthlyBenefit: number;
   yearlyBenefit: number;
   totalBenefit: number;
@@ -31,7 +32,8 @@ export class ChartPage {
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public _api: Api,
-  ){
+    public _user: User
+  ) {
     this.inputForm = formBuilder.group({
       dateOfBirth: [''],
       amountPaid: [''],
@@ -39,8 +41,8 @@ export class ChartPage {
       // lengthOfRetirement: ['']
     })
   }
-  
-  public barChartOptions:any = {
+
+  public barChartOptions: any = {
     plugins: {
       datalabels: {
         display: true,
@@ -50,7 +52,7 @@ export class ChartPage {
           weight: 'bold',
           size: 18,
         },
-        formatter: function(value, context) {
+        formatter: function (value, context) {
           let currency = (value + '').replace(/(\d)(?=(\d{3})+$)/g, '$1,');
           return "$" + currency + ".00";
         }
@@ -64,29 +66,29 @@ export class ChartPage {
     scales: {
       yAxes: [{
         id: 'A',
-          type: 'linear',
-          position: 'left',
-          ticks: {
-            max: 5000,
-            min: 0,
-            stepSize: 500
-          },
-          gridLines: {
-            display: false
-          }
-        }, {
+        type: 'linear',
+        position: 'left',
+        ticks: {
+          max: 5000,
+          min: 0,
+          stepSize: 500
+        },
+        gridLines: {
+          display: false
+        }
+      }, {
         id: 'B',
-          type: 'linear',
-          position: 'right',
-          ticks: {
-            max: 800000,
-            min: 100000,
-            stepSize: 100000
-          },
-          gridLines: {
-            display: false
-          }
-        }]
+        type: 'linear',
+        position: 'right',
+        ticks: {
+          max: 800000,
+          min: 100000,
+          stepSize: 100000
+        },
+        gridLines: {
+          display: false
+        }
+      }]
     }
   };
   public barChartLabels: string[] = [];
@@ -94,20 +96,19 @@ export class ChartPage {
   public barChartLegend: boolean = true;
 
   // events
-  public chartClicked(e:any):void {
-    console.log(e); 
-  }
-  public chartHovered(e:any):void {
+  public chartClicked(e: any): void {
     console.log(e);
   }
-  public barChartData:any[] = [
-    {data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID:'A'},
-    {data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B'}
+  public chartHovered(e: any): void {
+    console.log(e);
+  }
+  public barChartData: any[] = [
+    { data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID: 'A' },
+    { data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B' }
   ];
 
   sendChartData() {
     let dob = Number(this.inputForm.value.dateOfBirth.substr(0,4))
-    //this.birthYear = dob;
     let income = this.inputForm.value.avgIncome
     this.bucketYear = dob + 85;
     this._api.getRetire(dob, income, 'true')
@@ -115,7 +116,6 @@ export class ChartPage {
       let high = 0;
       let highYear;
       this.benefitObject = data;
-      //
       Object.keys(data).forEach(year => {
         this.retYear = dob + Number(year);
         this.retRange = this.bucketYear - this.retYear;
@@ -142,7 +142,7 @@ export class ChartPage {
     })
   }
 
-  goSlider(){
+  goSlider() {
     //fires with ionChange
     this.restrictValue();
     this.updateChart();
@@ -162,8 +162,8 @@ export class ChartPage {
     this.totalBenefit = this.yearlyBenefit * this.retRange;
     this.breakEvenYear = this.calcBreakEven(this.slider.lower, this.retRange, this.yearlyBenefit)
     this.barChartData = [
-      {data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID:'A'},
-      {data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B'}
+      { data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID: 'A' },
+      { data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B' }
     ];
   }
 
