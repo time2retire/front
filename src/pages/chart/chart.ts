@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Chart } from 'chart.js'
 import * as ChartLabels from 'chartjs-plugin-datalabels';
 import { Api } from '../../providers/api/api';
@@ -14,10 +14,7 @@ import { User } from '../../providers/user/user';
 export class ChartPage {
   inputForm;
   haveData: Boolean = false;
-  birthYear: number;
   breakEvenYear: number;
-  amtInvested: number;
-  avgIncome: number;
   retYear: number;
   bucketYear: number;
   retRange: number;
@@ -172,8 +169,6 @@ export class ChartPage {
         break;
       }
     }
-    console.log(retYear + breakEvenYear)
-
     if(breakEvenYear){
       return retYear + breakEvenYear;
     }
