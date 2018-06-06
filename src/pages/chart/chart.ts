@@ -107,37 +107,30 @@ export class ChartPage {
     { data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B' }
   ];
 
+  getBestYear(years) {
+    console.log(this.slider.upper)
+    let retLength, highYear
+    let high = 0
+    Object.keys(years).forEach(year => {
+      retLength = this.slider.upper - parseInt(year);
+      if ((years[year].monthlyBen * 12)  * retLength > high) {
+        high = (years[year].monthlyBen * 12)  * retLength;
+        highYear = parseInt(year)
+      }
+    })
+    return highYear
+  }
+
   sendChartData() {
     let dob = Number(this.inputForm.value.dateOfBirth.substr(0,4))
     let income = this.inputForm.value.avgIncome
     this.bucketYear = dob + 85;
     this._api.getRetire(dob, income, 'true')
     .subscribe(data => {
-      let high = 0;
-      let highYear;
       this.benefitObject = data;
-      Object.keys(data).forEach(year => {
-        this.retYear = dob + Number(year);
-        this.retRange = this.bucketYear - this.retYear;
-        if ((data[year].monthlyBen * 12)  * this.retRange > high) {
-          high = (data[year].monthlyBen * 12)  * this.retRange;
-          highYear = parseInt(year);
-        }
-      })
-      
-      this.retYear = dob + highYear;
-      this.bestYear = highYear;
-      this.retRange = this.bucketYear - this.retYear; 
-      this.monthlyBenefit = this.benefitObject[highYear].monthlyBen;
-      this.yearlyBenefit = this.monthlyBenefit * 12;
-      console.log(this.retYear, this.retRange, this.monthlyBenefit, this.yearlyBenefit, highYear)
-      this.breakEvenYear = this.calcBreakEven(highYear, this.retRange, this.yearlyBenefit)
-      this.totalBenefit = high;
-      this.barChartData = [
-        {data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID:'A'},
-        {data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B'}
-      ];
-      this.slider.lower = highYear
+      this.bestYear = this.getBestYear(this.benefitObject)
+      this.slider.lower = this.bestYear
+      this.updateChart(this.bestYear);
       this.haveData = true
     })
   }
@@ -145,7 +138,8 @@ export class ChartPage {
   goSlider() {
     //fires with ionChange
     this.restrictValue();
-    this.updateChart();
+    this.bestYear = this.getBestYear(this.benefitObject)
+    this.updateChart(this.slider.lower);
   }
   restrictValue () {
     /*restricts lower value from going out of the bounds of the bebefitObject*/
@@ -153,10 +147,10 @@ export class ChartPage {
       this.slider.lower = 70;
     }
   }
-  updateChart(){
+  updateChart(retAge){
     /*Updates Bar chart and card based on sliders upper and lower values*/
     console.log(this.slider)
-    this.monthlyBenefit = this.benefitObject[this.slider.lower].monthlyBen;
+    this.monthlyBenefit = this.benefitObject[retAge].monthlyBen;
     this.yearlyBenefit = this.monthlyBenefit * 12;
     this.retRange = this.slider.upper - this.slider.lower;
     this.totalBenefit = this.yearlyBenefit * this.retRange;
