@@ -105,7 +105,6 @@ export class ChartPage {
   ];
 
   getBestYear(years) {
-    console.log(this.slider.upper)
     let retLength, highYear
     let high = 0
     Object.keys(years).forEach(year => {
@@ -146,7 +145,6 @@ export class ChartPage {
   }
   updateChart(retAge){
     /*Updates Bar chart and card based on sliders upper and lower values*/
-    console.log(this.slider)
     this.monthlyBenefit = this.benefitObject[retAge].monthlyBen;
     this.yearlyBenefit = this.monthlyBenefit * 12;
     this.retRange = this.slider.upper - this.slider.lower;
@@ -160,7 +158,6 @@ export class ChartPage {
 
   calcBreakEven(retYear, retRange, yearlyBenefit) :number {
     let amtInvested = this.inputForm.value.amountPaid;
-    console.log(retYear, retRange, amtInvested)
     let breakEvenYear = 0;
     for (let i = 1; i <= retRange; i++){
       let yearCheck = yearlyBenefit * i;
