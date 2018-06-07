@@ -1,16 +1,29 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ENV } from '@app/env'
 
 /**
  * Api is a generic REST Api handler. Set your API url first.
  */
 @Injectable()
 export class Api {
-  url: string = 'https://example.com/api/v1';
+  url: string = ENV.URL;
+  
 
   constructor(public http: HttpClient) {
   }
 
+  logout() {
+    console.log(this.url)
+    this.http.post(this.url, {})
+  }
+
+  getRetire(dob, income, statement) {
+    return this.http.get(this.url + `benefitprofile?dob=${dob}&income=${income}&statement=${statement}`);
+  }
+ 
+ 
+ 
   get(endpoint: string, params?: any, reqOpts?: any) {
     if (!reqOpts) {
       reqOpts = {

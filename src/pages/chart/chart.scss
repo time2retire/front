@@ -1,0 +1,17 @@
+page-chart {
+    .impStuff{
+        display:flex;
+        justify-content: space-around;
+    }
+    .chartContainer{
+        display: block;
+    }
+
+    .info-button {
+        align-self: start;
+    }
+    .chartButtons{
+        display: flex;
+        justify-content: space-around;
+    }
+}

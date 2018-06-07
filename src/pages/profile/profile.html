@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle color="primary">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div *ngIf="_user.user">
+    <h1 align="center">Hello, {{_user.user.firstName}}!</h1>
+    <ion-card>
+      <ion-card-content>
+        Name: {{ _user.user.firstName }} {{ _user.user.lastName }}
+        <p></p>
+        <div>Email: {{_user.user.email }} </div>
+        <p></p>
+        <!-- <div>Birthday: {{_user.user.birthday | date:'short' }}</div> -->
+        <p></p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        My Saved Charts - will have an ngFor here to loop through saved charts
+      </ion-card-header>
+
+      <ion-list>
+        <button ion-item>
+          My Retirement Chart - Saved 6/2/2018 @ 10:15 AM
+        </button>
+
+        <button ion-item>
+          Custom Chart 2 - Saved 6/3/2018 @ 9:45 AM
+        </button>
+
+        <button ion-item>
+          Custom Chart 3 - Saved 6/3/2018 @ 3:30 PM
+        </button>
+
+      </ion-list>
+    </ion-card>
+
+    <div class="profileButtons">
+      <button ion-button color="primary">Edit Profile</button>
+      <button ion-button color="danger" (click)="logoutUser(_user.user)">Logout</button>
+    </div>
+  </div>
+  <!--<img src="https://i.imgur.com/yebyUGP.png"> -->
+</ion-content>
