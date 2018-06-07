@@ -111,8 +111,8 @@ export class ChartPage {
     let high = 0
     Object.keys(years).forEach(year => {
       retLength = this.slider.upper - parseInt(year);
-      if ((years[year].monthlyBen * 12)  * retLength > high) {
-        high = (years[year].monthlyBen * 12)  * retLength;
+      if ((years[year].monthlyBen * 12) * retLength > high) {
+        high = (years[year].monthlyBen * 12) * retLength;
         highYear = parseInt(year)
       }
     })
@@ -124,13 +124,13 @@ export class ChartPage {
     let income = this.inputForm.value.avgIncome
     this.bucketYear = dob + 85;
     this._api.getRetire(dob, income, 'true')
-    .subscribe(data => {
-      this.benefitObject = data;
-      this.bestYear = this.getBestYear(this.benefitObject)
-      this.slider.lower = this.bestYear
-      this.updateChart(this.bestYear);
-      this.haveData = true
-    })
+      .subscribe(data => {
+        this.benefitObject = data;
+        this.bestYear = this.getBestYear(this.benefitObject)
+        this.slider.lower = this.bestYear
+        this.updateChart(this.bestYear);
+        this.haveData = true
+      })
   }
 
   goSlider() {
@@ -146,7 +146,7 @@ export class ChartPage {
     }
   }
 
-  updateChart(retAge){
+  updateChart(retAge) {
     /*Updates Bar chart and card based on sliders upper and lower values*/
     this.monthlyBenefit = this.benefitObject[retAge].monthlyBen;
     this.yearlyBenefit = this.monthlyBenefit * 12;
@@ -170,7 +170,7 @@ export class ChartPage {
       }
     }
 
-    if(breakEvenYear){
+    if (breakEvenYear) {
       return retYear + breakEvenYear;
     }
 
