@@ -187,7 +187,28 @@ export class ChartPage {
     }
 
   }
+  chartSave: any = {
+    monthlyBen: '500',
+    retYear: '2050',
+    bucketYear: '2070',
+    totalBen: '4000000',
+    timestamp: "2018-06-05T04:19:14.144Z"
+  }
+  saveChart() {
+    this._user.savedChart(this.chartSave).subscribe(
+      (chartLog: any) => {
+        //console.log(userLog, 'Login Successful')
+        if (!this._user.user.charts) {
+          this._user.user.charts = []
+        }
+        this._user.user.charts.push(chartLog)
+        console.log(chartLog.user)
+        console.log("chartLog test", this._user.user)
 
+        //this.navCtrl.setRoot(MainPage);
+      }
+    )
+  }
   ionViewDidLoad() {
     Chart.pluginService.register(ChartLabels);
   }

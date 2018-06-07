@@ -26,8 +26,8 @@ import { ENV } from '@app/env';
  */
 @Injectable()
 export class User {
-  _user: any;
-
+  //_chart: any;
+  //_user: any;
   base_url: string = ENV.URL;
   appUsers_url: string = "api/appUsers/"
   token_url: string = "?access_token="
@@ -36,12 +36,12 @@ export class User {
   register_url: string = "api/appUsers"
   user: any;
   helloWorld: string = "hello world"
-  chart: any[];
+  charts: any[];
   chart_url: string = "/charts?access_token="
 
 
-  token = sessionStorage.getItem('token');
-  userID = sessionStorage.getItem('userId');
+  // token = sessionStorage.getItem('token');
+  //userID = sessionStorage.getItem('userId');
 
   constructor(public api: Api, public http: HttpClient) { }
 
@@ -58,19 +58,23 @@ export class User {
    */
   logout(user) {
     console.log("logout function fires")
+    let token = sessionStorage.getItem('token');
     this.user = null;
-    return this.http.post(this.base_url + this.appUsers_url + this.logout_url + this.token, user)
+    return this.http.post(this.base_url + this.appUsers_url + this.logout_url + token, user)
   }
 
   /**
    * Process a login/signup response to store user data
    */
   _loggedIn(resp) {
-    this._user = resp.user;
+    // this.user = resp.user;
   }
   savedChart(chart) {
-    console.log("what is the chart info?", chart)
-    return this.http.post(this.base_url + this.appUsers_url + this.userID, this.chart_url, chart)
+    // console.log("what is the chart info?", chart)
+    let userID = sessionStorage.getItem('userId');
+    let token = sessionStorage.getItem('token');
+    console.log(this.base_url + this.appUsers_url + userID, this.chart_url, chart)
+    return this.http.post(this.base_url + this.appUsers_url + userID + this.chart_url + token, chart)
     // https://nameless-wave-33070.herokuapp.com/api/appUsers/5afd09bbd0ac6b3a779a11cb/charts?access_token=jo8H66VjJb9VCn72CR7uk5mUStox9NyqrpRGmfV2F9xEHYvvUHiaxKOSZ9dm6Jr1
 
   }
