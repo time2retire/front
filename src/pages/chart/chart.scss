@@ -10,4 +10,8 @@ page-chart {
     .info-button {
         align-self: start;
     }
+    .chartButtons{
+        display: flex;
+        justify-content: space-around;
+    }
 }
