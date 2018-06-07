@@ -5,6 +5,7 @@ import { Chart } from 'chart.js'
 import * as ChartLabels from 'chartjs-plugin-datalabels';
 import { Api } from '../../providers/api/api';
 import { User } from '../../providers/user/user';
+import { HttpClientModule } from '@angular/common/http';
 
 @IonicPage()
 @Component({
@@ -24,12 +25,13 @@ export class ChartPage {
   yearlyBenefit: number;
   totalBenefit: number;
   bestYear: number;
-  
-  constructor(public navCtrl: NavController, 
+
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public _api: Api,
-    public _user: User
+    public _user: User,
+    public _http: HttpClientModule
   ) {
     this.inputForm = formBuilder.group({
       dateOfBirth: [''],
@@ -118,7 +120,7 @@ export class ChartPage {
   }
 
   sendChartData() {
-    let dob = Number(this.inputForm.value.dateOfBirth.substr(0,4))
+    let dob = Number(this.inputForm.value.dateOfBirth.substr(0, 4))
     let income = this.inputForm.value.avgIncome
     this.bucketYear = dob + 85;
     this._api.getRetire(dob, income, 'true')
@@ -137,12 +139,13 @@ export class ChartPage {
     this.bestYear = this.getBestYear(this.benefitObject)
     this.updateChart(this.slider.lower);
   }
-  restrictValue () {
+  restrictValue() {
     /*restricts lower value from going out of the bounds of the bebefitObject*/
     if (this.slider.lower >= 70) {
       this.slider.lower = 70;
     }
   }
+
   updateChart(retAge){
     /*Updates Bar chart and card based on sliders upper and lower values*/
     this.monthlyBenefit = this.benefitObject[retAge].monthlyBen;
@@ -156,22 +159,44 @@ export class ChartPage {
     ];
   }
 
-  calcBreakEven(retYear, retRange, yearlyBenefit) :number {
+  calcBreakEven(retYear, retRange, yearlyBenefit): number {
     let amtInvested = this.inputForm.value.amountPaid;
     let breakEvenYear = 0;
-    for (let i = 1; i <= retRange; i++){
+    for (let i = 1; i <= retRange; i++) {
       let yearCheck = yearlyBenefit * i;
-      if(yearCheck >= amtInvested){
+      if (yearCheck >= amtInvested) {
         breakEvenYear = i;
         break;
       }
     }
+
     if(breakEvenYear){
       return retYear + breakEvenYear;
     }
-    
+
   }
-  
+  chartSave: any = {
+    monthlyBen: '500',
+    retYear: '2050',
+    bucketYear: '2070',
+    totalBen: '4000000',
+    timestamp: "2018-06-05T04:19:14.144Z"
+  }
+  saveChart() {
+    this._user.savedChart(this.chartSave).subscribe(
+      (chartLog: any) => {
+        //console.log(userLog, 'Login Successful')
+        if (!this._user.user.charts) {
+          this._user.user.charts = []
+        }
+        this._user.user.charts.push(chartLog)
+        console.log(chartLog.user)
+        console.log("chartLog test", this._user.user)
+
+        //this.navCtrl.setRoot(MainPage);
+      }
+    )
+  }
   ionViewDidLoad() {
     Chart.pluginService.register(ChartLabels);
   }
