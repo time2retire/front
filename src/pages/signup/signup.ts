@@ -18,6 +18,7 @@ export class SignupPage {
     birthday: '',
     email: '',
     password: ''
+    //confirmPassword: ''
   }
 
   signupAttempt: boolean = false;
@@ -37,9 +38,8 @@ export class SignupPage {
   }
 
   newSignup() {
-
-    return this._user.signupCustom(this.newUser).subscribe(
-      (newUser: any) => {
+    return this._user.signupCustom(this.newUser)
+      .subscribe((newUser: any) => {
         console.log(newUser, 'Signup Successful');
         this._user.user = newUser;
         sessionStorage.setItem('token', newUser.token)

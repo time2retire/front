@@ -185,7 +185,6 @@ export class ChartPage {
   saveChart() {
     this._user.savedChart(this.chartSave).subscribe(
       (chartLog: any) => {
-        //console.log(userLog, 'Login Successful')
         if (!this._user.user.charts) {
           this._user.user.charts = []
         }
