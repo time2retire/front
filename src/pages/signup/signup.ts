@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -12,28 +11,36 @@ import { MainPage } from '../';
   templateUrl: 'signup.html'
 })
 export class SignupPage {
+  myForm: FormGroup;
+  signupAttempt: boolean = false;
+
   newUser: any = {
     firstName: '',
     lastName: '',
     birthday: '',
     email: '',
     password: ''
-    //confirmPassword: ''
   }
 
-  signupAttempt: boolean = false;
-
-  // Our translated text strings
-  private signupErrorString: string;
-
   constructor(public navCtrl: NavController,
-    public _user: User,
-    public toastCtrl: ToastController,
-    public translateService: TranslateService,
-    public formBuilder: FormBuilder) {
+              public _user: User,
+              public toastCtrl: ToastController,
+              public fb: FormBuilder) {
+    this.createForm();
+  }
 
-    this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
-      this.signupErrorString = value;
+  createForm(){
+    this.myForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      birthday: ['', Validators.required],
+      email: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')
+      ])],
+      confirmEmail: ['', Validators.required],
+      password: ['', Validators.required],
+      confirmPassword: ['']
     })
   }
 
@@ -65,4 +72,19 @@ export class SignupPage {
       }
     )
   }
+  submit(){
+    this.signupAttempt = true;
+    console.log(this.myForm.controls.firstName.valid)
+    if(!this.myForm.valid){
+      console.log("Unsuccessful Registration")
+    } else {
+      let toast = this.toastCtrl.create({
+        message: 'Registration Successful!',
+        duration: 2000,
+        position: 'top'
+      });
+      toast.present()
+    }
+  }
+
 }

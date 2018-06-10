@@ -1,3 +1,15 @@
 page-signup {
-
+    p {
+        color: red;
+        font-size: 12px;
+        margin-top: 0;
+    }
+    button {
+        margin-top: 20px;
+        background-color: #eee;
+        font-weight: bold;
+        padding: 5px;
+        border-radius: 4px;
+        cursor: pointer; cursor: hand;
+    }
 }

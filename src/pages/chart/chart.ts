@@ -36,8 +36,7 @@ export class ChartPage {
     this.inputForm = formBuilder.group({
       dateOfBirth: [''],
       amountPaid: [''],
-      avgIncome: [''],
-      // lengthOfRetirement: ['']
+      avgIncome: ['']
     })
   }
 
@@ -119,6 +118,21 @@ export class ChartPage {
     return highYear
   }
 
+  calcBreakEven(retYear, retRange, yearlyBenefit): number {
+    let amtInvested = this.inputForm.value.amountPaid;
+    let breakEvenYear = 0;
+    for (let i = 1; i <= retRange; i++) {
+      let yearCheck = yearlyBenefit * i;
+      if (yearCheck >= amtInvested) {
+        breakEvenYear = i;
+        break;
+      }
+    }
+    if(breakEvenYear){
+      return retYear + breakEvenYear;
+    }
+  }
+
   sendChartData() {
     let dob = Number(this.inputForm.value.dateOfBirth.substr(0, 4))
     let income = this.inputForm.value.avgIncome
@@ -159,22 +173,6 @@ export class ChartPage {
     ];
   }
 
-  calcBreakEven(retYear, retRange, yearlyBenefit): number {
-    let amtInvested = this.inputForm.value.amountPaid;
-    let breakEvenYear = 0;
-    for (let i = 1; i <= retRange; i++) {
-      let yearCheck = yearlyBenefit * i;
-      if (yearCheck >= amtInvested) {
-        breakEvenYear = i;
-        break;
-      }
-    }
-
-    if(breakEvenYear){
-      return retYear + breakEvenYear;
-    }
-
-  }
   chartSave: any = {
     monthlyBen: '500',
     retYear: '2050',
@@ -182,6 +180,7 @@ export class ChartPage {
     totalBen: '4000000',
     timestamp: "2018-06-05T04:19:14.144Z"
   }
+
   saveChart() {
     this._user.savedChart(this.chartSave).subscribe(
       (chartLog: any) => {
@@ -196,6 +195,7 @@ export class ChartPage {
       }
     )
   }
+  
   ionViewDidLoad() {
     Chart.pluginService.register(ChartLabels);
   }

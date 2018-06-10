@@ -5,58 +5,85 @@
 </ion-header>
 
 <ion-content>
-  <form (submit)='newSignup()'>
-    <ion-list>
-      <div align='center'>
-        <h5 *ngIf="signupAttempt" style="color: #ea6153;">Please fill out all details</h5>
+    <form [formGroup]='myForm'>
+      <div class = "form-group">
+        <ion-item>
+          <ion-label stacked>First Name</ion-label>
+          <ion-input formControlName="firstName" type='text'></ion-input>
+        </ion-item>
+        <div *ngIf="!myForm.controls.firstName.valid && (myForm.controls.firstName.dirty || signupAttempt)">
+          <p>Please fill in your first name.</p>
+        </div>
       </div>
+      <br>
+
+      <div class = "form-group">
+        <ion-item>
+          <ion-label stacked>Last Name</ion-label>
+          <ion-input formControlName="lastName" type='text'></ion-input>
+        </ion-item>
+        <div *ngIf="!myForm.controls.lastName.valid && (myForm.controls.lastName.dirty || signupAttempt)">
+          <p>Please fill in your Last Name.</p>
+        </div>
+      </div>
+      <br>
+ 
+      <div class = "form-group">
+        <ion-item>
+          <ion-label stacked>Date of Birth</ion-label>
+          <ion-datetime displayFormat="MMM DD, YYYY" formControlName="birthday"></ion-datetime>
+        </ion-item>
+        <div *ngIf="!myForm.controls.birthday.valid && (myForm.controls.birthday.dirty || signupAttempt)">
+          <p>Please fill in your Date of birth.</p>
+        </div>
+      </div>
+      <br>
+
+      <div class = "form-group">
+        <ion-item>
+          <ion-label stacked>Email</ion-label>
+          <ion-input formControlName="email" type='email'></ion-input>
+        </ion-item>
+          <div *ngIf="!myForm.controls.email.valid && (myForm.controls.email.dirty || signupAttempt)">
+          <p>Please fill in your Email.</p>
+        </div>
+      </div>
+      <br>
+
+      <div class = "form-group">
+        <ion-item>
+          <ion-label stacked>Confirm Email*</ion-label>
+          <ion-input formControlName="confirmEmail" type='email'></ion-input>
+        </ion-item>
+        <div *ngIf="!myForm.controls.confirmEmail.valid && (myForm.controls.confirmEmail.dirty || signupAttempt)">
+          <p>Please confirm your Email.</p>
+        </div>
+      </div>
+      <br>
+
+      <div class = "form-group">
+        <ion-item>
+          <ion-label stacked>Password</ion-label>
+          <ion-input formControlName="password" type='password'></ion-input>
+        </ion-item>
+        <div *ngIf="!myForm.controls.password.valid && (myForm.controls.password.dirty || signupAttempt)">
+          <p>Please choose a password.</p>
+        </div>
+      </div>
+      <br>
+
+      <div class = "form-group">
+        <ion-item>
+          <ion-label stacked>Confirm Password*</ion-label>
+          <ion-input formControlName="confirmPassword" type='password'></ion-input>
+        </ion-item>  
+        <div *ngIf="!myForm.controls.confirmPassword.valid && (myForm.controls.confirmPassword.dirty || signupAttempt)">
+          <p>Please confirm your password.</p>
+        </div>
+      </div>
+      <br>
       
-      <ion-item>
-        <ion-input placeholder="First Name" 
-                   type='text' 
-                   [(ngModel)]='newUser.firstName' 
-                   name='firstName'>
-        </ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input placeholder="Last Name" 
-                   type='text' 
-                   [(ngModel)]='newUser.lastName' 
-                   name='lastName'>
-        </ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-datetime placeholder="Date of Birth (MM/DD/YYYY)" 
-                      displayFormat="MM/DD/YYYY" 
-                      [(ngModel)]="newUser.birthday" 
-                      [ngModelOptions]="{standalone: true}">
-        </ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-input placeholder="Email" 
-                   type='email' 
-                  [(ngModel)]='newUser.email' 
-                  name='email'>
-        </ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input placeholder="Password" 
-                   type='password' 
-                   [(ngModel)]='newUser.password' 
-                   name='password'>
-        </ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input placeholder="Confirm Password" 
-                   type='password' 
-                   [(ngModel)]='newUser.confirmPassword' 
-                   name='password'></ion-input>
-      </ion-item>
-
-      <div padding>
-        <button ion-button color="primary" block>Sign Up</button>
-      </div>
-    </ion-list>
-  </form>
+      <button ion-button full color="primary" (click)="submit()">Register</button>
+    </form>
+    
 </ion-content>

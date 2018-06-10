@@ -13,7 +13,6 @@ export class InputFormComponent {
 
   constructor(public alertCtrl: AlertController,
     public _user: User) {
-
   }
 
   alert(question: any) {
@@ -31,14 +30,7 @@ export class InputFormComponent {
       your benefit.
       For more information visit:`,
         buttons: ['Dismiss']
-      },
-
-      // lengthOfRetirement : {
-      //   title: 'How long do you expect to receive benefits?',
-      //   subTitle: `The average social security recipient recieves benfits for 20 years.  There are a number of factors to consider.  Please visit
-      //   ... for addtional information.`,
-      //   buttons: ['Dismiss']
-      // }
+      }
     }
 
     let alert = this.alertCtrl.create(alertConfig[question]);
