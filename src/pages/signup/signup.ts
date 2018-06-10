@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PasswordValidation } from './password-validation';
+import { EmailValidation } from './email-validation';
 
 import { User } from '../../providers';
 import { MainPage } from '../';
@@ -29,6 +31,7 @@ export class SignupPage {
     this.createForm();
   }
 
+
   createForm(){
     this.myForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -41,6 +44,8 @@ export class SignupPage {
       confirmEmail: ['', Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['']
+    }, {
+      validator: [PasswordValidation.MatchPassword,EmailValidation.MatchEmail]
     })
   }
 
@@ -55,14 +60,14 @@ export class SignupPage {
         this.navCtrl.setRoot(MainPage);
       }, (err) => {
 
-        this.signupAttempt = true;
+        // this.signupAttempt = true;
 
-        let toast = this.toastCtrl.create({
-          message: 'Please fill out all details',
-          duration: 2000,
-          position: 'top'
-        });
-        toast.present()
+        // let toast = this.toastCtrl.create({
+        //   message: 'Please fill out all details',
+        //   duration: 2000,
+        //   position: 'top'
+        // });
+        // toast.present()
 
         this.newUser.firstName = '';
         this.newUser.lastName = '';
@@ -72,18 +77,32 @@ export class SignupPage {
       }
     )
   }
+
   submit(){
     this.signupAttempt = true;
-    console.log(this.myForm.controls.firstName.valid)
+    console.log(this.myForm)
     if(!this.myForm.valid){
-      console.log("Unsuccessful Registration")
-    } else {
       let toast = this.toastCtrl.create({
-        message: 'Registration Successful!',
+        message: 'Registration Unsuccessful',
         duration: 2000,
         position: 'top'
       });
       toast.present()
+    } else {
+      let toast = this.toastCtrl.create({
+        message: 'Registration Successful',
+        duration: 2000,
+        position: 'top'
+      });
+      toast.present()
+      this.newUser = {
+        firstName: this.myForm.controls.firstName.value,
+        lastName: this.myForm.controls.lastName.value,
+        birthday: this.myForm.controls.birthday.value,
+        email: this.myForm.controls.email.value,
+        password: this.myForm.controls.password.value
+      }
+      this.newSignup();
     }
   }
 

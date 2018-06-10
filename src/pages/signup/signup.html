@@ -55,8 +55,11 @@
           <ion-label stacked>Confirm Email*</ion-label>
           <ion-input formControlName="confirmEmail" type='email'></ion-input>
         </ion-item>
-        <div *ngIf="!myForm.controls.confirmEmail.valid && (myForm.controls.confirmEmail.dirty || signupAttempt)">
+        <div *ngIf="!myForm.controls.confirmEmail.valid && (myForm.controls.confirmEmail.dirty || signupAttempt)&& !myForm.controls.confirmEmail.errors?.MatchEmail">
           <p>Please confirm your Email.</p>
+        </div>
+        <div *ngIf="myForm.controls.confirmEmail.errors?.MatchEmail">
+          <p>Emails do not match.</p>
         </div>
       </div>
       <br>
@@ -77,8 +80,12 @@
           <ion-label stacked>Confirm Password*</ion-label>
           <ion-input formControlName="confirmPassword" type='password'></ion-input>
         </ion-item>  
-        <div *ngIf="!myForm.controls.confirmPassword.valid && (myForm.controls.confirmPassword.dirty || signupAttempt)">
+        <div *ngIf="!myForm.controls.confirmPassword.valid && (myForm.controls.confirmPassword.dirty || signupAttempt)
+              && !myForm.controls.confirmPassword.errors?.MatchPassword">
           <p>Please confirm your password.</p>
+        </div>
+        <div *ngIf="myForm.controls.confirmPassword.errors?.MatchPassword">
+          <p>Passwords do not match.</p>
         </div>
       </div>
       <br>
@@ -87,3 +94,4 @@
     </form>
     
 </ion-content>
+
