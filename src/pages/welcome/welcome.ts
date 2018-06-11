@@ -16,6 +16,13 @@ export class WelcomePage {
 
   constructor(public navCtrl: NavController) { }
 
+  ionViewWillEnter() {
+    // let token = sessionStorage.getItem('token')
+    // if (token) {
+    //   this.navCtrl.setRoot('ProfilePage')
+    // }
+  }
+
   login() {
     this.navCtrl.push('LoginPage');
   }

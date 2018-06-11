@@ -53,10 +53,15 @@ export class TutorialPage {
   }
 
   startApp() {
+    let token = sessionStorage.getItem('token');
+    if (token) {
+      this.navCtrl.setRoot('ProfilePage')
+    } else {
     this.navCtrl.setRoot('WelcomePage', {}, {
       animate: true,
       direction: 'forward'
     });
+  }
   }
 
   onSlideChangeStart(slider) {
