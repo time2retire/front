@@ -15,6 +15,9 @@ import { MainPage } from '../';
 export class SignupPage {
   myForm: FormGroup;
   signupAttempt: boolean = false;
+  isDisabled: boolean = false;
+  passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/
+  emailRegEx = '^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
 
   newUser: any = {
     firstName: '',
@@ -31,7 +34,9 @@ export class SignupPage {
     this.createForm();
   }
 
-
+  disableConfirmField(){
+    this.isDisabled = true;
+  }
   createForm(){
     this.myForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -39,11 +44,14 @@ export class SignupPage {
       birthday: ['', Validators.required],
       email: ['', Validators.compose([
         Validators.required,
-        Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')
+        Validators.pattern(this.emailRegEx)
       ])],
       confirmEmail: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPassword: ['']
+      password: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern(this.passwordRegEx)
+      ])],
+      confirmPassword: ['', Validators.required]
     }, {
       validator: [PasswordValidation.MatchPassword,EmailValidation.MatchEmail]
     })
@@ -59,16 +67,6 @@ export class SignupPage {
         this._user.user = this.newUser;
         this.navCtrl.setRoot(MainPage);
       }, (err) => {
-
-        // this.signupAttempt = true;
-
-        // let toast = this.toastCtrl.create({
-        //   message: 'Please fill out all details',
-        //   duration: 2000,
-        //   position: 'top'
-        // });
-        // toast.present()
-
         this.newUser.firstName = '';
         this.newUser.lastName = '';
         this.newUser.birthday = '';
@@ -80,7 +78,8 @@ export class SignupPage {
 
   submit(){
     this.signupAttempt = true;
-    console.log(this.myForm)
+    console.log(this.myForm.controls.email.valid)
+    console.log(this.myForm.controls.password.valid)
     if(!this.myForm.valid){
       let toast = this.toastCtrl.create({
         message: 'Registration Unsuccessful',
@@ -88,7 +87,8 @@ export class SignupPage {
         position: 'top'
       });
       toast.present()
-    } else {
+    } 
+    else {
       let toast = this.toastCtrl.create({
         message: 'Registration Successful',
         duration: 2000,
@@ -103,7 +103,7 @@ export class SignupPage {
         password: this.myForm.controls.password.value
       }
       this.newSignup();
-    }
+    }     
   }
 
 }

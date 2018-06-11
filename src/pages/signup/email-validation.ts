@@ -1,14 +1,12 @@
 import {AbstractControl} from '@angular/forms';
 export class EmailValidation {
 
-    static MatchEmail(AC: AbstractControl) {
-       let email = AC.get('email').value;
-       let confirmEmail = AC.get('confirmEmail').value; 
+    static MatchEmail(ac: AbstractControl) {
+       let email = ac.get('email').value;
+       let confirmEmail = ac.get('confirmEmail').value; 
         if(email != confirmEmail) {
-            console.log('false');
-            AC.get('confirmEmail').setErrors( {MatchEmail: true} )
+            ac.get('confirmEmail').setErrors( {MatchEmail: true} )
         } else {
-            console.log('true');
             return null
         }
     }

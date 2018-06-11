@@ -11,8 +11,8 @@
           <ion-label stacked>First Name</ion-label>
           <ion-input formControlName="firstName" type='text'></ion-input>
         </ion-item>
-        <div *ngIf="!myForm.controls.firstName.valid && (myForm.controls.firstName.dirty || signupAttempt)">
-          <p>Please fill in your first name.</p>
+        <div *ngIf="myForm.controls.firstName.pristine && signupAttempt">
+          <p>Please enter your first name.</p>
         </div>
       </div>
       <br>
@@ -22,8 +22,8 @@
           <ion-label stacked>Last Name</ion-label>
           <ion-input formControlName="lastName" type='text'></ion-input>
         </ion-item>
-        <div *ngIf="!myForm.controls.lastName.valid && (myForm.controls.lastName.dirty || signupAttempt)">
-          <p>Please fill in your Last Name.</p>
+        <div *ngIf="myForm.controls.lastName.pristine && signupAttempt">
+          <p>Please enter your Last Name.</p>
         </div>
       </div>
       <br>
@@ -33,8 +33,8 @@
           <ion-label stacked>Date of Birth</ion-label>
           <ion-datetime displayFormat="MMM DD, YYYY" formControlName="birthday"></ion-datetime>
         </ion-item>
-        <div *ngIf="!myForm.controls.birthday.valid && (myForm.controls.birthday.dirty || signupAttempt)">
-          <p>Please fill in your Date of birth.</p>
+        <div *ngIf="myForm.controls.birthday.pristine && signupAttempt">
+          <p>Please enter your Date of birth.</p>
         </div>
       </div>
       <br>
@@ -44,9 +44,12 @@
           <ion-label stacked>Email</ion-label>
           <ion-input formControlName="email" type='email'></ion-input>
         </ion-item>
-          <div *ngIf="!myForm.controls.email.valid && (myForm.controls.email.dirty || signupAttempt)">
-          <p>Please fill in your Email.</p>
-        </div>
+          <div *ngIf="myForm.controls.email.pristine && signupAttempt">
+            <p>Please enter an Email.</p>
+          </div>
+          <div *ngIf="!myForm.controls.confirmEmail.valid && signupAttempt">
+            <p>Email is not valid. ex: john_doe@example.com</p>
+          </div>
       </div>
       <br>
 
@@ -55,10 +58,11 @@
           <ion-label stacked>Confirm Email*</ion-label>
           <ion-input formControlName="confirmEmail" type='email'></ion-input>
         </ion-item>
-        <div *ngIf="!myForm.controls.confirmEmail.valid && (myForm.controls.confirmEmail.dirty || signupAttempt)&& !myForm.controls.confirmEmail.errors?.MatchEmail">
+        <div *ngIf="myForm.controls.confirmEmail.pristine && signupAttempt">
           <p>Please confirm your Email.</p>
         </div>
-        <div *ngIf="myForm.controls.confirmEmail.errors?.MatchEmail">
+        <div *ngIf="signupAttempt && myForm.controls.email.valid 
+            && myForm.controls.confirmEmail.errors?.MatchEmail">
           <p>Emails do not match.</p>
         </div>
       </div>
@@ -69,8 +73,12 @@
           <ion-label stacked>Password</ion-label>
           <ion-input formControlName="password" type='password'></ion-input>
         </ion-item>
-        <div *ngIf="!myForm.controls.password.valid && (myForm.controls.password.dirty || signupAttempt)">
-          <p>Please choose a password.</p>
+        <div *ngIf="myForm.controls.password.pristine && signupAttempt">
+          <p>Please enter a password.</p>
+        </div>
+        <div *ngIf="!myForm.controls.password.valid && signupAttempt">
+          <p>Password Not Valid.</p> 
+          <!-- <p>Password must be between 4 and 8 characters long, and must include a number (123...) ex: "grace1"</p> -->
         </div>
       </div>
       <br>
@@ -80,11 +88,11 @@
           <ion-label stacked>Confirm Password*</ion-label>
           <ion-input formControlName="confirmPassword" type='password'></ion-input>
         </ion-item>  
-        <div *ngIf="!myForm.controls.confirmPassword.valid && (myForm.controls.confirmPassword.dirty || signupAttempt)
-              && !myForm.controls.confirmPassword.errors?.MatchPassword">
+        <div *ngIf="myForm.controls.confirmPassword.pristine && signupAttempt">
           <p>Please confirm your password.</p>
         </div>
-        <div *ngIf="myForm.controls.confirmPassword.errors?.MatchPassword">
+        <div *ngIf="signupAttempt && !myForm.controls.password.valid 
+            && myForm.controls.confirmPassword.errors?.MatchPassword">
           <p>Passwords do not match.</p>
         </div>
       </div>
