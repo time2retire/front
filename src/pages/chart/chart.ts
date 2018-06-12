@@ -35,7 +35,7 @@ export class ChartPage {
     public toastCtrl: ToastController
   ) {
     this.inputForm = formBuilder.group({
-      dateOfBirth: [''],
+      dateOfBirth: [this._user.user.birthday],
       amountPaid: [''],
       avgIncome: ['']
     })
