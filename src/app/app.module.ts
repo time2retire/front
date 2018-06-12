@@ -1,6 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -25,6 +26,8 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     BrowserModule,
     ChartsModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -35,6 +38,10 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
+  ],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
