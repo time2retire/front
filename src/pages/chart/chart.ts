@@ -25,6 +25,7 @@ export class ChartPage {
   yearlyBenefit: number;
   totalBenefit: number;
   bestYear: number;
+  chartSave: any;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -111,8 +112,8 @@ export class ChartPage {
     let high = 0
     Object.keys(years).forEach(year => {
       retLength = this.slider.upper - parseInt(year);
-      if ((years[year].monthlyBen * 12)  * retLength > high) {
-        high = (years[year].monthlyBen * 12)  * retLength;
+      if ((years[year].monthlyBen * 12) * retLength > high) {
+        high = (years[year].monthlyBen * 12) * retLength;
         highYear = parseInt(year)
       }
     })
@@ -129,7 +130,7 @@ export class ChartPage {
         break;
       }
     }
-    if(breakEvenYear){
+    if (breakEvenYear) {
       return retYear + breakEvenYear;
     }
   }
@@ -139,13 +140,13 @@ export class ChartPage {
     let income = this.inputForm.value.avgIncome
     this.bucketYear = dob + 85;
     this._api.getRetire(dob, income, 'true')
-    .subscribe(data => {
-      this.benefitObject = data;
-      this.bestYear = this.getBestYear(this.benefitObject)
-      this.slider.lower = this.bestYear
-      this.updateChart(this.bestYear);
-      this.haveData = true
-    })
+      .subscribe(data => {
+        this.benefitObject = data;
+        this.bestYear = this.getBestYear(this.benefitObject)
+        this.slider.lower = this.bestYear
+        this.updateChart(this.bestYear);
+        this.haveData = true
+      })
   }
 
   goSlider() {
@@ -161,7 +162,7 @@ export class ChartPage {
     }
   }
 
-  updateChart(retAge){
+  updateChart(retAge) {
     /*Updates Bar chart and card based on sliders upper and lower values*/
     this.monthlyBenefit = this.benefitObject[retAge].monthlyBen;
     this.yearlyBenefit = this.monthlyBenefit * 12;
@@ -174,15 +175,21 @@ export class ChartPage {
     ];
   }
 
-  chartSave: any = {
-    monthlyBen: '500',
-    retYear: '2050',
-    bucketYear: '2070',
-    totalBen: '4000000',
-    timestamp: "2018-06-05T04:19:14.144Z"
-  }
-
+  // chartSave: any = {
+  //   monthlyBen: this.monthlyBenefit,
+  //   retYear: this.retYear,
+  //   bucketYear: this.bucketYear,
+  //   totalBen: this.totalBenefit,
+  //   timestamp: "timestamp placeholder"
+  // }
   saveChart() {
+    this.chartSave = {
+      monthlyBen: this.monthlyBenefit,
+      retYear: this.slider.lower,
+      bucketYear: this.bucketYear,
+      totalBen: this.totalBenefit,
+      timestamp: Date.now()
+    }
     this._user.savedChart(this.chartSave).subscribe(
       (chartLog: any) => {
         if (!this._user.user.charts) {
@@ -202,7 +209,7 @@ export class ChartPage {
       }
     )
   }
-  
+
   ionViewDidLoad() {
     Chart.pluginService.register(ChartLabels);
   }
