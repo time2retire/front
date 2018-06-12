@@ -1,62 +1,63 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>{{ 'SIGNUP_TITLE' | translate }}</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content>
-  <form (submit)='newSignup()'>
-    <ion-list>
-      <div align='center'>
-        <h5 *ngIf="signupAttempt" style="color: #ea6153;">Please fill out all details</h5>
-      </div>
-      
-      <ion-item>
-        <ion-input placeholder="First Name" 
-                   type='text' 
-                   [(ngModel)]='newUser.firstName' 
-                   name='firstName'>
-        </ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input placeholder="Last Name" 
-                   type='text' 
-                   [(ngModel)]='newUser.lastName' 
-                   name='lastName'>
-        </ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-datetime placeholder="Date of Birth (MM/DD/YYYY)" 
-                      displayFormat="MM/DD/YYYY" 
-                      [(ngModel)]="newUser.birthday" 
-                      [ngModelOptions]="{standalone: true}">
-        </ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-input placeholder="Email" 
-                   type='email' 
-                  [(ngModel)]='newUser.email' 
-                  name='email'>
-        </ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input placeholder="Password" 
-                   type='password' 
-                   [(ngModel)]='newUser.password' 
-                   name='password'>
-        </ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input placeholder="Confirm Password" 
-                   type='password' 
-                   [(ngModel)]='newUser.confirmPassword' 
-                   name='password'></ion-input>
-      </ion-item>
-
-      <div padding>
-        <button ion-button color="primary" block>Sign Up</button>
-      </div>
-    </ion-list>
-  </form>
-</ion-content>
+    <ion-navbar>
+      <ion-title>{{ 'SIGNUP_TITLE' | translate }}</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+    <form (submit)='newSignup()'>
+      <ion-list>
+        <div align='center'>
+          <h5 *ngIf="signupAttempt" style="color: #ea6153;">Please fill out all details</h5>
+        </div>
+        
+        <ion-item>
+          <ion-input placeholder="First Name" 
+                     type='text' 
+                     [(ngModel)]='newUser.firstName' 
+                     name='firstName'>
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input placeholder="Last Name" 
+                     type='text' 
+                     [(ngModel)]='newUser.lastName' 
+                     name='lastName'>
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-datetime placeholder="Date of Birth (MM/DD/YYYY)" 
+                        displayFormat="MM/DD/YYYY" 
+                        [(ngModel)]="newUser.birthday" 
+                        [ngModelOptions]="{standalone: true}">
+          </ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-input placeholder="Email" 
+                     type='email' 
+                    [(ngModel)]='newUser.email' 
+                    name='email'>
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input placeholder="Password" 
+                     type='password' 
+                     [(ngModel)]='newUser.password' 
+                     name='password'>
+          </ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-input placeholder="Confirm Password" 
+                     type='password' 
+                     [(ngModel)]='newUser.confirmPassword' 
+                     name='password'></ion-input>
+        </ion-item>
+  
+        <div padding>
+          <button ion-button color="primary" block>Sign Up</button>
+        </div>
+      </ion-list>
+    </form>
+  </ion-content>
+  
