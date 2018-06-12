@@ -42,7 +42,6 @@ export class ProfilePage {
     this._http.get(this.base_url + this.userID + this.charts + this.token_url + this.token).subscribe(
       (chartLog: any) => {
         this.chartData = chartLog;
-        console.log("Chart data is here: " + this.chartData.timestamp)
       }
     )
 
