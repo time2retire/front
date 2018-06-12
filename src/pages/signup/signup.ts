@@ -15,10 +15,8 @@ import { MainPage } from '../';
 export class SignupPage {
   myForm: FormGroup;
   signupAttempt: boolean = false;
-  isDisabled: boolean = false;
   passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/
   emailRegEx = '^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
-
   newUser: any = {
     firstName: '',
     lastName: '',
@@ -34,9 +32,6 @@ export class SignupPage {
     this.createForm();
   }
 
-  disableConfirmField(){
-    this.isDisabled = true;
-  }
   createForm(){
     this.myForm = this.fb.group({
       firstName: ['', Validators.required],
