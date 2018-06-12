@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
 import { Chart } from 'chart.js'
 import * as ChartLabels from 'chartjs-plugin-datalabels';
@@ -31,7 +31,8 @@ export class ChartPage {
     public formBuilder: FormBuilder,
     public _api: Api,
     public _user: User,
-    public _http: HttpClientModule
+    public _http: HttpClientModule,
+    public toastCtrl: ToastController
   ) {
     this.inputForm = formBuilder.group({
       dateOfBirth: [''],
@@ -187,6 +188,12 @@ export class ChartPage {
         if (!this._user.user.charts) {
           this._user.user.charts = []
         }
+        let toast = this.toastCtrl.create({
+          message: 'Chart Saved.',
+          duration: 2000,
+          position: 'top'
+        });
+        toast.present()
         this._user.user.charts.push(chartLog)
         console.log(chartLog.user)
         console.log("chartLog test", this._user.user)
