@@ -17,30 +17,34 @@
         <p></p>
         <div>Email: {{_user.user.email }} </div>
         <p></p>
-        <!-- <div>Birthday: {{_user.user.birthday | date:'short' }}</div> -->
+        <div>Birthday: {{_user.user.birthday | date:'shortDate' }}</div>
         <p></p>
       </ion-card-content>
     </ion-card>
 
     <ion-card>
       <ion-card-header>
-        My Saved Charts - will have an ngFor here to loop through saved charts
+        My Saved Charts
       </ion-card-header>
+      <div *ngIf="chartData">
+        <ion-list>
+          <div *ngFor="let chart of chartData">
+            <button ion-item>
 
-      <ion-list>
-        <button ion-item>
-          My Retirement Chart - Saved 6/2/2018 @ 10:15 AM
-        </button>
+              {{chart.timestamp | date: "shortDate" }} - Monthly Benefit: ${{chart.monthlyBen}}
+            </button>
 
-        <button ion-item>
+            <!-- <button ion-item>
           Custom Chart 2 - Saved 6/3/2018 @ 9:45 AM
         </button>
 
         <button ion-item>
           Custom Chart 3 - Saved 6/3/2018 @ 3:30 PM
-        </button>
+        </button> -->
+          </div>
+        </ion-list>
 
-      </ion-list>
+      </div>
     </ion-card>
 
     <div class="profileButtons">

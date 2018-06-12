@@ -8,9 +8,11 @@ import { IonicStorageModule, Storage } from '@ionic/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { User, Api } from '../providers';
 import { MyApp } from './app.component';
+import { ChartPage } from '../pages/chart/chart';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -20,7 +22,7 @@ export function createTranslateLoader(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    MyApp,
+    MyApp
   ],
   imports: [
     BrowserModule,
@@ -46,6 +48,7 @@ export function createTranslateLoader(http: HttpClient) {
     Camera,
     SplashScreen,
     StatusBar,
+    ChartPage,
     // { provide: useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }

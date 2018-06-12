@@ -25,6 +25,7 @@ export class ChartPage {
   yearlyBenefit: number;
   totalBenefit: number;
   bestYear: number;
+  chartSave: any;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -169,20 +170,28 @@ export class ChartPage {
         break;
       }
     }
-
+    this.retYear = retYear;
     if (breakEvenYear) {
+      this.retYear = retYear + breakEvenYear;
       return retYear + breakEvenYear;
     }
 
   }
-  chartSave: any = {
-    monthlyBen: '500',
-    retYear: '2050',
-    bucketYear: '2070',
-    totalBen: '4000000',
-    timestamp: "2018-06-05T04:19:14.144Z"
-  }
+  // chartSave: any = {
+  //   monthlyBen: this.monthlyBenefit,
+  //   retYear: this.retYear,
+  //   bucketYear: this.bucketYear,
+  //   totalBen: this.totalBenefit,
+  //   timestamp: "timestamp placeholder"
+  // }
   saveChart() {
+    this.chartSave = {
+      monthlyBen: this.monthlyBenefit,
+      retYear: this.slider.lower,
+      bucketYear: this.bucketYear,
+      totalBen: this.totalBenefit,
+      timestamp: Date.now()
+    }
     this._user.savedChart(this.chartSave).subscribe(
       (chartLog: any) => {
         //console.log(userLog, 'Login Successful')
