@@ -38,7 +38,7 @@ export class ChartPage {
     public toastCtrl: ToastController
   ) {
     this.inputForm = formBuilder.group({
-      dateOfBirth: [''],
+      dateOfBirth: [this._user.user.birthday],
       amountPaid: [''],
       avgIncome: ['']
     })
@@ -63,7 +63,8 @@ export class ChartPage {
     responsive: true,
     maintainAspectRatio: true,
     legend: {
-      onClick: (e) => e.stopPropagation()
+      onClick: (e) => e.stopPropagation(),
+      fontSize: 12
     },
     scales: {
       yAxes: [{
