@@ -26,6 +26,8 @@ export class ChartPage {
   totalBenefit: number;
   bestYear: number;
   chartSave: any;
+  maxBen: number = 5000;
+  maxTotal: number = 1000000;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -36,7 +38,7 @@ export class ChartPage {
     public toastCtrl: ToastController
   ) {
     this.inputForm = formBuilder.group({
-      dateOfBirth: [this._user.user.birthday],
+      dateOfBirth: [''],
       amountPaid: [''],
       avgIncome: ['']
     })
@@ -50,11 +52,11 @@ export class ChartPage {
         anchor: 'end',
         font: {
           weight: 'bold',
-          size: 18,
+          size: 15,
         },
         formatter: function (value, context) {
           let currency = (value + '').replace(/(\d)(?=(\d{3})+$)/g, '$1,');
-          return "$" + currency + ".00";
+          return "$" + currency;
         }
       }
     },
@@ -69,9 +71,12 @@ export class ChartPage {
         type: 'linear',
         position: 'left',
         ticks: {
-          max: 5000,
-          min: 0,
-          stepSize: 500
+          max: this.maxBen,
+          min: 1000,
+          stepSize: 1000,
+          callback: function(value, index, values) {
+            return '$' + value/1000 + "k";
+          }
         },
         gridLines: {
           display: false
@@ -81,9 +86,18 @@ export class ChartPage {
         type: 'linear',
         position: 'right',
         ticks: {
-          max: 800000,
-          min: 100000,
-          stepSize: 100000
+          max: this.maxTotal,
+          min: 200000,
+          stepSize: 200000,
+          callback: function(value, index, values) {
+            if (value >= 1000000){
+              return '$' + value/1000000 + "M";
+            }
+            else{
+              return '$' + value/1000 + "K";
+            }
+            
+          }
         },
         gridLines: {
           display: false
@@ -175,13 +189,6 @@ export class ChartPage {
     ];
   }
 
-  // chartSave: any = {
-  //   monthlyBen: this.monthlyBenefit,
-  //   retYear: this.retYear,
-  //   bucketYear: this.bucketYear,
-  //   totalBen: this.totalBenefit,
-  //   timestamp: "timestamp placeholder"
-  // }
   saveChart() {
     this.chartSave = {
       monthlyBen: this.monthlyBenefit,
@@ -212,5 +219,7 @@ export class ChartPage {
 
   ionViewDidLoad() {
     Chart.pluginService.register(ChartLabels);
+    // this.maxTotal = this.inputForm.value.amountPaid * 5;
+    // this.maxBen = this.inputForm.value.avgIncome * 5;
   }
 }
