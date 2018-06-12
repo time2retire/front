@@ -36,11 +36,15 @@ export class User {
   /**
    * Log the user out, which forgets the session
    */
-  logout(user) {
+  logout() {
     console.log("logout function fires")
     let token = sessionStorage.getItem('token');
-    this.user = null;
-    return this.http.post(this.base_url + this.appUsers_url + this.logout_url + token, user)
+    this.http.post(this.base_url + this.appUsers_url + this.logout_url + token, this.user)
+    .subscribe(() => {
+      console.log('i ran')
+      this.user = null;
+      sessionStorage.clear();
+    })
   }
 
   /**

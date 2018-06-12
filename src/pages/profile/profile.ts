@@ -29,12 +29,11 @@ export class ProfilePage {
   // }
   ionViewDidLoad() {
   }
-  logoutUser(user) {
+  logoutUser() {
     this.navCtrl.setRoot("WelcomePage")
       .then(() => {
-        this._user.logout(user);
-        sessionStorage.clear();
-        console.log("User is logged out", user)
+        this._user.logout();
+        console.log("User is logged out", this._user.user)
       });
   }
   mySavedCharts() {
