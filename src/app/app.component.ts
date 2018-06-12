@@ -37,8 +37,7 @@ export class MyApp {
   pages: any[] = [
     { title: 'Tutorial', component: 'TutorialPage' },
     { title: 'Profile', component: 'ProfilePage' },
-    { title: 'New Chart', component: 'ChartPage' },
-    { title: 'Saved Charts', component: 'SavedPage' }
+    { title: 'New Chart', component: 'ChartPage' }
   ]
 
   constructor(

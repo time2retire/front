@@ -4,6 +4,8 @@ import { User } from '../../providers/user/user';
 import { HttpClient } from '@angular/common/http';
 //import { NgForm } from '@angular/forms';
 
+import { ChartPage } from '../../pages/chart/chart';
+
 // import { WelcomePage } from '../welcome/welcome';
 // import { SavedPage } from '../saved/saved';
 
@@ -14,13 +16,22 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProfilePage {
 
-  constructor(public navCtrl: NavController,
+  constructor(
+    public navCtrl: NavController,
     public navParams: NavParams,
     public _user: User,
     public _http: HttpClient) {
   }
-  name_url: string = "https://guarded-meadow-99845.herokuapp.com/api/appUsers?access_token="
+
+  chartData: any[];
+
+  // https://nameless-wave-33070.herokuapp.com/api/appUsers/5b1d739ab33893000fb46c3c/charts/1?access_token=jo8H66VjJb9VCn72CR7uk5mUStox9NyqrpRGmfV2F9xEHYvvUHiaxKOSZ9dm6Jr1
+
+  charts: string = "/charts"
+  token_url: string = "?access_token="
+  base_url: string = "https://nameless-wave-33070.herokuapp.com/api/appUsers/"
   //user: this._user
+  userID = sessionStorage.getItem('userId');
   token = sessionStorage.getItem('token');
 
   // getName() {
@@ -28,6 +39,12 @@ export class ProfilePage {
   //   return this._http.get(this.name_url + this.token);
   // }
   ionViewDidLoad() {
+    this._http.get(this.base_url + this.userID + this.charts + this.token_url + this.token).subscribe(
+      (chartLog: any) => {
+        this.chartData = chartLog;
+      }
+    )
+
   }
   logoutUser() {
     this.navCtrl.setRoot("WelcomePage")
@@ -36,7 +53,7 @@ export class ProfilePage {
         console.log("User is logged out", this._user.user)
       });
   }
-  mySavedCharts() {
-    this.navCtrl.setRoot("SavedPage");
-  }
+  // saveChartToProfile() {
+  //   return this._chart.chartSave
+  // }
 }
