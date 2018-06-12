@@ -24,7 +24,7 @@
   "TUTORIAL_SLIDE2_DESCRIPTION": "This is your signup and login page <br><br> Tap <b>'SIGN IN'</b> if you already have an account, if not, create a new one by tapping <b>'SIGN UP'</b>",
 
   "TUTORIAL_SLIDE3_TITLE": "",
-  "TUTORIAL_SLIDE3_DESCRIPTION": "This is your profile page <br><br> The area highlighted in <b><font color='blue'>BLUE</font></b> shows your profile name and email, and the area highlighted in <b><font color='green'>GREEN</font></b> displays your saved charts <br> Tapping the area circled in <b><font color='red'>RED</font></b> opens up your sidemenu",
+  "TUTORIAL_SLIDE3_DESCRIPTION": "This is your profile page <br><br> The area highlighted in <b><font color='blue'>BLUE</font></b> shows your profile name and email, and the area highlighted in <b><font color='green'>GREEN</font></b> displays your saved charts <br> Tapping the area circled in <b><font color='orange'>ORANGE</font></b> opens up your sidemenu",
 
   "TUTORIAL_SLIDE5_TITLE": "",
   "TUTORIAL_SLIDE5_DESCRIPTION": "Your sidemenu helps to provide you an easy way to access all of the features in <b>Time2Retire</b>",
