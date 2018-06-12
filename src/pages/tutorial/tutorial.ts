@@ -46,27 +46,27 @@ export class TutorialPage {
             image: 'assets/img/newImages/cash-coins-currency-33692.jpg',
           },
           {
-            title: null,
+            title: values.TUTORIAL_SLIDE2_TITLE,
             description: values.TUTORIAL_SLIDE2_DESCRIPTION,
             image: 'assets/img/newImages/Time2Retire 01 Welcome.png',
           },
           {
-            title: null,
+            title: values.TUTORIAL_SLIDE3_TITLE,
             description: values.TUTORIAL_SLIDE3_DESCRIPTION,
             image: 'assets/img/newImages/Time2Retire 02 Profile.png',
           },
           {
-            title: null,
+            title: values.TUTORIAL_SLIDE5_TITLE,
             description: values.TUTORIAL_SLIDE5_DESCRIPTION,
             image: 'assets/img/newImages/Time2Retire 03 Hamburger-Sidemenu.png',
           },
           {
-            title: null,
+            title: values.TUTORIAL_SLIDE6_TITLE,
             description: values.TUTORIAL_SLIDE6_DESCRIPTION,
             image: 'assets/img/newImages/Time2Retire 04 Create Chart.png',
           },
           {
-            title: null,
+            title: values.TUTORIAL_SLIDE7_TITLE,
             description: values.TUTORIAL_SLIDE7_DESCRIPTION,
             image: 'assets/img/newImages/Time2Retire 05 Saved Charts.png',
           }
