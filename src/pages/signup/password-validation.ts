@@ -7,9 +7,10 @@ export class PasswordValidation {
         if(!password.isValid){
             // ac.get('confirmPassword').disabled
             if(password != confirmPassword) {
-            ac.get('confirmPassword').setErrors( {MatchPassword: true} )
+                ac.get('confirmPassword').setErrors( {MatchPassword: true} )
             } 
             else {
+                ac.get('confirmPassword').setErrors(null)
                 return null
             }
         } 

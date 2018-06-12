@@ -7,6 +7,7 @@ export class EmailValidation {
         if(email != confirmEmail) {
             ac.get('confirmEmail').setErrors( {MatchEmail: true} )
         } else {
+            ac.get('confirmEmail').setErrors(null)
             return null
         }
     }

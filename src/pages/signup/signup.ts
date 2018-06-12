@@ -78,8 +78,8 @@ export class SignupPage {
 
   submit(){
     this.signupAttempt = true;
-    console.log(this.myForm.controls.email.valid)
-    console.log(this.myForm.controls.password.valid)
+    console.log(this.myForm.valid)
+    console.log(this.myForm)
     if(!this.myForm.valid){
       let toast = this.toastCtrl.create({
         message: 'Registration Unsuccessful',

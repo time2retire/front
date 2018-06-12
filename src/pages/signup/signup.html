@@ -76,7 +76,7 @@
         <div *ngIf="myForm.controls.password.pristine && signupAttempt">
           <p>Please enter a password.</p>
         </div>
-        <div *ngIf="!myForm.controls.password.valid && signupAttempt">
+        <div *ngIf="myForm.controls.password.dirty && !myForm.controls.password.valid && signupAttempt">
           <p>Password Not Valid.</p> 
           <!-- <p>Password must be between 4 and 8 characters long, and must include a number (123...) ex: "grace1"</p> -->
         </div>
