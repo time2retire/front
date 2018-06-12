@@ -33,24 +33,12 @@
 
               {{chart.timestamp | date: "shortDate" }} - Monthly Benefit: ${{chart.monthlyBen}}
             </button>
-
-            <!-- <button ion-item>
-          Custom Chart 2 - Saved 6/3/2018 @ 9:45 AM
-        </button>
-
-        <button ion-item>
-          Custom Chart 3 - Saved 6/3/2018 @ 3:30 PM
-        </button> -->
           </div>
         </ion-list>
-
       </div>
     </ion-card>
-
     <div class="profileButtons">
-      <button ion-button color="primary">Edit Profile</button>
       <button ion-button color="danger" (click)="logoutUser(_user.user)">Logout</button>
     </div>
   </div>
-  <!--<img src="https://i.imgur.com/yebyUGP.png"> -->
 </ion-content>
