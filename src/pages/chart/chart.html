@@ -19,15 +19,29 @@
       </ion-card-content>
     </ion-card>
     <div style="display: block">
-      <canvas class="chart" baseChart width="400" height="400" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-        [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+      <canvas class="chart" baseChart width="400" height="400" 
+        [datasets]="barChartData" 
+        [labels]="barChartLabels" 
+        [options]="barChartOptions"
+        [legend]="barChartLegend" 
+        [chartType]="barChartType" 
+        (chartHover)="chartHovered($event)" 
+        (chartClick)="chartClicked($event)">
       </canvas>
     </div>
-    <ion-range min="62" max="100" [(ngModel)]="slider" (ionChange)='goSlider()' color="primary" dualKnobs="true" pin="true">
+    <div class="chartLabels">
+      <p class="ret">Ret Age:</p>
+      <div class="range">
+        <p class="left">|62</p>
+        <p class="dash">-</p>
+        <p class="right">70|</p>
+      </div>
+    </div>
+    <ion-range class="chartSlider" min="62" max="100" [(ngModel)]="slider" (ionChange)='goSlider()' color="primary" dualKnobs="true" pin="true">
       <ion-label range-left>62</ion-label>
       <ion-label range-right>100</ion-label>
     </ion-range>
-    <div class="chartOptions">
+    <div class="chartButtons">
       <button ion-button color="primary" (click)="saveChart()">Save Chart</button>
       <button ion-button color="danger" (click)="haveData = false">Clear Chart</button>
     </div>

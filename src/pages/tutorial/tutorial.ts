@@ -22,12 +22,19 @@ export class TutorialPage {
 
   constructor(public navCtrl: NavController, public menu: MenuController, translate: TranslateService, public platform: Platform) {
     this.dir = platform.dir();
-    translate.get(["TUTORIAL_SLIDE1_TITLE",
+    translate.get([
+      "TUTORIAL_SLIDE1_TITLE",
       "TUTORIAL_SLIDE1_DESCRIPTION",
       "TUTORIAL_SLIDE2_TITLE",
       "TUTORIAL_SLIDE2_DESCRIPTION",
       "TUTORIAL_SLIDE3_TITLE",
       "TUTORIAL_SLIDE3_DESCRIPTION",
+      "TUTORIAL_SLIDE5_TITLE",
+      "TUTORIAL_SLIDE5_DESCRIPTION",
+      "TUTORIAL_SLIDE6_TITLE",
+      "TUTORIAL_SLIDE6_DESCRIPTION",
+      "TUTORIAL_SLIDE7_TITLE",
+      "TUTORIAL_SLIDE7_DESCRIPTION",
     ]).subscribe(
       (values) => {
         console.log(ENV)
@@ -36,17 +43,32 @@ export class TutorialPage {
           {
             title: values.TUTORIAL_SLIDE1_TITLE,
             description: values.TUTORIAL_SLIDE1_DESCRIPTION,
-            image: 'assets/img/ica-slidebox-img-1.png',
+            image: 'assets/img/newImages/cash-coins-currency-33692.jpg',
           },
           {
             title: values.TUTORIAL_SLIDE2_TITLE,
             description: values.TUTORIAL_SLIDE2_DESCRIPTION,
-            image: 'assets/img/ica-slidebox-img-2.png',
+            image: 'assets/img/newImages/Time2Retire 01 Welcome.png',
           },
           {
             title: values.TUTORIAL_SLIDE3_TITLE,
             description: values.TUTORIAL_SLIDE3_DESCRIPTION,
-            image: 'assets/img/ica-slidebox-img-3.png',
+            image: 'assets/img/newImages/Time2Retire 02 Profile.png',
+          },
+          {
+            title: values.TUTORIAL_SLIDE5_TITLE,
+            description: values.TUTORIAL_SLIDE5_DESCRIPTION,
+            image: 'assets/img/newImages/Time2Retire 03 Hamburger-Sidemenu.png',
+          },
+          {
+            title: values.TUTORIAL_SLIDE6_TITLE,
+            description: values.TUTORIAL_SLIDE6_DESCRIPTION,
+            image: 'assets/img/newImages/Time2Retire 04 Create Chart.png',
+          },
+          {
+            title: values.TUTORIAL_SLIDE7_TITLE,
+            description: values.TUTORIAL_SLIDE7_DESCRIPTION,
+            image: 'assets/img/newImages/Time2Retire 05 Saved Charts.png',
           }
         ];
       });
