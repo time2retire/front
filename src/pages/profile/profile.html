@@ -35,14 +35,14 @@
           </div>
         </ion-list>
       </div>
+      <div *ngIf="!chartData">
+        <p align="center">
+          You have no saved charts!
+        </p>
+      </div>
     </ion-card>
-    <div *ngIf="chartData == false">
-      <p align="center">
-        You have no saved charts!
-      </p>
       <div class="profileButtons">
         <button ion-button color="primary" (click)="goToInput()">Generate a Chart</button>
       </div>
-    </div>
   </div>
 </ion-content>
