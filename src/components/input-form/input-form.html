@@ -1,31 +1,30 @@
 <ion-list no-lines>
-  
-    <form [formGroup]="form">
-  
-      <ion-item>
-          <ion-label stacked>Date of Birth</ion-label>
-          <ion-datetime displayFormat="MMM DD, YYYY" formControlName="dateOfBirth" placeholder="MM/DD/YYYY"></ion-datetime>
-      </ion-item>
-  
-      <ion-item>
-          <ion-label stacked>Amount Paid to Social Security</ion-label>
-          <button class="info-button" item-right ion-button icon-only clear (click)="alert('amountPaid')">
-            <ion-icon name="information-circle"></ion-icon>
-          </button>
-          <ion-input formControlName="amountPaid" type="number"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-          <ion-label stacked>Average Income</ion-label>
-          <button class="info-button" item-right ion-button icon-only clear (click)="alert('avgIncome')">
-            <ion-icon name="information-circle"></ion-icon>
-          </button>
-          <ion-input formControlName="avgIncome" type="number"></ion-input>
-      </ion-item>
 
-      <button ion-button full color="primary" (click)="submit()">See Results</button>
-      
-    </form>
-   
-  </ion-list>
+  <form [formGroup]="form">
 
+    <ion-item>
+      <ion-label stacked>Date of Birth</ion-label>
+      <ion-datetime displayFormat="MMM DD, YYYY" formControlName="dateOfBirth" placeholder="{{_user.user.birthday | date: 'shortDate'}}"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Amount Paid to Social Security</ion-label>
+      <button class="info-button" item-right ion-button icon-only clear (click)="alert('amountPaid')">
+        <ion-icon name="information-circle"></ion-icon>
+      </button>
+      <ion-input formControlName="amountPaid" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Average Income</ion-label>
+      <button class="info-button" item-right ion-button icon-only clear (click)="alert('avgIncome')">
+        <ion-icon name="information-circle"></ion-icon>
+      </button>
+      <ion-input formControlName="avgIncome" type="number"></ion-input>
+    </ion-item>
+
+    <button ion-button full color="primary" (click)="submit()">See Results</button>
+
+  </form>
+
+</ion-list>
