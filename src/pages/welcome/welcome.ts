@@ -16,6 +16,9 @@ export class WelcomePage {
 
   constructor(public navCtrl: NavController) { }
 
+  ionViewWillEnter() {
+  }
+
   login() {
     this.navCtrl.push('LoginPage');
   }

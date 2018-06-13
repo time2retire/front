@@ -1,86 +1,105 @@
 <ion-header>
-
   <ion-navbar>
     <ion-title>{{ 'SIGNUP_TITLE' | translate }}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content>
+    <form [formGroup]='myForm'>
+      <div class = "form-group">
+        <ion-item>
+          <ion-label stacked>First Name</ion-label>
+          <ion-input formControlName="firstName" type='text'></ion-input>
+        </ion-item>
+        <div *ngIf="myForm.controls.firstName.pristine && signupAttempt">
+          <p>Please enter your first name.</p>
+        </div>
+      </div>
+      <br>
 
-  <!-- <form (submit)="doSignup()">
-    <ion-list>
+      <div class = "form-group">
+        <ion-item>
+          <ion-label stacked>Last Name</ion-label>
+          <ion-input formControlName="lastName" type='text'></ion-input>
+        </ion-item>
+        <div *ngIf="myForm.controls.lastName.pristine && signupAttempt">
+          <p>Please enter your Last Name.</p>
+        </div>
+      </div>
+      <br>
+ 
+      <div class = "form-group">
+        <ion-item>
+          <ion-label stacked>Date of Birth</ion-label>
+          <ion-datetime displayFormat="MMM DD, YYYY" formControlName="birthday" placeholder="MM/DD/YYYY"></ion-datetime>
+        </ion-item>
+        <div *ngIf="myForm.controls.birthday.pristine && signupAttempt">
+          <p>Please enter your Date of birth.</p>
+        </div>
+      </div>
+      <br>
 
-      <ion-item>
-        <ion-label fixed>{{ 'NAME' | translate }}</ion-label>
-        <ion-input type="text" [(ngModel)]="account.name" name="name"></ion-input>
-      </ion-item>
+      <div class = "form-group">
+        <ion-item>
+          <ion-label stacked>Email</ion-label>
+          <ion-input formControlName="email" type='email'></ion-input>
+        </ion-item>
+          <div *ngIf="myForm.controls.email.pristine && signupAttempt">
+            <p>Please enter an Email.</p>
+          </div>
+          <div *ngIf="!myForm.controls.confirmEmail.valid && signupAttempt">
+            <p>Email is not valid. ex: john_doe@example.com</p>
+          </div>
+      </div>
+      <br>
 
-      <ion-item>
-        <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
-        <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
-      </ion-item>
+      <div class = "form-group">
+        <ion-item>
+          <ion-label stacked>Confirm Email*</ion-label>
+          <ion-input formControlName="confirmEmail" type='email'></ion-input>
+        </ion-item>
+        <div *ngIf="myForm.controls.confirmEmail.pristine && signupAttempt">
+          <p>Please confirm your Email.</p>
+        </div>
+        <div *ngIf="signupAttempt && myForm.controls.email.valid 
+            && myForm.controls.confirmEmail.errors?.MatchEmail">
+          <p>Emails do not match.</p>
+        </div>
+      </div>
+      <br>
 
+      <div class = "form-group">
+        <ion-item>
+          <ion-label stacked>Password</ion-label>
+          <ion-input formControlName="password" type='password'></ion-input>
+        </ion-item>
+        <div *ngIf="myForm.controls.password.pristine && signupAttempt">
+          <p>Please enter a password.</p>
+        </div>
+        <div *ngIf="myForm.controls.password.dirty && !myForm.controls.password.valid && signupAttempt">
+          <p>Password Not Valid.</p> 
+          <!-- <p>Password must be between 4 and 8 characters long, and must include a number (123...) ex: "grace1"</p> -->
+        </div>
+      </div>
+      <br>
+
+      <div class = "form-group">
+        <ion-item>
+          <ion-label stacked>Confirm Password*</ion-label>
+          <ion-input formControlName="confirmPassword" type='password'></ion-input>
+        </ion-item>  
+        <div *ngIf="myForm.controls.confirmPassword.pristine && signupAttempt">
+          <p>Please confirm your password.</p>
+        </div>
+        <div *ngIf="signupAttempt && !myForm.controls.password.valid 
+            && myForm.controls.confirmPassword.errors?.MatchPassword">
+          <p>Passwords do not match.</p>
+        </div>
+      </div>
+      <br>
       
-      Want to add a Username? Here you go:
-
-      <ion-item>
-        <ion-label floating>Username</ion-label>
-        <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>
-      </ion-item>
-     
-
-      <ion-item>
-        <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
-        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
-      </ion-item>
-
-      <div padding>
-        <button ion-button color="primary" block>{{ 'SIGNUP_BUTTON' | translate }}</button>
-      </div>
-
-    </ion-list>
-  </form> -->
-
-  <form (submit)='newSignup()'>
-
-    <ion-list>
-
-      <div align='center'>
-        <h5 *ngIf="signupAttempt" style="color: #ea6153;">Please fill out all details</h5>
-      </div>
-
-      <ion-item>
-
-        <ion-input placeholder="First Name" type='text' [(ngModel)]='newUser.firstName' name='firstName'></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input placeholder="Last Name" type='text' [(ngModel)]='newUser.lastName' name='lastName'></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-datetime placeholder="Date of Birth (MM/DD/YYYY)" displayFormat="MM/DD/YYYY" [(ngModel)]="newUser.birthday" [ngModelOptions]="{standalone: true}"></ion-datetime>
-      </ion-item>
-      <!-- <ion-item>
-        <ion-label> Birth Date</ion-label>
-        <ion-input placeholder="Birthday" type='date' [(ngModel)]='newUser.birthday' name='birthday'></ion-input>
-      </ion-item> -->
-
-      <ion-item>
-        <ion-input placeholder="Email" type='email' [(ngModel)]='newUser.email' name='email'></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input placeholder="Password" type='password' [(ngModel)]='newUser.password' name='password'></ion-input>
-      </ion-item>
-
-      <div padding>
-        <button ion-button color="primary" block>Sign Up</button>
-      </div>
-
-    </ion-list>
-
-  </form>
-
+      <button ion-button full color="primary" (click)="submit()">Register</button>
+    </form>
+    
 </ion-content>
+

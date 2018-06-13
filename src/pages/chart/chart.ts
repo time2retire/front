@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormBuilder } from '@angular/forms';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Chart } from 'chart.js'
 import * as ChartLabels from 'chartjs-plugin-datalabels';
 import { Api } from '../../providers/api/api';
@@ -25,20 +25,38 @@ export class ChartPage {
   yearlyBenefit: number;
   totalBenefit: number;
   bestYear: number;
+  chartSave: any;
+  maxBen: number = 5000;
+  maxTotal: number = 1000000;
+  chartData: any;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public _api: Api,
     public _user: User,
-    public _http: HttpClientModule
+    public _http: HttpClientModule,
+    public toastCtrl: ToastController,
+    public loader: LoadingController,
+    public navparam: NavParams,
   ) {
     this.inputForm = formBuilder.group({
-      dateOfBirth: [''],
-      amountPaid: [''],
-      avgIncome: [''],
-      // lengthOfRetirement: ['']
+      dateOfBirth: [this._user.user.birthday, Validators.required],
+      amountPaid: ['', Validators.compose([Validators.min(1), Validators.required])],
+      avgIncome: ['', Validators.compose([Validators.min(1), Validators.required])]
     })
+    if (this.navparam.get('data')) {
+      let data = this.navparam.get('data');
+      // this.chartData = data;
+      console.log(data)
+      this.monthlyBenefit = Number(data.monthlyBen);
+      this.benefitObject = data.benefitObject
+      this.bestYear = this.getBestYear(this.benefitObject)
+      this.slider.lower = Number(data.retYear);
+      this.slider.upper = Number(data.bucketYear);
+      this.updateChart(data.retYear)
+      this.haveData = true;
+    }
   }
 
   public barChartOptions: any = {
@@ -49,18 +67,19 @@ export class ChartPage {
         anchor: 'end',
         font: {
           weight: 'bold',
-          size: 18,
+          size: 15,
         },
         formatter: function (value, context) {
           let currency = (value + '').replace(/(\d)(?=(\d{3})+$)/g, '$1,');
-          return "$" + currency + ".00";
+          return "$" + currency;
         }
       }
     },
     responsive: true,
     maintainAspectRatio: true,
     legend: {
-      onClick: (e) => e.stopPropagation()
+      onClick: (e) => e.stopPropagation(),
+      fontSize: 12
     },
     scales: {
       yAxes: [{
@@ -68,9 +87,12 @@ export class ChartPage {
         type: 'linear',
         position: 'left',
         ticks: {
-          max: 5000,
-          min: 0,
-          stepSize: 500
+          max: this.maxBen,
+          min: 1000,
+          stepSize: 1000,
+          callback: function(value, index, values) {
+            return '$' + value/1000 + "k";
+          }
         },
         gridLines: {
           display: false
@@ -80,9 +102,18 @@ export class ChartPage {
         type: 'linear',
         position: 'right',
         ticks: {
-          max: 800000,
-          min: 100000,
-          stepSize: 100000
+          max: this.maxTotal,
+          min: 200000,
+          stepSize: 200000,
+          callback: function(value, index, values) {
+            if (value >= 1000000){
+              return '$' + value/1000000 + "M";
+            }
+            else{
+              return '$' + value/1000 + "K";
+            }
+            
+          }
         },
         gridLines: {
           display: false
@@ -107,30 +138,67 @@ export class ChartPage {
   ];
 
   getBestYear(years) {
-    let retLength, highYear
+    let retLength;
+    let highYear = 0
     let high = 0
     Object.keys(years).forEach(year => {
       retLength = this.slider.upper - parseInt(year);
-      if ((years[year].monthlyBen * 12)  * retLength > high) {
-        high = (years[year].monthlyBen * 12)  * retLength;
+      if ((years[year].monthlyBen * 12) * retLength > high) {
+        high = (years[year].monthlyBen * 12) * retLength;
         highYear = parseInt(year)
       }
     })
     return highYear
   }
 
+  calcBreakEven(retYear, retRange, yearlyBenefit): number {
+    let amtInvested = this.inputForm.value.amountPaid;
+    let breakEvenYear = 0;
+    for (let i = 1; i <= retRange; i++) {
+      let yearCheck = yearlyBenefit * i;
+      if (yearCheck >= amtInvested) {
+        breakEvenYear = i;
+        break;
+      }
+    }
+    if (breakEvenYear) {
+      return retYear + breakEvenYear;
+    }
+  }
+
   sendChartData() {
+    if (!this.inputForm.valid) {
+      let toast = this.toastCtrl.create({
+        message: 'Please complete the form',
+        duration: 2000,
+        position: 'top'
+      });
+      toast.present()
+    } else {
+    let loader = this.loader.create({
+    })
+    loader.present()
+
     let dob = Number(this.inputForm.value.dateOfBirth.substr(0, 4))
     let income = this.inputForm.value.avgIncome
     this.bucketYear = dob + 85;
     this._api.getRetire(dob, income, 'true')
-    .subscribe(data => {
-      this.benefitObject = data;
-      this.bestYear = this.getBestYear(this.benefitObject)
-      this.slider.lower = this.bestYear
-      this.updateChart(this.bestYear);
-      this.haveData = true
-    })
+      .subscribe(data => {
+        this.benefitObject = data;
+        this.bestYear = this.getBestYear(this.benefitObject)
+        this.slider.lower = this.bestYear
+        this.updateChart(this.bestYear);
+        this.haveData = true
+        loader.dismiss()
+      }, err => {
+        loader.dismiss();
+        let toast = this.toastCtrl.create({
+          message: 'Unable to complete calculations.  Please try again later',
+          duration: 2000,
+          position: 'top'
+        })
+      })
+    }
   }
 
   goSlider() {
@@ -146,12 +214,13 @@ export class ChartPage {
     }
   }
 
-  updateChart(retAge){
+  updateChart(retAge) {
     /*Updates Bar chart and card based on sliders upper and lower values*/
     this.monthlyBenefit = this.benefitObject[retAge].monthlyBen;
     this.yearlyBenefit = this.monthlyBenefit * 12;
     this.retRange = this.slider.upper - this.slider.lower;
     this.totalBenefit = this.yearlyBenefit * this.retRange;
+    console.log(this.retRange)
     this.breakEvenYear = this.calcBreakEven(this.slider.lower, this.retRange, this.yearlyBenefit)
     this.barChartData = [
       { data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID: 'A' },
@@ -159,36 +228,27 @@ export class ChartPage {
     ];
   }
 
-  calcBreakEven(retYear, retRange, yearlyBenefit): number {
-    let amtInvested = this.inputForm.value.amountPaid;
-    let breakEvenYear = 0;
-    for (let i = 1; i <= retRange; i++) {
-      let yearCheck = yearlyBenefit * i;
-      if (yearCheck >= amtInvested) {
-        breakEvenYear = i;
-        break;
-      }
-    }
-
-    if(breakEvenYear){
-      return retYear + breakEvenYear;
-    }
-
-  }
-  chartSave: any = {
-    monthlyBen: '500',
-    retYear: '2050',
-    bucketYear: '2070',
-    totalBen: '4000000',
-    timestamp: "2018-06-05T04:19:14.144Z"
-  }
   saveChart() {
+    console.log(this.slider)
+    this.chartSave = {
+      monthlyBen: this.monthlyBenefit,
+      retYear: this.slider.lower,
+      bucketYear: this.slider.upper,
+      totalBen: this.totalBenefit,
+      benefitObject: this.benefitObject,
+      timestamp: Date.now()
+    }
     this._user.savedChart(this.chartSave).subscribe(
       (chartLog: any) => {
-        //console.log(userLog, 'Login Successful')
         if (!this._user.user.charts) {
           this._user.user.charts = []
         }
+        let toast = this.toastCtrl.create({
+          message: 'Chart Saved.',
+          duration: 2000,
+          position: 'top'
+        });
+        toast.present()
         this._user.user.charts.push(chartLog)
         console.log(chartLog.user)
         console.log("chartLog test", this._user.user)
@@ -197,7 +257,10 @@ export class ChartPage {
       }
     )
   }
+
   ionViewDidLoad() {
     Chart.pluginService.register(ChartLabels);
+    // this.maxTotal = this.inputForm.value.amountPaid * 5;
+    // this.maxBen = this.inputForm.value.avgIncome * 5;
   }
 }
