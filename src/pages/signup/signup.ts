@@ -100,5 +100,4 @@ export class SignupPage {
       this.newSignup();
     }     
   }
-
 }
