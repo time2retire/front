@@ -28,6 +28,7 @@ export class ChartPage {
   chartSave: any;
   maxBen: number = 5000;
   maxTotal: number = 1000000;
+  chartData: any;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -37,12 +38,25 @@ export class ChartPage {
     public _http: HttpClientModule,
     public toastCtrl: ToastController,
     public loader: LoadingController,
+    public navparam: NavParams,
   ) {
     this.inputForm = formBuilder.group({
       dateOfBirth: [this._user.user.birthday, Validators.required],
       amountPaid: ['', Validators.compose([Validators.min(1), Validators.required])],
       avgIncome: ['', Validators.compose([Validators.min(1), Validators.required])]
     })
+    if (this.navparam.get('data')) {
+      let data = this.navparam.get('data');
+      // this.chartData = data;
+      console.log(data)
+      this.monthlyBenefit = Number(data.monthlyBen);
+      this.benefitObject = data.benefitObject
+      this.bestYear = this.getBestYear(this.benefitObject)
+      this.slider.lower = Number(data.retYear);
+      this.slider.upper = Number(data.bucketYear);
+      this.updateChart(data.retYear)
+      this.haveData = true;
+    }
   }
 
   public barChartOptions: any = {
@@ -206,6 +220,7 @@ export class ChartPage {
     this.yearlyBenefit = this.monthlyBenefit * 12;
     this.retRange = this.slider.upper - this.slider.lower;
     this.totalBenefit = this.yearlyBenefit * this.retRange;
+    console.log(this.retRange)
     this.breakEvenYear = this.calcBreakEven(this.slider.lower, this.retRange, this.yearlyBenefit)
     this.barChartData = [
       { data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID: 'A' },
@@ -214,11 +229,13 @@ export class ChartPage {
   }
 
   saveChart() {
+    console.log(this.slider)
     this.chartSave = {
       monthlyBen: this.monthlyBenefit,
       retYear: this.slider.lower,
-      bucketYear: this.bucketYear,
+      bucketYear: this.slider.upper,
       totalBen: this.totalBenefit,
+      benefitObject: this.benefitObject,
       timestamp: Date.now()
     }
     this._user.savedChart(this.chartSave).subscribe(

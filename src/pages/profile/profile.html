@@ -29,13 +29,13 @@
       <div *ngIf="chartData">
         <ion-list>
           <div *ngFor="let chart of chartData">
-            <button ion-item>
+            <button ion-item (click)="getSavedChart(chart)">
               {{chart.timestamp | date: "shortDate" }} - Monthly Benefit: ${{chart.monthlyBen}}
             </button>
           </div>
         </ion-list>
       </div>
-      <div *ngIf="!chartData">
+      <div *ngIf="chartData.length < 1">
         <p align="center">
           You have no saved charts!
         </p>

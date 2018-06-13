@@ -27,7 +27,7 @@ export class ProfilePage {
     public _http: HttpClient) {
   }
 
-  chartData: any[];
+  chartData: any[] = [];
 
   // https://nameless-wave-33070.herokuapp.com/api/appUsers/5b1d739ab33893000fb46c3c/charts/1?access_token=jo8H66VjJb9VCn72CR7uk5mUStox9NyqrpRGmfV2F9xEHYvvUHiaxKOSZ9dm6Jr1
 
@@ -49,6 +49,7 @@ export class ProfilePage {
     loader.present()
     this._http.get(this.base_url + this.appUser_url + this.userID + this.charts + this.token_url + this.token).subscribe(
       (chartLog: any) => {
+        console.log(chartLog)
         this.chartData = chartLog;
         loader.dismiss();
       }, err => {
@@ -64,7 +65,14 @@ export class ProfilePage {
         console.log("User is logged out", this._user.user)
       });
   }
+
+  getSavedChart(chart) {
+    this.navCtrl.setRoot('ChartPage', {
+      data: chart
+    })
+  }
+
   goToInput() {
-    this.navCtrl.push("ChartPage")
+    this.navCtrl.setRoot("ChartPage")
   }
 }
