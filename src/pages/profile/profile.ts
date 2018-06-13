@@ -4,6 +4,7 @@ import { User } from '../../providers/user/user';
 import { HttpClient } from '@angular/common/http';
 //import { NgForm } from '@angular/forms';
 
+import { InputFormComponent } from '../../components/input-form/input-form';
 import { ChartPage } from '../../pages/chart/chart';
 
 // import { WelcomePage } from '../welcome/welcome';
@@ -53,7 +54,7 @@ export class ProfilePage {
         console.log("User is logged out", this._user.user)
       });
   }
-  // saveChartToProfile() {
-  //   return this._chart.chartSave
-  // }
+  goToInput() {
+    this.navCtrl.push("ChartPage")
+  }
 }

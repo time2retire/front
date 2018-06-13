@@ -30,15 +30,19 @@
         <ion-list>
           <div *ngFor="let chart of chartData">
             <button ion-item>
-
               {{chart.timestamp | date: "shortDate" }} - Monthly Benefit: ${{chart.monthlyBen}}
             </button>
           </div>
         </ion-list>
       </div>
     </ion-card>
-    <div class="profileButtons">
-      <button ion-button color="danger" (click)="logoutUser(_user.user)">Logout</button>
+    <div *ngIf="chartData == false">
+      <p align="center">
+        You have no saved charts!
+      </p>
+      <div class="profileButtons">
+        <button ion-button color="primary" (click)="goToInput()">Generate a Chart</button>
+      </div>
     </div>
   </div>
 </ion-content>
