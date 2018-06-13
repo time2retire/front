@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidation } from './password-validation';
 import { EmailValidation } from './email-validation';
@@ -28,6 +28,7 @@ export class SignupPage {
   constructor(public navCtrl: NavController,
               public _user: User,
               public toastCtrl: ToastController,
+              public loader: LoadingController,
               public fb: FormBuilder) {
     this.createForm();
   }
@@ -53,6 +54,8 @@ export class SignupPage {
   }
 
   newSignup() {
+    let loader = this.loader.create({})
+    loader.present();
     return this._user.signupCustom(this.newUser)
       .subscribe((newUser: any) => {
         console.log(newUser, 'Signup Successful');
@@ -61,17 +64,26 @@ export class SignupPage {
         sessionStorage.setItem('userId', newUser.userId)
         this._user.user = this.newUser;
         this.navCtrl.setRoot(MainPage);
+        loader.dismiss()
       }, (err) => {
+        let toast = this.toastCtrl.create({
+          message: 'Something went wrong. Please try again later',
+          duration: 2000,
+          position: 'top'
+        });
+        toast.present()
         this.newUser.firstName = '';
         this.newUser.lastName = '';
         this.newUser.birthday = '';
         this.newUser.email = '';
         this.newUser.password = '';
+        loader.dismiss();
       }
     )
   }
 
   submit(){
+    
     this.signupAttempt = true;
     console.log(this.myForm.valid)
     console.log(this.myForm)

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { User } from '../../providers/user/user';
 import { HttpClient } from '@angular/common/http';
+import { ENV } from '@app/env';
+
 //import { NgForm } from '@angular/forms';
 
 import { InputFormComponent } from '../../components/input-form/input-form';
@@ -21,6 +23,7 @@ export class ProfilePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public _user: User,
+    public loader: LoadingController,
     public _http: HttpClient) {
   }
 
@@ -30,7 +33,8 @@ export class ProfilePage {
 
   charts: string = "/charts"
   token_url: string = "?access_token="
-  base_url: string = "https://nameless-wave-33070.herokuapp.com/api/appUsers/"
+  appUser_url: string = 'api/appUsers/'
+  base_url: string = ENV.URL
   //user: this._user
   userID = sessionStorage.getItem('userId');
   token = sessionStorage.getItem('token');
@@ -40,11 +44,18 @@ export class ProfilePage {
   //   return this._http.get(this.name_url + this.token);
   // }
   ionViewDidLoad() {
-    this._http.get(this.base_url + this.userID + this.charts + this.token_url + this.token).subscribe(
+    let loader = this.loader.create({
+    })
+    loader.present()
+    this._http.get(this.base_url + this.appUser_url + this.userID + this.charts + this.token_url + this.token).subscribe(
       (chartLog: any) => {
         this.chartData = chartLog;
+        loader.dismiss();
+      }, err => {
+        console.error(err)
+        loader.dismiss()
       })
-      console.log(this.chartData)
+
   }
   logoutUser() {
     this.navCtrl.setRoot("WelcomePage")
