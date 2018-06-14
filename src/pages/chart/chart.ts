@@ -112,7 +112,6 @@ export class ChartPage {
             else{
               return '$' + value/1000 + "K";
             }
-            
           }
         },
         gridLines: {
@@ -150,7 +149,7 @@ export class ChartPage {
     })
     return highYear
   }
-
+  
   calcBreakEven(retYear, retRange, yearlyBenefit): number {
     let amtInvested = this.inputForm.value.amountPaid;
     let breakEvenYear = 0;
