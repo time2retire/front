@@ -16,4 +16,11 @@ page-signup {
     button#datetime-6-0 {
         margin-top: 0px;
     }
+
+    .validCheck{
+        display:flex;
+        .check{
+            padding-left: 5px;
+        }
+    }
 }

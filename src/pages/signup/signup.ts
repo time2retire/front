@@ -14,6 +14,14 @@ import { MainPage } from '../';
 })
 export class SignupPage {
   myForm: FormGroup;
+  testPassword: string = '';
+  length: boolean;
+  capital: boolean;
+  lower: boolean;
+  special: boolean;
+  number: boolean;
+  sweetPassword: boolean;
+  
   signupAttempt: boolean = false;
   passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/
   emailRegEx = '^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
@@ -33,6 +41,31 @@ export class SignupPage {
     this.createForm();
   }
 
+  passwordStrengh(event){
+    console.log(event.key)
+    if(event.key === 'Backspace'){
+      this.testPassword = this.testPassword.substring(0, this.testPassword.length - 1);
+    }
+    else if(event.key === 'Shift'){
+      this.testPassword;
+    }
+    else if(event.key){
+      this.testPassword += event.key;
+    }
+
+    let lengthCheck = new RegExp('^.{8}');
+    let capitalCheck = new RegExp('^(?=.*[A-Z])');
+    let lowerCheck = new RegExp('^(?=.*[a-z])');
+    let specialCheck = new RegExp('^(?=.*[!@#$&*])');
+    let numberCheck = new RegExp('^(?=.*[0-9])');
+
+    this.capital = capitalCheck.test(this.testPassword)? true : false 
+    this.lower = lowerCheck.test(this.testPassword)? true : false 
+    this.length = lengthCheck.test(this.testPassword)? true : false 
+    this.special = specialCheck.test(this.testPassword)? true : false 
+    this.number = numberCheck.test(this.testPassword)? true : false 
+    this.sweetPassword = this.capital && this.lower && this.length && this.special && this.number ? true : false;       
+  }
   createForm(){
     this.myForm = this.fb.group({
       firstName: ['', Validators.required],
