@@ -44,14 +44,6 @@ export class SignupPage {
   }
 
   passwordStrength(event){
-    // if(event.value === null){
-    //   this.testPassword = this.testPassword.substring(0, this.testPassword.length - 1);
-    // }
-    // else if(event.value){
-    //   this.testPassword += event.value;
-    // }
-
-    this.testPassword = event.value
     console.log(event.value)
     let lengthCheck = new RegExp('^.{8}');
     let capitalCheck = new RegExp('^(?=.*[A-Z])');
@@ -59,11 +51,11 @@ export class SignupPage {
     let specialCheck = new RegExp('^(?=.*[!@#$&*])');
     let numberCheck = new RegExp('^(?=.*[0-9])');
 
-    this.capital = capitalCheck.test(this.testPassword)? true : false 
-    this.lower = lowerCheck.test(this.testPassword)? true : false 
-    this.length = lengthCheck.test(this.testPassword)? true : false 
-    this.special = specialCheck.test(this.testPassword)? true : false 
-    this.number = numberCheck.test(this.testPassword)? true : false 
+    this.capital = capitalCheck.test(event.value)? true : false 
+    this.lower = lowerCheck.test(event.value)? true : false 
+    this.length = lengthCheck.test(event.value)? true : false 
+    this.special = specialCheck.test(event.value)? true : false 
+    this.number = numberCheck.test(event.value)? true : false 
     this.sweetPassword = this.capital && this.lower && this.length && this.special && this.number ? true : false;       
   }
   createForm(){
