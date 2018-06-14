@@ -44,20 +44,27 @@ export class SignupPage {
   }
 
   passwordStrength(event){
+    //event.value holds the entirety of whatever is in the input field.
     console.log(event.value)
+
+    //Independent RegEx strings
     let lengthCheck = new RegExp('^.{8}');
     let capitalCheck = new RegExp('^(?=.*[A-Z])');
     let lowerCheck = new RegExp('^(?=.*[a-z])');
     let specialCheck = new RegExp('^(?=.*[!@#$&*])');
     let numberCheck = new RegExp('^(?=.*[0-9])');
 
-    this.capital = capitalCheck.test(event.value)? true : false 
-    this.lower = lowerCheck.test(event.value)? true : false 
-    this.length = lengthCheck.test(event.value)? true : false 
-    this.special = specialCheck.test(event.value)? true : false 
-    this.number = numberCheck.test(event.value)? true : false 
+    //RegEx checks, fire for every instance of event.value
+    this.capital = capitalCheck.test(event.value)
+    this.lower = lowerCheck.test(event.value)
+    this.length = lengthCheck.test(event.value)
+    this.special = specialCheck.test(event.value)
+    this.number = numberCheck.test(event.value)
+
+    //final check ensures all regEx checks return true
     this.sweetPassword = this.capital && this.lower && this.length && this.special && this.number ? true : false;       
   }
+
   createForm(){
     this.myForm = this.fb.group({
       firstName: ['', Validators.required],
