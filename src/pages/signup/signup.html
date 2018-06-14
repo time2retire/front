@@ -70,7 +70,7 @@
       <div class = "form-group">
         <ion-item>
           <ion-label stacked>Password</ion-label>
-          <ion-input formControlName="password" type='password' (input)="passwordStrength($event)"></ion-input>
+          <ion-input autocomplete="new-password" formControlName="password" type='password' (input)="passwordStrength($event)"></ion-input>
         </ion-item>
         <div *ngIf="!myForm.controls.password.valid">
           <p class = "req">Requirements:</p>
