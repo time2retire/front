@@ -73,9 +73,9 @@
           <ion-input formControlName="password" type='password' (input)="passwordStrength($event)"></ion-input>
         </ion-item>
         <div *ngIf="!myForm.controls.password.valid">
-          <p>Requirements:</p>
+          <p class = "req">Requirements:</p>
             <div class="validCheck">
-              <p [ngStyle]="{'color': lower? 'green' : 'red'}">
+              <p [ngStyle]="{'color': length? 'green' : 'red'}">
                 At least 8 characters long.
               </p>
               <div *ngIf="length">
