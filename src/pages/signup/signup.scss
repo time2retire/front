@@ -20,7 +20,11 @@ page-signup {
     .validCheck{
         display:flex;
         .check{
+            color: green;
             padding-left: 5px;
         }
+    }
+    .noice{
+        color:green;
     }
 }

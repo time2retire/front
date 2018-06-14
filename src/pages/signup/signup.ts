@@ -14,6 +14,8 @@ import { MainPage } from '../';
 })
 export class SignupPage {
   myForm: FormGroup;
+
+  //live password validation
   testPassword: string = '';
   length: boolean;
   capital: boolean;
@@ -21,7 +23,7 @@ export class SignupPage {
   special: boolean;
   number: boolean;
   sweetPassword: boolean;
-  
+
   signupAttempt: boolean = false;
   passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/
   emailRegEx = '^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
@@ -41,19 +43,15 @@ export class SignupPage {
     this.createForm();
   }
 
-  passwordStrengh(event){
-    console.log(event.key)
-    if(event.key === 'Backspace'){
+  passwordStrength(event){
+    if(event.data === null){
       this.testPassword = this.testPassword.substring(0, this.testPassword.length - 1);
     }
-    else if(event.key === 'Shift'){
-      this.testPassword;
-    }
-    else if(event.key){
-      this.testPassword += event.key;
+    else if(event.data){
+      this.testPassword += event.data;
     }
 
-    let lengthCheck = new RegExp('^.{8}');
+    let lengthCheck = new RegExp('^.{16}');
     let capitalCheck = new RegExp('^(?=.*[A-Z])');
     let lowerCheck = new RegExp('^(?=.*[a-z])');
     let specialCheck = new RegExp('^(?=.*[!@#$&*])');

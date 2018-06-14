@@ -67,47 +67,56 @@
         </div>
       </div>
       <br>
-
       <div class = "form-group">
         <ion-item>
           <ion-label stacked>Password</ion-label>
-          <ion-input formControlName="password" type='password' (keyup)="passwordStrengh($event)"></ion-input>
+          <ion-input formControlName="password" type='password' (input)="passwordStrength($event)"></ion-input>
         </ion-item>
         <div *ngIf="!myForm.controls.password.valid">
           <p>Requirements:</p>
             <div class="validCheck">
-              <p>At least 8 characters long.</p>
+              <p [ngStyle]="{'color': lower? 'green' : 'red'}">
+                At least 8 characters long.
+              </p>
               <div *ngIf="length">
                 <ion-icon class="check" name="checkmark"></ion-icon>
               </div>
             </div>
             <div class="validCheck">
-              <p>1 upper-case letter (ABC...)</p>
+              <p [ngStyle]="{'color': capital? 'green' : 'red'}">
+                1 upper-case letter (ABC...)
+              </p>
               <div *ngIf="capital">
                 <ion-icon class="check" name="checkmark"></ion-icon>
               </div>
             </div>
             <div class="validCheck">
-              <p>1 lower-case letter (abc...)</p>
+              <p [ngStyle]="{'color': lower? 'green' : 'red'}">
+                1 lower-case letter (abc...)
+              </p>
               <div *ngIf="lower">
                 <ion-icon class="check" name="checkmark"></ion-icon>
               </div>
             </div>
             <div class="validCheck">
-              <p>1 number (123)</p> 
+              <p [ngStyle]="{'color': number? 'green' : 'red'}">
+                1 number (123)
+              </p> 
               <div *ngIf="number">
                 <ion-icon class="check" name="checkmark"></ion-icon>
               </div>
             </div>
             <div class="validCheck">
-              <p>1 special character (#$%!...)</p>
+              <p [ngStyle]="{'color': special? 'green' : 'red'}">
+                1 special character (#$%!...)
+              </p>
               <div *ngIf="special">
                 <ion-icon class="check" name="checkmark"></ion-icon>
               </div>
             </div>
         </div>
-        <div *ngIf="sweetPassword">
-          <p>Nice Password!</p>
+        <div *ngIf="myForm.controls.password.valid || sweetPassword">
+          <p class="noice">Nice Password!</p>
         </div>
         <div *ngIf="myForm.controls.password.pristine && signupAttempt">
           <p>Please enter a password.</p>
