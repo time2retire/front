@@ -31,7 +31,8 @@
       <div class = "form-group">
         <ion-item>
           <ion-label stacked>Date of Birth</ion-label>
-          <ion-datetime displayFormat="MMM DD, YYYY" formControlName="birthday" placeholder="MM/DD/YYYY"></ion-datetime>
+          <ion-datetime displayFormat="MMM DD, YYYY" formControlName="birthday" 
+                        placeholder="MM/DD/YYYY"></ion-datetime>
         </ion-item>
         <div *ngIf="myForm.controls.birthday.pristine && signupAttempt">
           <p class="req">Please enter your Date of birth.</p>
@@ -62,7 +63,8 @@
           <ion-label stacked>Confirm Email*</ion-label>
           <ion-input formControlName="confirmEmail" type='email'></ion-input>
         </ion-item>
-        <div *ngIf="!myForm.controls.email.pristine && myForm.controls.confirmEmail.pristine && signupAttempt">
+        <div *ngIf="!myForm.controls.email.pristine && myForm.controls.confirmEmail.pristine 
+            && signupAttempt">
           <p class="req">Please confirm your Email.</p>
         </div>
         <div *ngIf="signupAttempt && myForm.controls.email.valid 
@@ -70,7 +72,7 @@
           <p class="req">Emails do not match.</p>
         </div>
         <div *ngIf="myForm.controls.email.valid 
-          && myForm.controls.confirmEmail.errors === null">
+            && myForm.controls.confirmEmail.errors === null">
           <p class="noice">Emails match!</p>
         </div>
       </div>
@@ -78,7 +80,8 @@
       <div class = "form-group">
         <ion-item>
           <ion-label stacked>Password</ion-label>
-          <ion-input autocomplete="new-password" formControlName="password" type='password' (ionChange)="passwordStrength($event)"></ion-input>
+          <ion-input autocomplete="new-password" formControlName="password" type='password' 
+                    (ionChange)="passwordStrength($event)"></ion-input>
         </ion-item>
         <div *ngIf="!myForm.controls.password.valid && myForm.controls.password.dirty">
           <p class = "req" style="color:black">Requirements:</p>
@@ -129,7 +132,8 @@
         <div *ngIf="myForm.controls.password.pristine && signupAttempt">
           <p class="req">Please enter a password.</p>
         </div>
-        <div *ngIf="myForm.controls.password.dirty && !myForm.controls.password.valid && signupAttempt">
+        <div *ngIf="myForm.controls.password.dirty && !myForm.controls.password.valid 
+            && signupAttempt">
           <p class="req">Password Not Valid.</p> 
         </div>
       </div>
