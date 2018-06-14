@@ -44,14 +44,16 @@ export class SignupPage {
   }
 
   passwordStrength(event){
-    if(event.data === null){
-      this.testPassword = this.testPassword.substring(0, this.testPassword.length - 1);
-    }
-    else if(event.data){
-      this.testPassword += event.data;
-    }
+    // if(event.value === null){
+    //   this.testPassword = this.testPassword.substring(0, this.testPassword.length - 1);
+    // }
+    // else if(event.value){
+    //   this.testPassword += event.value;
+    // }
 
-    let lengthCheck = new RegExp('^.{16}');
+    this.testPassword = event.value
+    console.log(event.value)
+    let lengthCheck = new RegExp('^.{8}');
     let capitalCheck = new RegExp('^(?=.*[A-Z])');
     let lowerCheck = new RegExp('^(?=.*[a-z])');
     let specialCheck = new RegExp('^(?=.*[!@#$&*])');
