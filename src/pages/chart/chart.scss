@@ -10,30 +10,21 @@ page-chart {
     .info-button {
         align-self: start;
     }
-    .chartLabels{
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        .ret{
-            margin-bottom:2px;
-            margin-top:0px;
+    .infoLabels{
+        display:flex;
+        justify-content: space-around;
+        .infoCard{
+            margin: 5px;
+            .infoCont{
+                padding:5px;
+                .infoFormat{
+                    display:flex;
+                    justify-content:space-evenly;
+                }
+            }
         }
-        .left{
-            margin-left:25px;
-            padding-right: 10px;
-            margin-top:0px;
-            
-        }
-        .dash{
-            margin-top:0px;
-            
-        }
-        .right{
-            padding-left: 10px;
-            margin-top:0px;
-        }
-        .range{
-            display: flex;
+        .strong{
+            font-size:13px;
         }
     }
 

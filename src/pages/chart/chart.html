@@ -10,14 +10,30 @@
 <ion-content>
   <input-form [form]='inputForm' (submitForm)="sendChartData()" *ngIf="!haveData"></input-form>
   <div *ngIf="haveData">
-    <ion-card>
+    <!-- <ion-card>
       <ion-card-content class="impStuff">
         <div>
           <strong>Best-Age:</strong> {{bestYear}}</div>
         <div>
           <strong>Break-Even:</strong> {{breakEvenYear}}</div>
       </ion-card-content>
-    </ion-card>
+    </ion-card> -->
+    <div class = "infoLabels">
+      <ion-card class= "infoCard">
+        <ion-card-content class="infoCont">
+          <div class="infoFormat">
+            <strong>Best-year:</strong><ion-badge>{{bestYear}}</ion-badge>
+          </div>
+        </ion-card-content>
+      </ion-card>
+      <ion-card class= "infoCard">
+        <ion-card-content class="infoCont">
+          <div class="infoFormat">
+            <strong>Break-even:</strong><ion-badge>{{breakEvenYear}}</ion-badge>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
     <div style="display: block">
       <canvas class="chart" baseChart width="400" height="400" 
         [datasets]="barChartData" 
@@ -29,15 +45,24 @@
         (chartClick)="chartClicked($event)">
       </canvas>
     </div>
-    <ion-card>
-      <ion-card-content class="impStuff">
-        <div>
-          <strong>Ret-Age:</strong> {{slider.lower}}</div>
-        <div>
-          <strong>Ret-Length:</strong> {{slider.upper}}</div>
-      </ion-card-content>
-    </ion-card>
-    <ion-range class="chartSlider" min="62" max="100" [(ngModel)]="slider" (ionChange)='goSlider()' color="primary" dualKnobs="true" pin="true">
+    <div class = "infoLabels">
+      <ion-card class= "infoCard">
+        <ion-card-content class="infoCont">
+          <div class="infoFormat">
+            <strong>Ret-Age:</strong><ion-badge>{{slider.lower}}</ion-badge>
+          </div>
+        </ion-card-content>
+      </ion-card>
+      <ion-card class= "infoCard">
+        <ion-card-content class="infoCont">
+          <div class="infoFormat">
+            <strong>Ret-Length:</strong><ion-badge>{{slider.upper}}</ion-badge>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <ion-range class="chartSlider" min="62" max="100" [(ngModel)]="slider" 
+              (ionChange)='goSlider()' color="primary" dualKnobs="true">
       <ion-label range-left>62</ion-label>
       <ion-label range-right>100</ion-label>
     </ion-range>
