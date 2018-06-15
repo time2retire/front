@@ -17,6 +17,7 @@
         <p></p>
         <div>Email: {{_user.user.email }} </div>
         <p></p>
+        <!-- this line is causing an error on reload, we should probably have a local user to hold the value -->
         <div>Birthday: {{_user.user.birthday | date:'shortDate' }}</div>
         <p></p>
       </ion-card-content>
