@@ -20,7 +20,12 @@ page-chart {
                 .infoFormat{
                     display:flex;
                     justify-content:space-evenly;
-                    .ion-badge{
+                    .leftBadge{
+                        background-color: #1257c7;
+                        justify-self: flex-end;
+                    }
+                    .rightBadge{
+                        background-color: #e6780b;
                         justify-self: flex-end;
                     }
                 }
@@ -34,6 +39,14 @@ page-chart {
     .chartSlider{
         padding-top: 0px !important; 
     }
+    
+    .range-knob-handle > .range-knob {
+        background-color: #1257c7 !important
+    }
+    .range-knob-handle ~ .range-knob-handle > .range-knob {
+        background-color: #e6780b !important
+    }
+
     .chartButtons{
         display: flex;
         justify-content: space-around;

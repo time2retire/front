@@ -4,13 +4,8 @@ import { User } from '../../providers/user/user';
 import { HttpClient } from '@angular/common/http';
 import { ENV } from '@app/env';
 
-//import { NgForm } from '@angular/forms';
-
-import { InputFormComponent } from '../../components/input-form/input-form';
+//import { InputFormComponent } from '../../components/input-form/input-form';
 import { ChartPage } from '../../pages/chart/chart';
-
-// import { WelcomePage } from '../welcome/welcome';
-// import { SavedPage } from '../saved/saved';
 
 @IonicPage()
 @Component({
@@ -67,12 +62,12 @@ export class ProfilePage {
   }
 
   getSavedChart(chart) {
-    this.navCtrl.setRoot('ChartPage', {
+    this.navCtrl.setRoot(ChartPage, {
       data: chart
     })
   }
 
   goToInput() {
-    this.navCtrl.setRoot("ChartPage")
+    this.navCtrl.setRoot(ChartPage)
   }
 }
