@@ -106,7 +106,7 @@ export class SignupPage {
         if(failureObject.error.error.message.includes(this.newUser.email)){
           let toast = this.toastCtrl.create({
             message: `User "${this.newUser.email}" already exists.`,
-            duration: 5000,
+            duration: 4000,
             position: 'top'
           });
           toast.present()
@@ -114,7 +114,7 @@ export class SignupPage {
         else{
           let toast = this.toastCtrl.create({
             message: `Oops. Something Went wrong, Please try again later.`,
-            duration: 5000,
+            duration: 4000,
             position: 'top'
           });
           toast.present()
@@ -135,7 +135,7 @@ export class SignupPage {
     if(!this.myForm.valid){
       let toast = this.toastCtrl.create({
         message: 'Registration Unsuccessful',
-        duration: 2000,
+        duration: 3000,
         position: 'top'
       });
       toast.present()

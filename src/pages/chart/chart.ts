@@ -244,7 +244,7 @@ export class ChartPage {
         }
         let toast = this.toastCtrl.create({
           message: 'Chart Saved.',
-          duration: 4000,
+          duration: 2000,
           position: 'top'
         });
         toast.present()
