@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <input-form [form]='inputForm' (submitForm)="sendChartData()" *ngIf="!haveData"></input-form>
   <div *ngIf="haveData">
     <ion-card>

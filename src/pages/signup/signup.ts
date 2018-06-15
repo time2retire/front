@@ -45,8 +45,7 @@ export class SignupPage {
 
   passwordStrength(event){
     //event.value holds the entirety of whatever is in the input field.
-    console.log(event.value)
-
+    
     //Independent RegEx strings
     let lengthCheck = new RegExp('^.{8}');
     let capitalCheck = new RegExp('^(?=.*[A-Z])');
@@ -90,6 +89,12 @@ export class SignupPage {
     loader.present();
     return this._user.signupCustom(this.newUser)
       .subscribe((newUser: any) => {
+        let toast = this.toastCtrl.create({
+          message: 'Registration Successful',
+          duration: 2000,
+          position: 'top'
+        });
+        toast.present()
         console.log(newUser, 'Signup Successful');
         this._user.user = newUser;
         sessionStorage.setItem('token', newUser.token)
@@ -97,13 +102,23 @@ export class SignupPage {
         this._user.user = this.newUser;
         this.navCtrl.setRoot(MainPage);
         loader.dismiss()
-      }, (err) => {
-        let toast = this.toastCtrl.create({
-          message: 'Something went wrong. Please try again later',
-          duration: 2000,
-          position: 'top'
-        });
-        toast.present()
+      }, (failureObject) => {
+        if(failureObject.error.error.message.includes(this.newUser.email)){
+          let toast = this.toastCtrl.create({
+            message: `User "${this.newUser.email}" already exists.`,
+            duration: 5000,
+            position: 'top'
+          });
+          toast.present()
+        }
+        else{
+          let toast = this.toastCtrl.create({
+            message: `Oops. Something Went wrong, Please try again later.`,
+            duration: 5000,
+            position: 'top'
+          });
+          toast.present()
+        }
         this.newUser.firstName = '';
         this.newUser.lastName = '';
         this.newUser.birthday = '';
@@ -117,8 +132,6 @@ export class SignupPage {
   submit(){
     
     this.signupAttempt = true;
-    console.log(this.myForm.valid)
-    console.log(this.myForm)
     if(!this.myForm.valid){
       let toast = this.toastCtrl.create({
         message: 'Registration Unsuccessful',
@@ -128,12 +141,6 @@ export class SignupPage {
       toast.present()
     } 
     else {
-      let toast = this.toastCtrl.create({
-        message: 'Registration Successful',
-        duration: 2000,
-        position: 'top'
-      });
-      toast.present()
       this.newUser = {
         firstName: this.myForm.controls.firstName.value,
         lastName: this.myForm.controls.lastName.value,
