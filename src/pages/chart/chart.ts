@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Chart } from 'chart.js'
 import * as ChartLabels from 'chartjs-plugin-datalabels';
 import { Api } from '../../providers/api/api';
@@ -192,9 +192,10 @@ export class ChartPage {
         loader.dismiss();
         let toast = this.toastCtrl.create({
           message: 'Unable to complete calculations.  Please try again later',
-          duration: 2000,
+          duration: 5000,
           position: 'top'
         })
+        toast.present()
       })
     }
   }
