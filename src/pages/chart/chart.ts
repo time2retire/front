@@ -244,14 +244,12 @@ export class ChartPage {
         }
         let toast = this.toastCtrl.create({
           message: 'Chart Saved.',
-          duration: 2000,
+          duration: 4000,
           position: 'top'
         });
         toast.present()
         this._user.user.charts.push(chartLog)
         console.log(chartLog.user)
-
-        //this.navCtrl.setRoot(MainPage);
       }
     )
   }
