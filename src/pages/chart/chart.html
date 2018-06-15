@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <input-form [form]='inputForm' (submitForm)="sendChartData()" *ngIf="!haveData"></input-form>
+  <input-form *ngIf="!haveData" [form]='inputForm' (submitForm)="sendChartData()"></input-form>
   <div *ngIf="haveData">
     <div class = "infoLabels">
       <ion-card class= "infoCard">
