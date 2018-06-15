@@ -10,14 +10,6 @@
 <ion-content>
   <input-form [form]='inputForm' (submitForm)="sendChartData()" *ngIf="!haveData"></input-form>
   <div *ngIf="haveData">
-    <!-- <ion-card>
-      <ion-card-content class="impStuff">
-        <div>
-          <strong>Best-Age:</strong> {{bestYear}}</div>
-        <div>
-          <strong>Break-Even:</strong> {{breakEvenYear}}</div>
-      </ion-card-content>
-    </ion-card> -->
     <div class = "infoLabels">
       <ion-card class= "infoCard">
         <ion-card-content class="infoCont">
@@ -70,4 +62,5 @@
       <button ion-button color="primary" (click)="saveChart()">Save Chart</button>
       <button ion-button color="danger" (click)="haveData = false">Clear Chart</button>
     </div>
-    <!-- </ion-content> -->
+  </div>
+</ion-content>

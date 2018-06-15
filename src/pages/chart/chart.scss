@@ -20,10 +20,12 @@ page-chart {
                 .infoFormat{
                     display:flex;
                     justify-content:space-evenly;
+                    //color for left badge
                     .leftBadge{
                         background-color: #1257c7;
                         justify-self: flex-end;
                     }
+                    //color for right badge
                     .rightBadge{
                         background-color: #e6780b;
                         justify-self: flex-end;
@@ -39,10 +41,12 @@ page-chart {
     .chartSlider{
         padding-top: 0px !important; 
     }
-    
+
+    //Color for left-knob
     .range-knob-handle > .range-knob {
         background-color: #1257c7 !important
     }
+    //color for right-knob
     .range-knob-handle ~ .range-knob-handle > .range-knob {
         background-color: #e6780b !important
     }

@@ -74,6 +74,8 @@ export class ChartPage {
         }
       }
     },
+    tooltips: {enabled: false},
+    hover: {mode: null},
     responsive: true,
     maintainAspectRatio: true,
     legend: {
