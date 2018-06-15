@@ -16,10 +16,13 @@ page-chart {
         .infoCard{
             margin: 5px;
             .infoCont{
-                padding:5px;
+                padding:10px;
                 .infoFormat{
                     display:flex;
                     justify-content:space-evenly;
+                    .ion-badge{
+                        justify-self: flex-end;
+                    }
                 }
             }
         }
