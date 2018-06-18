@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Chart } from 'chart.js'
 import * as ChartLabels from 'chartjs-plugin-datalabels';
 import { Api } from '../../providers/api/api';
@@ -25,9 +25,9 @@ export class ChartPage {
   yearlyBenefit: number;
   totalBenefit: number;
   bestYear: number;
+  monthlyBenLimit: number = 5000;
+  totalBenLimit: number = 1400000;
   chartSave: any;
-  maxBen: number = 5000;
-  maxTotal: number = 1000000;
   chartData: any;
 
   constructor(public navCtrl: NavController,
@@ -48,7 +48,6 @@ export class ChartPage {
     if (this.navparam.get('data')) {
       let data = this.navparam.get('data');
       // this.chartData = data;
-      console.log(data)
       this.monthlyBenefit = Number(data.monthlyBen);
       this.benefitObject = data.benefitObject
       this.bestYear = this.getBestYear(this.benefitObject)
@@ -75,6 +74,8 @@ export class ChartPage {
         }
       }
     },
+    tooltips: {enabled: false},
+    hover: {mode: null},
     responsive: true,
     maintainAspectRatio: true,
     legend: {
@@ -87,7 +88,7 @@ export class ChartPage {
         type: 'linear',
         position: 'left',
         ticks: {
-          max: this.maxBen,
+          max: this.monthlyBenLimit,
           min: 1000,
           stepSize: 1000,
           callback: function(value, index, values) {
@@ -102,7 +103,7 @@ export class ChartPage {
         type: 'linear',
         position: 'right',
         ticks: {
-          max: this.maxTotal,
+          max: this.totalBenLimit,
           min: 200000,
           stepSize: 200000,
           callback: function(value, index, values) {
@@ -112,7 +113,6 @@ export class ChartPage {
             else{
               return '$' + value/1000 + "K";
             }
-            
           }
         },
         gridLines: {
@@ -150,7 +150,7 @@ export class ChartPage {
     })
     return highYear
   }
-
+  
   calcBreakEven(retYear, retRange, yearlyBenefit): number {
     let amtInvested = this.inputForm.value.amountPaid;
     let breakEvenYear = 0;
@@ -194,9 +194,10 @@ export class ChartPage {
         loader.dismiss();
         let toast = this.toastCtrl.create({
           message: 'Unable to complete calculations.  Please try again later',
-          duration: 2000,
+          duration: 5000,
           position: 'top'
         })
+        toast.present()
       })
     }
   }
@@ -220,7 +221,6 @@ export class ChartPage {
     this.yearlyBenefit = this.monthlyBenefit * 12;
     this.retRange = this.slider.upper - this.slider.lower;
     this.totalBenefit = this.yearlyBenefit * this.retRange;
-    console.log(this.retRange)
     this.breakEvenYear = this.calcBreakEven(this.slider.lower, this.retRange, this.yearlyBenefit)
     this.barChartData = [
       { data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID: 'A' },
@@ -229,7 +229,6 @@ export class ChartPage {
   }
 
   saveChart() {
-    console.log(this.slider)
     this.chartSave = {
       monthlyBen: this.monthlyBenefit,
       retYear: this.slider.lower,
@@ -251,9 +250,6 @@ export class ChartPage {
         toast.present()
         this._user.user.charts.push(chartLog)
         console.log(chartLog.user)
-        console.log("chartLog test", this._user.user)
-
-        //this.navCtrl.setRoot(MainPage);
       }
     )
   }

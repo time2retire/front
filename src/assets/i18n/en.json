@@ -36,7 +36,7 @@
   "TUTORIAL_SLIDE7_DESCRIPTION": "The information you have entered is processed and displayed by this chart, showing your best age to retire at, what age you should be to break even, and what you will receive in monthly benefits in the <b><font color='blue'>BLUE BAR</font></b>, compared to your total benefits in the <b><font color='red'>RED BAR</font></b>",
 
   "TUTORIAL_SLIDE8_TITLE": "",
-  "TUTORIAL_SLIDE8_DESCRIPTION": "Before saving, you can customize your chart by adjusting the sliders in the area highlighted in <b><font color='blue'>BLUE</font></b> below <br><br> The leftmost point adjusts your retirement age while the right adjusts your life expectancy",
+  "TUTORIAL_SLIDE8_DESCRIPTION": "Before saving, you can customize your chart by adjusting the sliders in the area highlighted in <b><font color='green'>GREEN</font></b> below <br><br> The <b><font color='blue'>BLUE</font></b> point adjusts your retirement age while the <b><font color='orange'>ORANGE</font></b> point adjusts your life expectancy",
 
   "TUTORIAL_SLIDE9_TITLE": "",
   "TUTORIAL_SLIDE9_DESCRIPTION": "Every chart that you have created in our charts page is saved right here for you to view",

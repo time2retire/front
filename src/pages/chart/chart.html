@@ -7,17 +7,25 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <input-form [form]='inputForm' (submitForm)="sendChartData()" *ngIf="!haveData"></input-form>
+<ion-content>
+  <input-form *ngIf="!haveData" [form]='inputForm' (submitForm)="sendChartData()"></input-form>
   <div *ngIf="haveData">
-    <ion-card>
-      <ion-card-content class="impStuff">
-        <div>
-          <strong>Best-Age:</strong> {{bestYear}}</div>
-        <div>
-          <strong>Break-Even:</strong> {{breakEvenYear}}</div>
-      </ion-card-content>
-    </ion-card>
+    <div class = "infoLabels">
+      <ion-card class= "infoCard">
+        <ion-card-content class="infoCont">
+          <div class="infoFormat">
+            <strong>Best-year:</strong><p>{{bestYear}}</p>
+          </div>
+        </ion-card-content>
+      </ion-card>
+      <ion-card class= "infoCard">
+        <ion-card-content class="infoCont">
+          <div class="infoFormat">
+            <strong>Break-even:</strong><p>{{breakEvenYear}}</p>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
     <div style="display: block">
       <canvas class="chart" baseChart width="400" height="400" 
         [datasets]="barChartData" 
@@ -29,15 +37,24 @@
         (chartClick)="chartClicked($event)">
       </canvas>
     </div>
-    <div class="chartLabels">
-      <p class="ret">Ret Age:</p>
-      <div class="range">
-        <p class="left">|62</p>
-        <p class="dash">-</p>
-        <p class="right">70|</p>
-      </div>
+    <div class = "infoLabels">
+      <ion-card class= "infoCard">
+        <ion-card-content class="infoCont">
+          <div class="infoFormat">
+            <strong>Ret-Age:</strong><ion-badge class ="leftBadge">{{slider.lower}}</ion-badge>
+          </div>
+        </ion-card-content>
+      </ion-card>
+      <ion-card class= "infoCard">
+        <ion-card-content class="infoCont">
+          <div class="infoFormat">
+            <strong>Ret-Length:</strong><ion-badge class ="rightBadge">{{slider.upper}}</ion-badge>
+          </div>
+        </ion-card-content>
+      </ion-card>
     </div>
-    <ion-range class="chartSlider" min="62" max="100" [(ngModel)]="slider" (ionChange)='goSlider()' color="primary" dualKnobs="true" pin="true">
+    <ion-range class="chartSlider" min="62" max="100" [(ngModel)]="slider" 
+              (ionChange)='goSlider()' color="primary" dualKnobs="true">
       <ion-label range-left>62</ion-label>
       <ion-label range-right>100</ion-label>
     </ion-range>
@@ -45,5 +62,9 @@
       <button ion-button color="primary" (click)="saveChart()">Save Chart</button>
       <button ion-button color="danger" (click)="haveData = false">Clear Chart</button>
     </div>
+<<<<<<< HEAD
   </div>   
+=======
+  </div>
+>>>>>>> a57b3fb41b31f01cd29dec703d16aa8ae9a564a1
 </ion-content>

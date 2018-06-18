@@ -12,7 +12,7 @@
           <ion-input formControlName="firstName" type='text'></ion-input>
         </ion-item>
         <div *ngIf="myForm.controls.firstName.pristine && signupAttempt">
-          <p>Please enter your first name.</p>
+          <p class="req">Please enter your first name.</p>
         </div>
       </div>
       <br>
@@ -23,7 +23,7 @@
           <ion-input formControlName="lastName" type='text'></ion-input>
         </ion-item>
         <div *ngIf="myForm.controls.lastName.pristine && signupAttempt">
-          <p>Please enter your Last Name.</p>
+          <p class="req">Please enter your Last Name.</p>
         </div>
       </div>
       <br>
@@ -31,10 +31,11 @@
       <div class = "form-group">
         <ion-item>
           <ion-label stacked>Date of Birth</ion-label>
-          <ion-datetime displayFormat="MMM DD, YYYY" formControlName="birthday" placeholder="MM/DD/YYYY"></ion-datetime>
+          <ion-datetime displayFormat="MMM DD, YYYY" formControlName="birthday" 
+                        placeholder="MM/DD/YYYY"></ion-datetime>
         </ion-item>
         <div *ngIf="myForm.controls.birthday.pristine && signupAttempt">
-          <p>Please enter your Date of birth.</p>
+          <p class="req">Please enter your Date of birth.</p>
         </div>
       </div>
       <br>
@@ -44,11 +45,15 @@
           <ion-label stacked>Email</ion-label>
           <ion-input formControlName="email" type='email'></ion-input>
         </ion-item>
-          <div *ngIf="myForm.controls.email.pristine && signupAttempt">
-            <p>Please enter an Email.</p>
+          <div *ngIf="myForm.controls.email.valid">
+            <p class="noice">Nice Email!</p>
           </div>
-          <div *ngIf="!myForm.controls.confirmEmail.valid && signupAttempt">
-            <p>Email is not valid. ex: john_doe@example.com</p>
+          <div *ngIf="myForm.controls.email.pristine && signupAttempt">
+            <p class="req">Please enter an Email.</p>
+          </div>
+          <div *ngIf="!myForm.controls.email.pristine && !myForm.controls.email.valid 
+              && signupAttempt">
+            <p class="req">Email is not valid. ex: john_doe@example.com</p>
           </div>
       </div>
       <br>
@@ -58,22 +63,28 @@
           <ion-label stacked>Confirm Email*</ion-label>
           <ion-input formControlName="confirmEmail" type='email'></ion-input>
         </ion-item>
-        <div *ngIf="!myForm.controls.email.pristine && myForm.controls.confirmEmail.pristine && signupAttempt">
-          <p>Please confirm your Email.</p>
+        <div *ngIf="!myForm.controls.email.pristine && myForm.controls.confirmEmail.pristine 
+            && signupAttempt">
+          <p class="req">Please confirm your Email.</p>
         </div>
         <div *ngIf="signupAttempt && myForm.controls.email.valid 
             && myForm.controls.confirmEmail.errors?.MatchEmail">
-          <p>Emails do not match.</p>
+          <p class="req">Emails do not match.</p>
+        </div>
+        <div *ngIf="myForm.controls.email.valid 
+            && myForm.controls.confirmEmail.errors === null">
+          <p class="noice">Emails match!</p>
         </div>
       </div>
       <br>
       <div class = "form-group">
         <ion-item>
           <ion-label stacked>Password</ion-label>
-          <ion-input autocomplete="new-password" formControlName="password" type='password' (ionChange)="passwordStrength($event)"></ion-input>
+          <ion-input autocomplete="new-password" formControlName="password" type='password' 
+                    (ionChange)="passwordStrength($event)"></ion-input>
         </ion-item>
-        <div *ngIf="!myForm.controls.password.valid">
-          <p class = "req">Requirements:</p>
+        <div *ngIf="!myForm.controls.password.valid && myForm.controls.password.dirty">
+          <p class = "req" style="color:black">Requirements:</p>
             <div class="validCheck">
               <p [ngStyle]="{'color': length? 'green' : 'red'}">
                 At least 8 characters long.
@@ -119,11 +130,11 @@
           <p class="noice">Nice Password!</p>
         </div>
         <div *ngIf="myForm.controls.password.pristine && signupAttempt">
-          <p>Please enter a password.</p>
+          <p class="req">Please enter a password.</p>
         </div>
-        <div *ngIf="myForm.controls.password.dirty && !myForm.controls.password.valid && signupAttempt">
-          <p>Password Not Valid.</p> 
-          <!-- <p>Password must be between 4 and 8 characters long, and must include a number (123...) ex: "grace1"</p> -->
+        <div *ngIf="myForm.controls.password.dirty && !myForm.controls.password.valid 
+            && signupAttempt">
+          <p class="req">Password Not Valid.</p> 
         </div>
       </div>
       <br>
@@ -134,11 +145,16 @@
           <ion-input formControlName="confirmPassword" type='password'></ion-input>
         </ion-item>  
         <div *ngIf="!myForm.controls.password.pristine && myForm.controls.confirmPassword.pristine && signupAttempt">
-          <p>Please confirm your password.</p>
+          <br>
+          <p class="req">Please confirm your password.</p>
         </div>
         <div *ngIf="signupAttempt && !myForm.controls.password.valid 
             && myForm.controls.confirmPassword.errors?.MatchPassword">
-          <p>Passwords do not match.</p>
+          <p class="req">Passwords do not match.</p>
+        </div>
+        <div *ngIf="myForm.controls.password.valid 
+            && myForm.controls.confirmPassword.errors === null">
+          <p class="noice">Passwords match!</p>
         </div>
       </div>
       <br>

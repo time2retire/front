@@ -6,6 +6,7 @@ import { Config, Nav, Platform } from 'ionic-angular';
 import { FirstRunPage } from '../pages';
 import { User } from '../providers/user/user';
 
+
 @Component({
   template: `<ion-menu [content]="content">
   <ion-header>
@@ -31,6 +32,7 @@ import { User } from '../providers/user/user';
 })
 export class MyApp {
   rootPage = FirstRunPage;
+  //rootPage = ChartPage;
 
   @ViewChild(Nav) nav: Nav;
 

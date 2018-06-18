@@ -44,28 +44,26 @@ export class SignupPage {
   }
 
   passwordStrength(event){
-    // if(event.value === null){
-    //   this.testPassword = this.testPassword.substring(0, this.testPassword.length - 1);
-    // }
-    // else if(event.value){
-    //   this.testPassword += event.value;
-    // }
-
-    this.testPassword = event.value
-    console.log(event.value)
+    //event.value holds the entirety of whatever is in the input field.
+    
+    //Independent RegEx strings
     let lengthCheck = new RegExp('^.{8}');
     let capitalCheck = new RegExp('^(?=.*[A-Z])');
     let lowerCheck = new RegExp('^(?=.*[a-z])');
     let specialCheck = new RegExp('^(?=.*[!@#$&*])');
     let numberCheck = new RegExp('^(?=.*[0-9])');
 
-    this.capital = capitalCheck.test(this.testPassword)? true : false 
-    this.lower = lowerCheck.test(this.testPassword)? true : false 
-    this.length = lengthCheck.test(this.testPassword)? true : false 
-    this.special = specialCheck.test(this.testPassword)? true : false 
-    this.number = numberCheck.test(this.testPassword)? true : false 
+    //RegEx checks, fire for every instance of event.value
+    this.capital = capitalCheck.test(event.value)
+    this.lower = lowerCheck.test(event.value)
+    this.length = lengthCheck.test(event.value)
+    this.special = specialCheck.test(event.value)
+    this.number = numberCheck.test(event.value)
+
+    //final check ensures all regEx checks return true
     this.sweetPassword = this.capital && this.lower && this.length && this.special && this.number ? true : false;       
   }
+
   createForm(){
     this.myForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -91,6 +89,12 @@ export class SignupPage {
     loader.present();
     return this._user.signupCustom(this.newUser)
       .subscribe((newUser: any) => {
+        let toast = this.toastCtrl.create({
+          message: 'Registration Successful',
+          duration: 2000,
+          position: 'top'
+        });
+        toast.present()
         console.log(newUser, 'Signup Successful');
         this._user.user = newUser;
         sessionStorage.setItem('token', newUser.token)
@@ -98,13 +102,23 @@ export class SignupPage {
         this._user.user = this.newUser;
         this.navCtrl.setRoot(MainPage);
         loader.dismiss()
-      }, (err) => {
-        let toast = this.toastCtrl.create({
-          message: 'Something went wrong. Please try again later',
-          duration: 2000,
-          position: 'top'
-        });
-        toast.present()
+      }, (failureObject) => {
+        if(failureObject.error.error.message.includes(this.newUser.email)){
+          let toast = this.toastCtrl.create({
+            message: `User "${this.newUser.email}" already exists.`,
+            duration: 4000,
+            position: 'top'
+          });
+          toast.present()
+        }
+        else{
+          let toast = this.toastCtrl.create({
+            message: `Oops. Something Went wrong, Please try again later.`,
+            duration: 4000,
+            position: 'top'
+          });
+          toast.present()
+        }
         this.newUser.firstName = '';
         this.newUser.lastName = '';
         this.newUser.birthday = '';
@@ -118,23 +132,15 @@ export class SignupPage {
   submit(){
     
     this.signupAttempt = true;
-    console.log(this.myForm.valid)
-    console.log(this.myForm)
     if(!this.myForm.valid){
       let toast = this.toastCtrl.create({
         message: 'Registration Unsuccessful',
-        duration: 2000,
+        duration: 3000,
         position: 'top'
       });
       toast.present()
     } 
     else {
-      let toast = this.toastCtrl.create({
-        message: 'Registration Successful',
-        duration: 2000,
-        position: 'top'
-      });
-      toast.present()
       this.newUser = {
         firstName: this.myForm.controls.firstName.value,
         lastName: this.myForm.controls.lastName.value,
