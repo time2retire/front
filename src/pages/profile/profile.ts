@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
-import {NgForm} from '@angular/forms';
 import { User } from '../../providers/user/user';
 import { HttpClient } from '@angular/common/http';
 import { ENV } from '@app/env';

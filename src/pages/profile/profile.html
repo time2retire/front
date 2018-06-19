@@ -20,7 +20,7 @@
       <ion-card-content *ngIf="!editting">
         Name: {{ _user.user.firstName }} {{ _user.user.lastName }}
         <div>Email: {{_user.user.email }} </div>
-        <div>Birthday: {{_user.user.birthday | date:'shortDate' }}</div>
+        <div>Birthday: {{_user.user.birthday | moment: 'M / DD / YYYY': true }}</div>
       </ion-card-content>
 
       <ion-card-content *ngIf="editting">
