@@ -97,6 +97,7 @@ export class SignupPage {
         toast.present()
         console.log(newUser, 'Signup Successful');
         this._user.user = newUser;
+        this._user.user = newUser.birthday
         sessionStorage.setItem('token', newUser.token)
         sessionStorage.setItem('userId', newUser.userId)
         this._user.user = this.newUser;

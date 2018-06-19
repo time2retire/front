@@ -15,6 +15,7 @@ export class User {
   logout_url: string = "logout?access_token="
   register_url: string = "api/appUsers"
   user: any;
+  userBirthday: string = ''
   helloWorld: string = "hello world"
   charts: any[];
   chart_url: string = "/charts?access_token="

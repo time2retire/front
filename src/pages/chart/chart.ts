@@ -41,7 +41,7 @@ export class ChartPage {
     public navparam: NavParams,
   ) {
     this.inputForm = formBuilder.group({
-      dateOfBirth: [this._user.user.birthday, Validators.required],
+      dateOfBirth: [this._user.userBirthday, Validators.required],
       amountPaid: ['', Validators.compose([Validators.min(1), Validators.required])],
       avgIncome: ['', Validators.compose([Validators.min(1), Validators.required])]
     })
