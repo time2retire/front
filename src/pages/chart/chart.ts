@@ -41,7 +41,7 @@ export class ChartPage {
     this.inputForm = formBuilder.group({
       dateOfBirth: [this._user.userBirthday, Validators.required],
       amountPaid: ['', Validators.compose([Validators.min(1), Validators.required])],
-      avgIncome: ['', Validators.compose([Validators.min(1), Validators.required])]
+      avgIncome: ['', Validators.compose([Validators.min(1), Validators.max(2788), Validators.required])]
     })
     if (this.navparam.get('data')) {
       let data = this.navparam.get('data');
@@ -165,6 +165,15 @@ export class ChartPage {
   }
 
   sendChartData() {
+    if (this.inputForm.value.avgIncome > 2788) {
+      let toast = this.toastCtrl.create({
+        message: 'The maximum monthly benefit in 2018 is $2,788',
+        duration: 2000,
+        position: 'top'
+      });
+      toast.present()
+      return
+    }
     if (!this.inputForm.valid) {
       let toast = this.toastCtrl.create({
         message: 'Please complete the form',

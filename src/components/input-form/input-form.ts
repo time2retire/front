@@ -10,12 +10,9 @@ export class InputFormComponent {
 
   @Input() form;
   @Output() submitForm: EventEmitter<any> = new EventEmitter();
-  dob: any;
+
   constructor(public alertCtrl: AlertController,
-    public _user: User) {
-      this.dob = this._user.user.birthday
-      console.log(this.dob)
-  }
+    public _user: User) {}
 
   alert(question: any) {
     let alertConfig = {
@@ -23,17 +20,40 @@ export class InputFormComponent {
         title: 'Amount paid to Social Security',
         subTitle: `The total amount you have paid in Social Security Taxes.  This number is available on your social security report, 
       or you can estimate for yourself.
-      For more information visit:`,
-        buttons: ['Dismiss']
+      For more information visit the Social Security Administration's website`,
+      buttons: [
+        {
+          text: 'Dismiss',
+          role: 'Dismiss',
+        },
+        {
+          text: 'More Info',
+          handler: () => {
+            window.open(`https://www.ssa.gov/myaccount/statement.html`, `_system`);
+          }
+        }
+      ]
       },
       avgIncome: {
         title: 'Income consered by the Social Security Administration',
-        subTitle: `The Social Security Administration uses an average of your 35 highest earning years, adjusted for inflation, to calculate
-      your benefit.
-      For more information visit:`,
-        buttons: ['Dismiss']
+        subTitle: `Based on the annual report provided by social security.  What is the benefit amount you will recieve at full retirement age
+      For more information visit the Social Security Administration's website.  The maximum amount for the year of 2018 is $2,788`,
+        buttons: [
+          {
+            text: 'Dismiss',
+            role: 'Dismiss',
+          },
+          {
+            text: 'More Info',
+            handler: () => {
+              window.open(`https://www.ssa.gov/myaccount/statement.html`, `_system`);
+            }
+          }
+        ]
       }
     }
+
+    
 
     let alert = this.alertCtrl.create(alertConfig[question]);
     console.log(alertConfig[question])

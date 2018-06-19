@@ -19,8 +19,7 @@ export class Api {
   }
 
   getRetire(dob, income, statement) {
-    let birthYear = Number(dob.substr(0, 4))
-    return this.http.get(this.url + `benefitprofile?dob=${birthYear}&income=${income}&statement=${statement}`);
+    return this.http.get(this.url + `benefitprofile?dob=${dob}&income=${income}&statement=${statement}`);
   }
  
  
