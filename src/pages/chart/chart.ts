@@ -25,8 +25,6 @@ export class ChartPage {
   yearlyBenefit: number;
   totalBenefit: number;
   bestYear: number;
-  monthlyBenLimit: number = 5000;
-  totalBenLimit: number = 1400000;
   chartSave: any;
   chartData: any;
 
@@ -88,7 +86,7 @@ export class ChartPage {
         type: 'linear',
         position: 'left',
         ticks: {
-          max: this.monthlyBenLimit,
+          max: 5000,
           min: 1000,
           stepSize: 1000,
           callback: function(value, index, values) {
@@ -103,8 +101,8 @@ export class ChartPage {
         type: 'linear',
         position: 'right',
         ticks: {
-          max: this.totalBenLimit,
-          min: 200000,
+          max: 1200000,
+          min: 0,
           stepSize: 200000,
           callback: function(value, index, values) {
             if (value >= 1000000){
@@ -179,7 +177,7 @@ export class ChartPage {
     })
     loader.present()
 
-    let dob = Number(this.inputForm.value.dateOfBirth.substr(0, 4))
+    let dob = this.inputForm.value.dateOfBirth;
     let income = this.inputForm.value.avgIncome
     this.bucketYear = dob + 85;
     this._api.getRetire(dob, income, 'true')
@@ -255,8 +253,8 @@ export class ChartPage {
   }
 
   ionViewDidLoad() {
+    console.log(this._user.user)
     Chart.pluginService.register(ChartLabels);
-    // this.maxTotal = this.inputForm.value.amountPaid * 5;
-    // this.maxBen = this.inputForm.value.avgIncome * 5;
+    
   }
 }
