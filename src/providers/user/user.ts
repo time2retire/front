@@ -6,8 +6,6 @@ import { ENV } from '@app/env';
 
 @Injectable()
 export class User {
-  //_chart: any;
-  //_user: any;
   base_url: string = ENV.URL;
   appUsers_url: string = "api/appUsers/"
   token_url: string = "?access_token="
@@ -18,10 +16,6 @@ export class User {
   helloWorld: string = "hello world"
   charts: any[];
   chart_url: string = "/charts?access_token="
-
-
-  // token = sessionStorage.getItem('token');
-  //userID = sessionStorage.getItem('userId');
 
   constructor(public api: Api, public http: HttpClient) { }
 
@@ -41,18 +35,11 @@ export class User {
     let token = sessionStorage.getItem('token');
     this.http.post(this.base_url + this.appUsers_url + this.logout_url + token, this.user)
     .subscribe(() => {
-      console.log('i ran')
       this.user = null;
       sessionStorage.clear();
     })
   }
 
-  /**
-   * Process a login/signup response to store user data
-   */
-  _loggedIn(resp) {
-    // this.user = resp.user;
-  }
   savedChart(chart) {
     let userID = sessionStorage.getItem('userId');
     let token = sessionStorage.getItem('token');

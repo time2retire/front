@@ -10,9 +10,11 @@ export class InputFormComponent {
 
   @Input() form;
   @Output() submitForm: EventEmitter<any> = new EventEmitter();
-
+  dob: any;
   constructor(public alertCtrl: AlertController,
     public _user: User) {
+      this.dob = this._user.user.birthday
+      console.log(this.dob)
   }
 
   alert(question: any) {
