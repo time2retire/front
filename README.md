@@ -1,4 +1,4 @@
-<img src="appicon.png" width="400" />
+<img src="appicon.png" width="200" />
 
 # Time2Retire
 
