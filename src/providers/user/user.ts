@@ -49,4 +49,10 @@ export class User {
     // https://nameless-wave-33070.herokuapp.com/api/appUsers/5afd09bbd0ac6b3a779a11cb/charts?access_token=jo8H66VjJb9VCn72CR7uk5mUStox9NyqrpRGmfV2F9xEHYvvUHiaxKOSZ9dm6Jr1
 
   }
+
+  updateUser() {
+    let userID = sessionStorage.getItem('userId')
+    let token = sessionStorage.getItem('token')
+    return this.http.patch(this.base_url + this.appUsers_url + userID + this.token_url + token, this.user)
+  }
 }

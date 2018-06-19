@@ -3,4 +3,12 @@ page-profile {
         display: flex;
         justify-content: space-around;
     }
+
+    .edit-button, .confirm-button {
+        margin-left: 80%;
+    }
+
+    // .confirm-button {
+    //     font-size: 14px;
+    // }
 }
