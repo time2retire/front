@@ -75,7 +75,7 @@ export class TutorialPage {
           {
             title: values.TUTORIAL_SLIDE8_TITLE,
             description: values.TUTORIAL_SLIDE8_DESCRIPTION,
-            image: 'assets/img/newImages/Time2Retire 05 Show Chart 02.jpg',
+            image: 'assets/img/newImages/Time2Retire 05 Show Chart 02.png',
           }
         ];
       });
