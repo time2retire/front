@@ -1,6 +1,6 @@
-# The Ionic Super Starter 🎮
+<img src="assets/img/appicon.png" width="400" />
 
-<img src="https://user-images.githubusercontent.com/236501/32385619-bddac0ac-c08c-11e7-9ee4-9c892197191f.png" width="400" />
+# Time2Retire
 
 The Ionic Super Starter is a batteries-included starter project for Ionic apps
 complete with pre-built pages, providers, and best practices for Ionic
