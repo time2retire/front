@@ -15,8 +15,8 @@ export class LoginPage {
     password: ''
   }
   returningUser: any;
-
-  submitAttempt: boolean = false;
+  invalidCredentials: boolean = false;
+  otherError: boolean = false;
 
   constructor(public navCtrl: NavController,
     public _user: User,
@@ -44,17 +44,18 @@ export class LoginPage {
 
         this.navCtrl.setRoot(MainPage);
       }, (err) => {
-        this.submitAttempt = true;
-
         console.log(err, "error");
-        let toast = this.toastCtrl.create({
-          message: 'Invalid email or password',
-          duration: 5000,
-          position: 'top'
-        });
-        toast.present();
-        this.userLogin.email = '';
-        this.userLogin.password = '';
+        let badCreds = err.error.error.statusCode === (400 || 401);
+        if (badCreds){
+          this.invalidCredentials = true;
+        }
+        else{
+          this.otherError = true;
+        }
+
+        //reset input fields if bad login
+          this.userLogin.email = '';
+          this.userLogin.password = '';
       }
     )
   }
