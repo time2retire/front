@@ -14,7 +14,7 @@
       <ion-card class= "infoCard">
         <ion-card-content class="infoCont">
           <div class="infoFormat">
-            <strong>Best-Year:</strong><p>{{bestYear}}</p>
+            <strong>Best-Age:</strong><p>{{bestYear}}</p>
           </div>
         </ion-card-content>
       </ion-card>
@@ -41,14 +41,24 @@
       <ion-card class= "infoCard">
         <ion-card-content class="infoCont">
           <div class="infoFormat">
-            <strong>Ret-Age:</strong><ion-badge class ="leftBadge">{{slider.lower}}</ion-badge>
+            <div class="age">
+              <strong>Retirement</strong>
+              <strong>Age:</strong>
+            </div>
+            <ion-badge class ="leftBadge">{{slider.lower}}</ion-badge>
           </div>
         </ion-card-content>
       </ion-card>
       <ion-card class= "infoCard">
         <ion-card-content class="infoCont">
           <div class="infoFormat">
-            <strong>Ret-Length:</strong><ion-badge class ="rightBadge">{{slider.upper}}</ion-badge>
+            <div class="age">
+              <strong>Life</strong>
+              <strong>Expectancy:</strong>
+            </div>
+            <ion-badge class="rightBadge" [ngStyle]="{'padding-right': is100 ? '12px' : '8px'}">
+              {{slider.upper}}
+            </ion-badge>
           </div>
         </ion-card-content>
       </ion-card>
