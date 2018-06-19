@@ -17,12 +17,12 @@ page-welcome {
   .splash-info {
     position: relative;
     z-index: 2;
-    margin-top: -64px;
+    margin-top: -63px;
     text-align: center;
   }
   .splash-logo {
     margin: auto;
-    background: url('../assets/img/appicon.png') repeat;
+    background: url('../assets/img/appicon.png');
     background-size: 100%;
     width: 128px;
     height: 128px;
@@ -32,6 +32,7 @@ page-welcome {
     font-weight: bold;
     max-width: 80%;
     margin: auto;
+    margin-top: 15px;
   }
   button.login {
     margin-top: 25px;

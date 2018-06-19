@@ -21,6 +21,7 @@ export class ChartPage {
   retRange: number;
   benefitObject: any;
   slider: any = { lower: 62, upper: 85 };
+  is100: boolean;
   monthlyBenefit: number;
   yearlyBenefit: number;
   totalBenefit: number;
@@ -224,6 +225,7 @@ export class ChartPage {
 
   updateChart(retAge) {
     /*Updates Bar chart and card based on sliders upper and lower values*/
+    this.is100 = this.slider.upper === 100
     this.monthlyBenefit = this.benefitObject[retAge].monthlyBen;
     this.yearlyBenefit = this.monthlyBenefit * 12;
     this.retRange = this.slider.upper - this.slider.lower;

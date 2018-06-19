@@ -37,8 +37,6 @@ export class TutorialPage {
       "TUTORIAL_SLIDE7_DESCRIPTION",
       "TUTORIAL_SLIDE8_TITLE",
       "TUTORIAL_SLIDE8_DESCRIPTION",
-      "TUTORIAL_SLIDE9_TITLE",
-      "TUTORIAL_SLIDE9_DESCRIPTION",
     ]).subscribe(
       (values) => {
         console.log(ENV)
@@ -77,12 +75,7 @@ export class TutorialPage {
           {
             title: values.TUTORIAL_SLIDE8_TITLE,
             description: values.TUTORIAL_SLIDE8_DESCRIPTION,
-            image: 'assets/img/newImages/Time2Retire 05 Show Chart 02.jpg',
-          },
-          {
-            title: values.TUTORIAL_SLIDE9_TITLE,
-            description: values.TUTORIAL_SLIDE9_DESCRIPTION,
-            image: 'assets/img/newImages/Time2Retire 06 Saved Charts.png',
+            image: 'assets/img/newImages/Time2Retire 05 Show Chart 02.png',
           }
         ];
       });

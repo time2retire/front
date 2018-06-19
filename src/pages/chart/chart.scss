@@ -27,13 +27,15 @@ page-chart {
                     justify-content:space-evenly;
                     //color for left badge
                     .leftBadge{
-                        background-color: #1257c7;
-                        justify-self: flex-end;
+                        background-color: #1a4056;
+                        align-self: center;
+                        justify-self:center;
                     }
                     //color for right badge
                     .rightBadge{
-                        background-color: #e6780b;
-                        justify-self: flex-end;
+                        background-color: #ffbb58;
+                        align-self: center;
+                        justify-self: center;
                     }
                 }
             }
@@ -49,11 +51,11 @@ page-chart {
 
     //Color for left-knob
     .range-knob-handle > .range-knob {
-        background-color: #1257c7 !important
+        background-color: #1a4056 !important
     }
     //color for right-knob
     .range-knob-handle ~ .range-knob-handle > .range-knob {
-        background-color: #e6780b !important
+        background-color: #ffbb58 !important
     }
 
     .chartButtons{
