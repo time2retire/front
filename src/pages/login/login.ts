@@ -14,11 +14,9 @@ export class LoginPage {
     email: '',
     password: ''
   }
+  returningUser: any;
 
   submitAttempt: boolean = false;
-
-  // Our translated text strings
-  //private loginErrorString: string;
 
   constructor(public navCtrl: NavController,
     public _user: User,
@@ -31,7 +29,12 @@ export class LoginPage {
   }
 
   loginUser() {
-    return this._user.loginCustom(this.userLogin).subscribe(
+    //create newUser from input data (for clean data)
+    this.returningUser = {
+      email: this.userLogin.email.toLowerCase(),
+      password: this.userLogin.password
+    }
+    return this._user.loginCustom(this.returningUser).subscribe(
       (userLog: any) => {
         this._user.user = userLog.user
         this._user.userBirthday = userLog.user.birthday

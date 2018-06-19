@@ -146,7 +146,7 @@ export class SignupPage {
         firstName: this.myForm.controls.firstName.value,
         lastName: this.myForm.controls.lastName.value,
         birthday: this.myForm.controls.birthday.value,
-        email: this.myForm.controls.email.value,
+        email: this.myForm.controls.email.value.toLowerCase(),
         password: this.myForm.controls.password.value
       }
       this.newSignup();
