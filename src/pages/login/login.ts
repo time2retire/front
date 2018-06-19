@@ -29,6 +29,7 @@ export class LoginPage {
   }
 
   loginUser() {
+    //create newUser from input data (for clean data)
     this.returningUser = {
       email: this.userLogin.email.toLowerCase(),
       password: this.userLogin.password
