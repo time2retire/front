@@ -37,6 +37,7 @@ export class LoginPage {
     return this._user.loginCustom(this.returningUser).subscribe(
       (userLog: any) => {
         this._user.user = userLog.user
+        this._user.userBirthday = userLog.user.birthday
         console.log(userLog.user)
         sessionStorage.setItem('token', userLog.token)
         sessionStorage.setItem('userId', userLog.userId)
