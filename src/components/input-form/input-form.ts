@@ -35,9 +35,9 @@ export class InputFormComponent {
       ]
       },
       avgIncome: {
-        title: 'Income consered by the Social Security Administration',
-        subTitle: `Based on the annual report provided by social security.  What is the benefit amount you will recieve at full retirement age
-      For more information visit the Social Security Administration's website.  The maximum amount for the year of 2018 is $2,788`,
+        title: 'The amount you are due from Social Security at your full retirement Age',
+        subTitle: `If you are unsure and unable to estimate this figure it is available through the annual report provided by the social security
+        Administration.  For more information about this statement, visit the Social Security Administration's website.  The current maximum is $2,788.`,
         buttons: [
           {
             text: 'Dismiss',
