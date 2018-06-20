@@ -74,12 +74,12 @@ in order to generate a new chart.
 Their account's date of birth will be used as the default value, but the user can 
 adjust it whenever they want.
 
-The other input areas, relates to their monthly income and the amount they have 
-contributed to social security so far. Additional info buttons located on the 
-right hand side of each of the two input fields, provides the user with helpful
-information about what to enter in each of the input fields.
+The other input areas relates to what they expect to receive in benefits each month, 
+and the amount they have  contributed to social security so far. Additional info 
+buttons located on the right hand side of each of the two input fields, provides the 
+user with helpful information about what to enter in each of the input fields.
 
-When all input fields are filled out, the user can tap the "generate chart"
+When all input fields are filled out, the user can tap the "see results"
 button at the very bottom to display a completely new chart.
 
 All of this inputed infomration is used to calculate their best age to retire.
