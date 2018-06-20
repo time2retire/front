@@ -17,7 +17,7 @@ export class InputFormComponent {
   alert(question: any) {
     let alertConfig = {
       amountPaid: {
-        title: 'Amount paid to Social Security',
+        title: 'Amount paid to social security',
         subTitle: `The total amount you have paid in Social Security Taxes.  This number is available on your social security report, 
       or you can estimate for yourself.
       For more information visit the Social Security Administration's website`,
