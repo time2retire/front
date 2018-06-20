@@ -15,8 +15,8 @@
         <ion-icon name="create"></ion-icon>
       </button>
       <button *ngIf="editting" class="confirm-button" item-right ion-button icon-only clear (click)="updateProfile()">
-          <ion-icon name="checkbox-outline"></ion-icon>
-        </button>
+        <ion-icon name="checkbox-outline"></ion-icon>
+      </button>
       <ion-card-content *ngIf="!editting">
         Name: {{ _user.user.firstName }} {{ _user.user.lastName }}
         <div>Email: {{_user.user.email }} </div>
@@ -30,17 +30,17 @@
         </ion-item>
         <ion-item>
           <ion-label stacked>Last Name</ion-label>
-          <ion-input type="text" [(ngModel)]= "_user.user.lastName"></ion-input>
+          <ion-input type="text" [(ngModel)]="_user.user.lastName"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label stacked>Email</ion-label>
-          <ion-input type="text" [(ngModel)]= "_user.user.email"></ion-input>
+          <ion-input type="text" [(ngModel)]="_user.user.email"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label stacked>Birthday</ion-label>
           <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="_user.user.birthday"></ion-datetime>
-        </ion-item>  
-        </ion-card-content>
+        </ion-item>
+      </ion-card-content>
 
     </ion-card>
 
@@ -50,11 +50,17 @@
       </ion-card-header>
       <div *ngIf="chartData">
         <ion-list>
-          <div *ngFor="let chart of chartData">
-            <button ion-item (click)="getSavedChart(chart)">
-              {{chart.timestamp | date: "shortDate" }} - Monthly Benefit: ${{chart.monthlyBen}}
-            </button>
-          </div>
+          <ion-card>
+            <div *ngFor="let chart of chartData">
+              <button ion-item (click)="getSavedChart(chart)">
+                Saved: {{chart.timestamp | date: "shortDate" }}
+                <br> Monthly Benefit: ${{chart.monthlyBen}}
+                <br> Total Benefit: ${{chart.totalBen}}
+                <br> Retirement Age: {{chart.retYear}}
+
+              </button>
+            </div>
+          </ion-card>
         </ion-list>
       </div>
       <div *ngIf="chartData.length < 1">
@@ -63,8 +69,8 @@
         </p>
       </div>
     </ion-card>
-      <div class="profileButtons">
-        <button ion-button color="primary" (click)="goToInput()">Generate a Chart</button>
-      </div>
+    <div class="profileButtons">
+      <button ion-button color="primary" (click)="goToInput()">Generate a Chart</button>
+    </div>
   </div>
 </ion-content>
