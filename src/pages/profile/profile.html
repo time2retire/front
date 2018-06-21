@@ -50,16 +50,16 @@
       </ion-card-header>
       <div *ngIf="chartData">
         <ion-list>
-          <ion-card>
-            <div *ngFor="let chart of chartData">
-              <button ion-item (click)="getSavedChart(chart)">
-                Saved: {{chart.timestamp | date: "shortDate" }}
-                <br> Monthly Benefit: ${{chart.monthlyBen}}
-                <br> Total Benefit: ${{chart.totalBen}}
-                <br> Retirement Age: {{chart.retYear}}
 
-              </button>
-            </div>
+          <ion-card *ngFor="let chart of chartData">
+            <button ion-item (click)="getSavedChart(chart)">
+              Saved: {{chart.timestamp | date: "shortDate" }}
+              <br> Monthly Benefit: ${{chart.monthlyBen}}
+              <br> Total Benefit: ${{chart.totalBen}}
+              <br> Retirement Age: {{chart.retYear}}
+
+            </button>
+
           </ion-card>
         </ion-list>
       </div>
