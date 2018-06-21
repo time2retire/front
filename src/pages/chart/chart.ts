@@ -132,8 +132,10 @@ export class ChartPage {
     console.log(e);
   }
   public barChartData: any[] = [
-    { data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID: 'A' },
-    { data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B' }
+    { data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID: 'A',
+        colors: {backgroundColor: 'rgba(180,214,199)'}},
+    { data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B',
+        colors: {backgroundColor: 'rgba(180,206,255)'}  }
   ];
 
   getBestYear(years) {
@@ -232,8 +234,10 @@ export class ChartPage {
     this.totalBenefit = this.yearlyBenefit * this.retRange;
     this.breakEvenYear = this.calcBreakEven(this.slider.lower, this.retRange, this.yearlyBenefit)
     this.barChartData = [
-      { data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID: 'A' },
-      { data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B' }
+      { data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID: 'A',
+          colors: {backgroundColor: 'rgba(180,214,199)'}},
+      { data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B',
+          colors: {backgroundColor: 'rgba(180,206,255)'} }
     ];
   }
 
