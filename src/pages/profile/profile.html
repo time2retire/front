@@ -18,9 +18,11 @@
         <ion-icon name="checkbox-outline"></ion-icon>
       </button>
       <ion-card-content *ngIf="!editting">
-        Name: {{ _user.user.firstName }} {{ _user.user.lastName }}
-        <div>Email: {{_user.user.email }} </div>
-        <div>Birthday: {{_user.user.birthday | moment: 'M / DD / YYYY': true }}</div>
+        <strong>
+          Name: {{ _user.user.firstName }} {{ _user.user.lastName }}
+          <div>Email: {{_user.user.email }} </div>
+          <div>Birthday: {{_user.user.birthday | moment: 'M / DD / YYYY': true }}</div>
+        </strong>
       </ion-card-content>
 
       <ion-card-content *ngIf="editting">
@@ -46,18 +48,21 @@
 
     <ion-card>
       <ion-card-header>
-        My Saved Charts
+        <strong>
+          My Saved Charts
+        </strong>
       </ion-card-header>
       <div *ngIf="chartData">
         <ion-list>
 
           <ion-card *ngFor="let chart of chartData">
             <button ion-item (click)="getSavedChart(chart)">
-              Saved: {{chart.timestamp | date: "shortDate" }}
-              <br> Monthly Benefit: ${{chart.monthlyBen}}
-              <br> Total Benefit: ${{chart.totalBen}}
-              <br> Retirement Age: {{chart.retYear}}
-
+              <strong>
+                Saved: {{chart.timestamp | date: "shortDate" }}
+                <br> Monthly Benefit: ${{chart.monthlyBen}}
+                <br> Total Benefit: ${{chart.totalBen}}
+                <br> Retirement Age: {{chart.retYear}}
+              </strong>
             </button>
 
           </ion-card>
