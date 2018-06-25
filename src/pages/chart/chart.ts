@@ -132,8 +132,8 @@ export class ChartPage {
     console.log(e);
   }
   public barChartData: any[] = [
-    { data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID: 'A' },
-    { data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B' }
+    { data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID: 'A'},
+    { data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B'}
   ];
 
   getBestYear(years) {
@@ -232,10 +232,22 @@ export class ChartPage {
     this.totalBenefit = this.yearlyBenefit * this.retRange;
     this.breakEvenYear = this.calcBreakEven(this.slider.lower, this.retRange, this.yearlyBenefit)
     this.barChartData = [
-      { data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID: 'A' },
-      { data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B' }
+      { data: [this.monthlyBenefit], label: 'Monthly Benefit Amt.', yAxisID: 'A',
+          },
+      { data: [this.totalBenefit], label: 'Total Benefit', yAxisID: 'B',
+          colors: []}
     ];
   }
+  public barChartColors: any[] = [
+    {
+      backgroundColor: 'rgb(180,214,199)',
+      borderColor: 'rgb(180,214,199)'
+    },
+    {
+      backgroundColor: 'rgb(180,206,255)',
+      borderColor: 'rgb(180,206,255)'
+    }
+  ]
 
   saveChart() {
     this.chartSave = {
