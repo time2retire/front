@@ -1,14 +1,48 @@
 page-profile {
+    
+    .profile-header {
+        background-color: #b4d6c7;
+        padding: 10px;
+        color: #1a4056;
+    }
+    .user-info-header {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .edit-button, .confirm-button {
+        margin: 0;
+        height: 25px;
+        .button-inner {
+            align-items: start;
+            height: 25px;
+            padding: 2px;
+            color: #1a4056
+        }
+    }
+    .user-info-content {
+        padding: 0;
+    }
+
+    ion-card-content {
+        ion-input, ion-datetime {
+            border-bottom: solid 1px #dedede;
+            margin: 3px !important;
+        }
+        .item-cover {
+            padding-right: 8px !important;
+        }
+        .text-input {
+            // margin: 8px;
+        }
+    }
+    .user-info-details {
+        border-bottom: 1px solid gray;
+    }
+ 
     .profileButtons{
         display: flex;
         justify-content: space-around;
     }
 
-    .edit-button, .confirm-button {
-        margin-left: 80%;
-    }
-
-    // .confirm-button {
-    //     font-size: 14px;
-    // }
 }

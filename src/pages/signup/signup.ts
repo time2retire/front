@@ -92,7 +92,7 @@ export class SignupPage {
         let toast = this.toastCtrl.create({
           message: 'Registration Successful',
           duration: 2000,
-          position: 'top'
+          position: 'top',
         });
         toast.present()
         console.log(newUser, 'Signup Successful');
@@ -108,7 +108,7 @@ export class SignupPage {
           let toast = this.toastCtrl.create({
             message: `User "${this.newUser.email}" already exists.`,
             duration: 4000,
-            position: 'top'
+            position: 'top',
           });
           toast.present()
         }
@@ -116,7 +116,7 @@ export class SignupPage {
           let toast = this.toastCtrl.create({
             message: `Oops. Something Went wrong, Please try again later.`,
             duration: 4000,
-            position: 'top'
+            position: 'top',
           });
           toast.present()
         }
@@ -137,7 +137,7 @@ export class SignupPage {
       let toast = this.toastCtrl.create({
         message: 'Registration Unsuccessful',
         duration: 3000,
-        position: 'top'
+        position: 'top',
       });
       toast.present()
     } 

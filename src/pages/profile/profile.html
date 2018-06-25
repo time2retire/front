@@ -10,42 +10,49 @@
 <ion-content padding>
   <div *ngIf="_user.user">
     <h1 align="center">Hello, {{_user.user.firstName}}!</h1>
-    <ion-card>
-      <button *ngIf="!editting" class="edit-button" item-right ion-button icon-only clear (click)="allowEdit()">
-        <ion-icon name="create"></ion-icon>
-      </button>
-      <button *ngIf="editting" class="confirm-button" item-right ion-button icon-only clear (click)="updateProfile()">
-        <ion-icon name="checkbox-outline"></ion-icon>
-      </button>
-      <ion-card-content *ngIf="!editting">
-        Name: {{ _user.user.firstName }} {{ _user.user.lastName }}
-        <div>Email: {{_user.user.email }} </div>
-        <div>Birthday: {{_user.user.birthday | moment: 'M / DD / YYYY': true }}</div>
+    <ion-card class="user-info">
+
+      <ion-card-header class= "profile-header user-info-header">
+        My Info
+          <button  *ngIf="!editting" class="edit-button" item-end ion-button icon-only clear (click)="allowEdit()">
+            <ion-icon name="create"></ion-icon>
+          </button>
+
+          <button  *ngIf="editting" class="confirm-button" item-right ion-button icon-only clear (click)="updateProfile()">
+            <ion-icon name="checkbox-outline"></ion-icon>
+          </button>
+      </ion-card-header>
+
+      <ion-card-content class= "user-info-content" *ngIf="!editting">
+          <ion-item class= "user-info-details">
+            <span item-start>Name</span> <span item-end>{{ _user.user.firstName }} {{ _user.user.lastName }}</span>
+          </ion-item>
+          <ion-item class= "user-info-details">
+            <span item-start>Email</span> <span item-end>{{_user.user.email }} </span>
+          </ion-item>
+          <ion-item class= "user-info-details">
+            <span item-start>Birthday</span> <span item-end>{{_user.user.birthday | moment: 'M / DD / YYYY': true }}</span>
+          </ion-item>
       </ion-card-content>
 
-      <ion-card-content *ngIf="editting">
-        <ion-item>
+      <ion-card-content class= "user-info-content" *ngIf="editting">
+        <ion-item class= "user-info-details">
           <ion-label stacked>First Name</ion-label>
           <ion-input type="text" [(ngModel)]="_user.user.firstName"></ion-input>
         </ion-item>
-        <ion-item>
+        <ion-item class= "user-info-details">
           <ion-label stacked>Last Name</ion-label>
           <ion-input type="text" [(ngModel)]="_user.user.lastName"></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label stacked>Email</ion-label>
-          <ion-input type="text" [(ngModel)]="_user.user.email"></ion-input>
-        </ion-item>
-        <ion-item>
+        <ion-item class= "user-info-details">
           <ion-label stacked>Birthday</ion-label>
           <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="_user.user.birthday"></ion-datetime>
         </ion-item>
       </ion-card-content>
-
     </ion-card>
 
     <ion-card>
-      <ion-card-header>
+      <ion-card-header class= "profile-header">
         My Saved Charts
       </ion-card-header>
       <div *ngIf="chartData">
@@ -53,11 +60,10 @@
           <ion-card>
             <div *ngFor="let chart of chartData">
               <button ion-item (click)="getSavedChart(chart)">
-                Saved: {{chart.timestamp | date: "shortDate" }}
-                <br> Monthly Benefit: ${{chart.monthlyBen}}
-                <br> Total Benefit: ${{chart.totalBen}}
-                <br> Retirement Age: {{chart.retYear}}
-
+               <span>Saved:</span> <span>{{chart.timestamp | date: "shortDate" }}</span>
+                <br><span>Monthly Benefit:</span> <span>${{chart.monthlyBen}}</span> 
+                <br><span>Total Benefit:</span><span>${{chart.totalBen}}</span> 
+                <br><span>Retirement Age:</span><span>{{chart.retYear}}</span> 
               </button>
             </div>
           </ion-card>
