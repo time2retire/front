@@ -51,30 +51,36 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-card>
-      <ion-card-header class= "profile-header">
-        My Saved Charts
-      </ion-card-header>
+    <!-- <ion-card> -->
+      
       <div *ngIf="chartData">
-        <ion-list>
-          <ion-card>
-            <div *ngFor="let chart of chartData">
+          <ion-card *ngFor="let chart of chartData, let i=index">
+              <ion-card-header class= "profile-header" *ngIf="i === 0">
+                My Saved Charts
+              </ion-card-header>
+
               <button ion-item (click)="getSavedChart(chart)">
-               <span>Saved:</span> <span>{{chart.timestamp | date: "shortDate" }}</span>
-                <br><span>Monthly Benefit:</span> <span>${{chart.monthlyBen}}</span> 
-                <br><span>Total Benefit:</span><span>${{chart.totalBen}}</span> 
-                <br><span>Retirement Age:</span><span>{{chart.retYear}}</span> 
+                <ion-grid>
+                  <ion-row>
+                    <ion-col col-6>
+                      <caption><small>Saved:</small></caption> <p>{{chart.timestamp | date: "shortDate" }}</p>
+                      <caption><small>Monthly Benefit:</small></caption><p>${{chart.monthlyBen}}</p>
+                    </ion-col>
+                    <ion-col col-6>
+                      <caption><small>Total Benefit:</small></caption><p>${{chart.totalBen}}</p>          
+                      <caption><small>Retirement Age:</small></caption><p>{{chart.retYear}}</p>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
               </button>
-            </div>
           </ion-card>
-        </ion-list>
       </div>
       <div *ngIf="chartData.length < 1">
         <p align="center">
           You have no saved charts!
         </p>
       </div>
-    </ion-card>
+    <!-- </ion-card> -->
     <div class="profileButtons">
       <button ion-button color="primary" (click)="goToInput()">Generate a Chart</button>
     </div>

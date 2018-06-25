@@ -11,8 +11,8 @@ import { MainPage } from '../';
 })
 export class LoginPage {
   userLogin: any = {
-    email: '',
-    password: ''
+    email: 'test3@test.com',
+    password: 'Test123!'
   }
   returningUser: any;
   invalidCredentials: boolean = false;
