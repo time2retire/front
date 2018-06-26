@@ -9,7 +9,7 @@
       <div class = "form-group">
         <ion-item>
           <ion-label stacked>First Name</ion-label>
-          <ion-input formControlName="firstName" type='text'></ion-input>
+          <ion-input formControlName="firstName" type='text' clearOnEdit="false"></ion-input>
         </ion-item>
         <div *ngIf="myForm.controls.firstName.pristine && signupAttempt">
           <p class="req">Please enter your first name.</p>
@@ -20,7 +20,7 @@
       <div class = "form-group">
         <ion-item>
           <ion-label stacked>Last Name</ion-label>
-          <ion-input formControlName="lastName" type='text'></ion-input>
+          <ion-input formControlName="lastName" type='text' clearOnEdit="false"></ion-input>
         </ion-item>
         <div *ngIf="myForm.controls.lastName.pristine && signupAttempt">
           <p class="req">Please enter your Last Name.</p>
@@ -32,7 +32,7 @@
         <ion-item>
           <ion-label stacked>Date of Birth</ion-label>
           <ion-datetime displayFormat="MMM DD, YYYY" formControlName="birthday" 
-                        placeholder="MM/DD/YYYY"></ion-datetime>
+                        placeholder="MM/DD/YYYY" clearOnEdit="false"></ion-datetime>
         </ion-item>
         <div *ngIf="myForm.controls.birthday.pristine && signupAttempt">
           <p class="req">Please enter your Date of birth.</p>
@@ -43,7 +43,7 @@
       <div class = "form-group">
         <ion-item>
           <ion-label stacked>Email</ion-label>
-          <ion-input formControlName="email" type='email'></ion-input>
+          <ion-input formControlName="email" type='email' clearOnEdit="false"></ion-input>
         </ion-item>
           <div *ngIf="myForm.controls.email.valid">
             <p class="noice">Nice Email!</p>
@@ -61,7 +61,7 @@
       <div class = "form-group">
         <ion-item>
           <ion-label stacked>Confirm Email*</ion-label>
-          <ion-input formControlName="confirmEmail" type='email'></ion-input>
+          <ion-input formControlName="confirmEmail" type='email' clearOnEdit="false"></ion-input>
         </ion-item>
         <div *ngIf="!myForm.controls.email.pristine && myForm.controls.confirmEmail.pristine 
             && signupAttempt">
@@ -80,8 +80,11 @@
       <div class = "form-group">
         <ion-item>
           <ion-label stacked>Password</ion-label>
-          <ion-input autocomplete="new-password" formControlName="password" type='password' 
-                    (ionChange)="passwordStrength($event)"></ion-input>
+          <ion-input autocomplete="new-password" formControlName="password" type="{{isPassword}}" 
+                    (ionChange)="passwordStrength($event)" clearOnEdit="false"></ion-input>
+          <button class = "passwordIcon" ion-button clear item-end (click)='showHide()'>
+            <ion-icon name="{{isActive}}" item-right></ion-icon>
+          </button>
         </ion-item>
         <div *ngIf="!myForm.controls.password.valid && myForm.controls.password.dirty">
           <p class = "req" style="color:black">Requirements:</p>
@@ -142,7 +145,7 @@
       <div class = "form-group">
         <ion-item>
           <ion-label stacked>Confirm Password*</ion-label>
-          <ion-input formControlName="confirmPassword" type='password'></ion-input>
+          <ion-input formControlName="confirmPassword" type='password' clearOnEdit="false"></ion-input>
         </ion-item>  
         <div *ngIf="!myForm.controls.password.pristine && myForm.controls.confirmPassword.pristine && signupAttempt">
           <br>
@@ -158,8 +161,9 @@
         </div>
       </div>
       <br>
-      
-      <button ion-button full color="primary" (click)="submit()">Register</button>
+      <div padding>
+        <button ion-button full color="primary" (click)="submit()">Register</button>
+      </div> 
     </form>
     
 </ion-content>

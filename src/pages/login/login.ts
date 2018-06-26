@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../providers';
 import { MainPage } from '../';
 
@@ -10,29 +10,39 @@ import { MainPage } from '../';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  userLogin: any = {
-    email: '',
-    password: ''
-  }
+  //form and generted user
+  myForm: FormGroup;
   returningUser: any;
+
+  //Error Handling
   invalidCredentials: boolean = false;
   otherError: boolean = false;
 
-  constructor(public navCtrl: NavController,
-    public _user: User,
-    public toastCtrl: ToastController,
-    public translateService: TranslateService) {
+  //showPassword properties
+  isPassword: string = 'password';
+  isActive: string = 'eye-off';
+ 
 
-  //   this.translateService.get('LOGIN_ERROR').subscribe((value) => {
-  //     this.loginErrorString = value;
-  //   })
+  constructor(public navCtrl: NavController,
+              public _user: User,
+              public toastCtrl: ToastController,
+              public fb:FormBuilder) {
+    this.createForm();
+  }
+
+  createForm(){
+    this.myForm = this.fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    })
   }
 
   loginUser() {
     //create newUser from input data (for clean data)
+    console.log(this.myForm)
     this.returningUser = {
-      email: this.userLogin.email.toLowerCase(),
-      password: this.userLogin.password
+      email: this.myForm.controls.email.value.toLowerCase(),
+      password: this.myForm.controls.password.value
     }
     return this._user.loginCustom(this.returningUser).subscribe(
       (userLog: any) => {
@@ -44,20 +54,37 @@ export class LoginPage {
 
         this.navCtrl.setRoot(MainPage);
       }, (err) => {
+        //Error Handling
         console.log(err, "error");
-        let badCreds = err.error.error.statusCode === (400 || 401);
+        let badCreds = err.status === 401;
+        console.log("Are creds valid?",badCreds);
         if (badCreds){
           this.invalidCredentials = true;
         }
         else{
           this.otherError = true;
         }
-
-        //reset input fields if bad login
-          this.userLogin.email = '';
-          this.userLogin.password = '';
+        console.log("invalid creds?", this.invalidCredentials, "Some other Error?", this.otherError)
       }
     )
+  }
+
+  //showPassword methods
+  showHide() {
+    this.changeEyeIcon();
+    this.changePasswordType();
+  }
+  //changes eye Icon "name" on click 
+  changeEyeIcon(){
+    this.isActive = 
+      this.isActive === 'eye-off' ?
+        "eye" : "eye-off" 
+  }
+  //changes password field "type" on click
+  changePasswordType(){
+    this.isPassword = 
+      this.isPassword === 'password' ?
+        "text" : "password"
   }
 
 }

@@ -13,7 +13,12 @@ import { MainPage } from '../';
   templateUrl: 'signup.html'
 })
 export class SignupPage {
+  //Form related stuff
   myForm: FormGroup;
+  signupAttempt: boolean = false;
+
+  //clean user instance
+  newUser: any;
 
   //live password validation
   testPassword: string = '';
@@ -23,17 +28,15 @@ export class SignupPage {
   special: boolean;
   number: boolean;
   sweetPassword: boolean;
+ 
+  //Show/Hide Password properties
+  isPassword: string = 'password';
+  isActive: string = 'eye-off';
 
-  signupAttempt: boolean = false;
+  //RegEx strings
   passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/
   emailRegEx = '^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
-  newUser: any = {
-    firstName: '',
-    lastName: '',
-    birthday: '',
-    email: '',
-    password: ''
-  }
+ 
 
   constructor(public navCtrl: NavController,
               public _user: User,
@@ -131,17 +134,8 @@ export class SignupPage {
   }
 
   submit(){
-    
     this.signupAttempt = true;
-    if(!this.myForm.valid){
-      let toast = this.toastCtrl.create({
-        message: 'Registration Unsuccessful',
-        duration: 3000,
-        position: 'top',
-      });
-      toast.present()
-    } 
-    else {
+    if(this.myForm.valid){
       this.newUser = {
         firstName: this.myForm.controls.firstName.value,
         lastName: this.myForm.controls.lastName.value,
@@ -149,7 +143,32 @@ export class SignupPage {
         email: this.myForm.controls.email.value.toLowerCase(),
         password: this.myForm.controls.password.value
       }
-      this.newSignup();
+    } 
+    else {
+      let toast = this.toastCtrl.create({
+        message: 'Registration Unsuccessful',
+        duration: 3000,
+        position: 'top',
+      });
+      toast.present()
     }     
+  }
+
+  //showPassword methods
+  showHide() {
+    this.changeEyeIcon();
+    this.changePasswordType();
+  }
+  //changes eye Icon "name" on click 
+  changeEyeIcon(){
+    this.isActive = 
+      this.isActive === 'eye-off' ?
+        "eye" : "eye-off" 
+  }
+  //changes password field "type" on click
+  changePasswordType(){
+    this.isPassword = 
+      this.isPassword === 'password' ?
+        "text" : "password"
   }
 }

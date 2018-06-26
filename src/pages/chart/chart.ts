@@ -270,7 +270,7 @@ export class ChartPage {
         });
         toast.present()
         this._user.user.charts.push(chartLog)
-        console.log(chartLog.user)
+        // console.log(chartLog.user)
       }
     )
   }

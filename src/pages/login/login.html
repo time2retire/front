@@ -8,7 +8,6 @@
 
 
 <ion-content>
-
   <div align='center'>
     <h5 *ngIf="invalidCredentials" style="color: #ea6153;">Invalid email or password</h5>
     <div *ngIf="otherError" style="color: #ea6153;">
@@ -17,23 +16,26 @@
     </div>
   </div>
 
-  <form (submit)='loginUser()'>
+  <form [formGroup]="myForm">
 
-    <ion-list>
-
+    <div class="form-group">
       <ion-item>
-        <ion-input placeholder="Email" type='email' name='email' [(ngModel)]='userLogin.email'></ion-input>
+        <ion-label stacked >Email</ion-label>
+        <ion-input formControlName="email" type='email' clearOnEdit="false"></ion-input>
       </ion-item>
+    </div>
 
+    <div class="form-group">
       <ion-item>
-        <ion-input placeholder="Password" type='password' name='password' [(ngModel)]='userLogin.password'></ion-input>
+        <ion-label stacked >Password</ion-label>
+        <ion-input formControlName="password" type="{{ isPassword }}" clearOnEdit="false"></ion-input>
+        <button class = "passwordIcon" ion-button clear item-end (click)='showHide()'>
+          <ion-icon name="{{isActive}}" item-right></ion-icon>
+        </button>
       </ion-item>
-
-      <div padding>
-        <button ion-button color='primary' block>Sign In</button>
-      </div>
-
-    </ion-list>
-
+    </div>
+    <div padding>
+      <button ion-button full color='primary' (click)='loginUser()'>Sign In</button>
+    </div>
   </form>
 </ion-content>
