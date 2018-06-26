@@ -2,8 +2,8 @@
 <h1>Social Security Information</h1>
 <h2>Answer the below questions to see your personal report</h2>
 
-  <form [formGroup]="form" (submit)= "submit()">
-      <ion-list no-lines class="chart-questions">
+<form [formGroup]="form" (submit)= "submit()">
+  <ion-list no-lines class="chart-questions">
     <ion-item>
       <ion-label stacked>Date of Birth</ion-label>
       <ion-datetime displayFormat="MMM DD, YYYY" formControlName="dateOfBirth" placeholder="MM/DD/YYYY"></ion-datetime>
@@ -24,9 +24,10 @@
       </button>
       <ion-input formControlName="avgIncome" type="number" placeholder="1400"></ion-input>
     </ion-item>
+
     <div padding>
-        <button ion-button color='primary' block>Sign In</button>
+      <button ion-button color='primary' block>Sign In</button>
     </div>
   </ion-list>
-  </form>
+</form>
 
