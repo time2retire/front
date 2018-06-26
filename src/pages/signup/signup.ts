@@ -70,12 +70,12 @@ export class SignupPage {
         Validators.required,
         Validators.pattern(this.emailRegEx)
       ])],
-      confirmEmail: [{value:'', disabled:true}, Validators.required],
+      confirmEmail: ['', Validators.required],
       password: ['', Validators.compose([
         Validators.required,
         Validators.pattern(this.passwordRegEx)
       ])],
-      confirmPassword: [{value:'', disabled:true}, Validators.required]
+      confirmPassword: ['', Validators.required]
     }, {
       validator: [PasswordValidation.MatchPassword,EmailValidation.MatchEmail]
     })
@@ -97,14 +97,8 @@ export class SignupPage {
   emailField(event){
     let emailCheck = new RegExp(this.emailRegEx)
     this.sweetEmail = emailCheck.test(event.value)
-
-    if (this.sweetEmail){
-      this.myForm.get('confirmEmail').enable()
-    }
-    else{
-      this.myForm.get('confirmEmail').disable()
-    }
   }
+
   passwordField(event){
     /* event.value = current value 
     present in password field */
@@ -126,14 +120,8 @@ export class SignupPage {
     //final check ensures all regEx checks return true
     this.sweetPassword = this.capital && this.lower && this.length 
         && this.special && this.number; 
-    //If password valid, enable confirm field
-    if (this.sweetPassword){
-      this.myForm.get('confirmPassword').enable()
-    }
-    else{
-      this.myForm.get('confirmPassword').disable()
-    }
   }
+
   confirmEmailField(event){
     console.log(event.value)
     this.confirmEmailEmpty = event.value === '';
@@ -165,6 +153,7 @@ export class SignupPage {
 
   //Form validation
   submit(){
+    console.log("I'm trying to submit")
     this.signupAttempt = true;
     if(this.myForm.valid){
       this.newUser = {
@@ -182,10 +171,13 @@ export class SignupPage {
         position: 'top',
       });
       toast.present()
-    }     
+    } 
+    console.log(this.newUser)  
+    this.newSignup()
   }
   //If VALID: submit, else error
   newSignup() {
+    console.log("Submit successful")
     let loader = this.loader.create({})
     loader.present();
     return this._user.signupCustom(this.newUser)
