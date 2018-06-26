@@ -54,15 +54,15 @@ export class LoginPage {
         this.navCtrl.setRoot(MainPage);
       }, (err) => {
         console.log(err, "error");
-        let badCreds = err.error.error.statusCode === (400 || 401);
+        let badCreds = err.status === 401;
+        console.log("Are creds valid?",badCreds);
         if (badCreds){
           this.invalidCredentials = true;
         }
         else{
           this.otherError = true;
         }
-
-        this.createForm();
+        console.log("invalid creds?", this.invalidCredentials, "Some other Error?", this.otherError)
       }
     )
   }
