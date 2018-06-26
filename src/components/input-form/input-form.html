@@ -1,6 +1,6 @@
-<ion-list no-lines>
+<ion-list no-lines class="chart-inputs">
 
-  <form [formGroup]="form">
+  <form [formGroup]="form" (submit)= "submit()">
 
     <ion-item>
       <ion-label stacked>Date of Birth</ion-label>
@@ -9,7 +9,7 @@
 
     <ion-item>
       <ion-label stacked>Amount Paid to Social Security</ion-label>
-      <button class="info-button" item-right ion-button icon-only clear (click)="alert('amountPaid')">
+      <button type="button" class="info-button" item-right ion-button icon-only clear (click)="alert('amountPaid')">
         <ion-icon name="information-circle"></ion-icon>
       </button>
       <ion-input formControlName="amountPaid" type="number"></ion-input>
@@ -17,13 +17,13 @@
 
     <ion-item>
       <ion-label stacked>Monthly Benefit at full Retirement Age</ion-label>
-      <button class="info-button" item-right ion-button icon-only clear (click)="alert('avgIncome')">
+      <button type="button" class="info-button" item-right ion-button icon-only clear (click)="alert('avgIncome')">
         <ion-icon name="information-circle"></ion-icon>
       </button>
       <ion-input formControlName="avgIncome" type="number"></ion-input>
     </ion-item>
 
-    <button ion-button full color="primary" (click)="submit()">See Results</button>
+    <button ion-button full color="primary">See Results</button>
 
   </form>
 
