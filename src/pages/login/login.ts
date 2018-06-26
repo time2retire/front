@@ -18,8 +18,8 @@ export class LoginPage {
   invalidCredentials: boolean = false;
   otherError: boolean = false;
 
-  //Show/Hide Password properties
-  isPassword: boolean = true;
+  //showPassword properties
+  isPassword: string = 'password';
   isActive: string = 'eye-off';
  
 
@@ -36,6 +36,7 @@ export class LoginPage {
       password: ['', Validators.required]
     })
   }
+
   loginUser() {
     //create newUser from input data (for clean data)
     console.log(this.myForm)
@@ -53,6 +54,7 @@ export class LoginPage {
 
         this.navCtrl.setRoot(MainPage);
       }, (err) => {
+        //Error Handling
         console.log(err, "error");
         let badCreds = err.status === 401;
         console.log("Are creds valid?",badCreds);
@@ -67,17 +69,22 @@ export class LoginPage {
     )
   }
 
-  eyeButton(){
-    console.log("before", this.isActive)
+  //showPassword methods
+  showHide() {
+    this.changeEyeIcon();
+    this.changePasswordType();
+  }
+  //changes eye Icon "name" on click 
+  changeEyeIcon(){
     this.isActive = 
       this.isActive === 'eye-off' ?
         "eye" : "eye-off" 
   }
-  showHide() {
-    console.log(this.myForm)
-    this.isPassword = !(this.isPassword)
-    this.eyeButton();
-    console.log("after", this.isActive)
+  //changes password field "type" on click
+  changePasswordType(){
+    this.isPassword = 
+      this.isPassword === 'password' ?
+        "text" : "password"
   }
 
 }

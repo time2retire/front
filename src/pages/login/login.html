@@ -21,14 +21,14 @@
     <div class="form-group">
       <ion-item>
         <ion-label stacked >Email</ion-label>
-        <ion-input formControlName="email" type='email'></ion-input>
+        <ion-input formControlName="email" type='email' clearOnEdit="false"></ion-input>
       </ion-item>
     </div>
 
     <div class="form-group">
       <ion-item>
         <ion-label stacked >Password</ion-label>
-        <ion-input formControlName="password" type="{{ isPassword? 'password' : 'text' }}" clearOnEdit="false"></ion-input>
+        <ion-input formControlName="password" type="{{ isPassword }}" clearOnEdit="false"></ion-input>
         <button class = "passwordIcon" ion-button clear item-end (click)='showHide()'>
           <ion-icon name="{{isActive}}" item-right></ion-icon>
         </button>

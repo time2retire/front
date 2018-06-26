@@ -30,7 +30,7 @@ export class SignupPage {
   sweetPassword: boolean;
  
   //Show/Hide Password properties
-  isPassword: boolean = true;
+  isPassword: string = 'password';
   isActive: string = 'eye-off';
 
   //RegEx strings
@@ -135,15 +135,7 @@ export class SignupPage {
 
   submit(){
     this.signupAttempt = true;
-    if(!this.myForm.valid){
-      let toast = this.toastCtrl.create({
-        message: 'Registration Unsuccessful',
-        duration: 3000,
-        position: 'top',
-      });
-      toast.present()
-    } 
-    else {
+    if(this.myForm.valid){
       this.newUser = {
         firstName: this.myForm.controls.firstName.value,
         lastName: this.myForm.controls.lastName.value,
@@ -151,19 +143,32 @@ export class SignupPage {
         email: this.myForm.controls.email.value.toLowerCase(),
         password: this.myForm.controls.password.value
       }
-      this.newSignup();
+    } 
+    else {
+      let toast = this.toastCtrl.create({
+        message: 'Registration Unsuccessful',
+        duration: 3000,
+        position: 'top',
+      });
+      toast.present()
     }     
   }
-  eyeButton(){
-    console.log("before", this.isActive)
+
+  //showPassword methods
+  showHide() {
+    this.changeEyeIcon();
+    this.changePasswordType();
+  }
+  //changes eye Icon "name" on click 
+  changeEyeIcon(){
     this.isActive = 
       this.isActive === 'eye-off' ?
         "eye" : "eye-off" 
   }
-  showHide() {
-    console.log(this.myForm)
-    this.isPassword = !(this.isPassword)
-    this.eyeButton();
-    console.log("after", this.isActive)
+  //changes password field "type" on click
+  changePasswordType(){
+    this.isPassword = 
+      this.isPassword === 'password' ?
+        "text" : "password"
   }
 }
