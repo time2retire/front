@@ -22,6 +22,7 @@ export class SignupPage {
 
   //live password validation
   userFocused: boolean = false;
+  emptyField: boolean = false;
   testPassword: string = '';
   length: boolean;
   capital: boolean;
@@ -57,8 +58,9 @@ export class SignupPage {
   }
 
   passwordStrength(event){
-    //event.value holds the entirety of whatever is in the input field.
-    
+    /* event.value = current value 
+    present in password field */
+
     //Independent RegEx strings
     let lengthCheck = new RegExp('^.{8}');
     let capitalCheck = new RegExp('^(?=.*[A-Z])');

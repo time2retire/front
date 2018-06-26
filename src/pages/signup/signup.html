@@ -67,8 +67,8 @@
             && signupAttempt">
           <p class="req">Please confirm your Email.</p>
         </div>
-        <div *ngIf="signupAttempt && myForm.controls.email.valid 
-            && myForm.controls.confirmEmail.errors?.MatchEmail">
+        <div *ngIf="(signupAttempt && !myForm.controls.email.valid)
+            || myForm.controls.confirmEmail.errors?.MatchEmail">
           <p class="req">Emails do not match.</p>
         </div>
         <div *ngIf="myForm.controls.email.valid 
@@ -84,12 +84,13 @@
             (ionChange)="passwordStrength($event)" clearOnEdit="false"
             (ionFocus)="onFocus($event)" (ionBlur)= "onBlur($event)">
           </ion-input>
-          <button class = "passwordIcon" ion-button clear item-end (click)='showHide()'>
+          <button class = "passwordIcon" ion-button clear item-end 
+              (click)='showHide()' type="button">
             <ion-icon name="{{isActive}}" item-right></ion-icon>
           </button>
         </ion-item>
-        <div *ngIf="(!myForm.controls.password.valid && userFocused ) 
-                  || (myForm.controls.password.value != '')">
+        <div *ngIf="!myForm.controls.password.valid 
+                && userFocused">
           <p class = "req" style="color:black">Requirements:</p>
             <div class="validCheck">
               <p [ngStyle]="{'color': length? 'green' : 'red'}">
@@ -154,8 +155,8 @@
           <br>
           <p class="req">Please confirm your password.</p>
         </div>
-        <div *ngIf="signupAttempt && !myForm.controls.password.valid 
-            && myForm.controls.confirmPassword.errors?.MatchPassword">
+        <div *ngIf="(signupAttempt && !myForm.controls.password.valid)
+            || myForm.controls.confirmPassword.errors?.MatchPassword">
           <p class="req">Passwords do not match.</p>
         </div>
         <div *ngIf="myForm.controls.password.valid 
