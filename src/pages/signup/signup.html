@@ -12,7 +12,7 @@
           <ion-input formControlName="firstName" type='text' clearOnEdit="false"></ion-input>
         </ion-item>
         <div *ngIf="myForm.controls.firstName.pristine && signupAttempt">
-          <p class="req">Please enter your first name.</p>
+          <p class="req">Please enter your First Name.</p>
         </div>
       </div>
       <br>
@@ -35,7 +35,7 @@
                         placeholder="MM/DD/YYYY" clearOnEdit="false"></ion-datetime>
         </ion-item>
         <div *ngIf="myForm.controls.birthday.pristine && signupAttempt">
-          <p class="req">Please enter your Date of birth.</p>
+          <p class="req">Please enter your Date of Birth.</p>
         </div>
       </div>
       <br>
@@ -164,7 +164,8 @@
           <br>
           <p class="req">Please confirm your password.</p>
         </div>
-        <div *ngIf="(signupAttempt && !myForm.controls.password.valid)
+        <div *ngIf="(signupAttempt && !myForm.controls.password.valid 
+            && myForm.controls.confirmPassword.errors?.MatchPassword)
             || ( !confirmPassEmpty && myForm.controls.confirmPassword.errors?.MatchPassword)">
           <p class="req">Passwords do not match.</p>
         </div>

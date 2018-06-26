@@ -163,6 +163,8 @@ export class SignupPage {
         email: this.myForm.controls.email.value.toLowerCase(),
         password: this.myForm.controls.password.value
       }
+      console.log(this.newUser)  
+      this.newSignup()
     } 
     else {
       let toast = this.toastCtrl.create({
@@ -171,11 +173,8 @@ export class SignupPage {
         position: 'top',
       });
       toast.present()
-    } 
-    console.log(this.newUser)  
-    this.newSignup()
+    }
   }
-  //If VALID: submit, else error
   newSignup() {
     console.log("Submit successful")
     let loader = this.loader.create({})
