@@ -13,11 +13,13 @@ import { MainPage } from '../';
   templateUrl: 'signup.html'
 })
 export class SignupPage {
-  //Form related stuff
+
+  //Form stuff
   myForm: FormGroup;
   signupAttempt: boolean = false;
 
-  //clean user instance
+  /* new user instance, created 
+  once a valid form is submitted.*/
   newUser: any;
 
   //emptyFields
@@ -58,6 +60,7 @@ export class SignupPage {
     this.createForm();
   }
 
+  //Sets up form and simple validation
   createForm(){
     this.myForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -78,7 +81,8 @@ export class SignupPage {
     })
   }
 
-  //handle focus and blur events
+
+  //Handle focus and blur events
   onFocus(event){
     console.log(event)
     this.userFocused = true;
@@ -88,15 +92,8 @@ export class SignupPage {
     this.userFocused = false;
   }
 
-  /*Pretties error messages on confirm fields*/
-  confirmEmailField(event){
-    console.log(event.value)
-    this.confirmEmailEmpty = event.value === '';
-  }
-  confirmPasswordField(event){
-    console.log(event.value)
-    this.confirmPassEmpty = event.value === '';
-  }
+
+  //Live Field Validation
   emailField(event){
     let emailCheck = new RegExp(this.emailRegEx)
     this.sweetEmail = emailCheck.test(event.value)
@@ -137,8 +134,57 @@ export class SignupPage {
       this.myForm.get('confirmPassword').disable()
     }
   }
+  confirmEmailField(event){
+    console.log(event.value)
+    this.confirmEmailEmpty = event.value === '';
+  }
+  confirmPasswordField(event){
+    console.log(event.value)
+    this.confirmPassEmpty = event.value === '';
+  }
 
 
+  //showPassword methods
+  showHide() {
+    this.changeEyeIcon();
+    this.changePasswordType();
+  }
+  //changes ion-Icon "name" on click 
+  changeEyeIcon(){
+    this.isActive = 
+      this.isActive === 'eye-off' ?
+        "eye" : "eye-off" 
+  }
+  //changes password "type" on click
+  changePasswordType(){
+    this.isPassword = 
+      this.isPassword === 'password' ?
+        "text" : "password"
+  }
+
+
+  //Form validation
+  submit(){
+    this.signupAttempt = true;
+    if(this.myForm.valid){
+      this.newUser = {
+        firstName: this.myForm.controls.firstName.value,
+        lastName: this.myForm.controls.lastName.value,
+        birthday: this.myForm.controls.birthday.value,
+        email: this.myForm.controls.email.value.toLowerCase(),
+        password: this.myForm.controls.password.value
+      }
+    } 
+    else {
+      let toast = this.toastCtrl.create({
+        message: 'Registration Unsuccessful',
+        duration: 3000,
+        position: 'top',
+      });
+      toast.present()
+    }     
+  }
+  //If VALID: submit, else error
   newSignup() {
     let loader = this.loader.create({})
     loader.present();
@@ -183,44 +229,5 @@ export class SignupPage {
         loader.dismiss();
       }
     )
-  }
-
-  submit(){
-    this.signupAttempt = true;
-    if(this.myForm.valid){
-      this.newUser = {
-        firstName: this.myForm.controls.firstName.value,
-        lastName: this.myForm.controls.lastName.value,
-        birthday: this.myForm.controls.birthday.value,
-        email: this.myForm.controls.email.value.toLowerCase(),
-        password: this.myForm.controls.password.value
-      }
-    } 
-    else {
-      let toast = this.toastCtrl.create({
-        message: 'Registration Unsuccessful',
-        duration: 3000,
-        position: 'top',
-      });
-      toast.present()
-    }     
-  }
-
-  //showPassword methods
-  showHide() {
-    this.changeEyeIcon();
-    this.changePasswordType();
-  }
-  //changes eye Icon "name" on click 
-  changeEyeIcon(){
-    this.isActive = 
-      this.isActive === 'eye-off' ?
-        "eye" : "eye-off" 
-  }
-  //changes password field "type" on click
-  changePasswordType(){
-    this.isPassword = 
-      this.isPassword === 'password' ?
-        "text" : "password"
   }
 }
