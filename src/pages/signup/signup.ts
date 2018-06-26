@@ -21,6 +21,7 @@ export class SignupPage {
   newUser: any;
 
   //live password validation
+  userFocused: boolean = false;
   testPassword: string = '';
   length: boolean;
   capital: boolean;
@@ -29,7 +30,7 @@ export class SignupPage {
   number: boolean;
   sweetPassword: boolean;
  
-  //Show/Hide Password properties
+  //showPassword properties
   isPassword: string = 'password';
   isActive: string = 'eye-off';
 
@@ -44,6 +45,15 @@ export class SignupPage {
               public loader: LoadingController,
               public fb: FormBuilder) {
     this.createForm();
+  }
+
+  onFocus(event){
+    console.log(event)
+    this.userFocused = true;
+  }
+  onBlur(event){
+    console.log(event)
+    this.userFocused = false;
   }
 
   passwordStrength(event){

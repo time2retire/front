@@ -81,12 +81,15 @@
         <ion-item>
           <ion-label stacked>Password</ion-label>
           <ion-input autocomplete="new-password" formControlName="password" type="{{isPassword}}" 
-                    (ionChange)="passwordStrength($event)" clearOnEdit="false"></ion-input>
+            (ionChange)="passwordStrength($event)" clearOnEdit="false"
+            (ionFocus)="onFocus($event)" (ionBlur)= "onBlur($event)">
+          </ion-input>
           <button class = "passwordIcon" ion-button clear item-end (click)='showHide()'>
             <ion-icon name="{{isActive}}" item-right></ion-icon>
           </button>
         </ion-item>
-        <div *ngIf="!myForm.controls.password.valid && myForm.controls.password.dirty">
+        <div *ngIf="(!myForm.controls.password.valid && userFocused ) 
+                  || (myForm.controls.password.value != '')">
           <p class = "req" style="color:black">Requirements:</p>
             <div class="validCheck">
               <p [ngStyle]="{'color': length? 'green' : 'red'}">
@@ -165,6 +168,5 @@
         <button ion-button full color="primary" (click)="submit()">Register</button>
       </div> 
     </form>
-    
 </ion-content>
 
