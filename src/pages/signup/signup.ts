@@ -21,6 +21,8 @@ export class SignupPage {
   newUser: any;
 
   //live password validation
+  userFocused: boolean = false;
+  emptyField: boolean = false;
   testPassword: string = '';
   length: boolean;
   capital: boolean;
@@ -29,7 +31,7 @@ export class SignupPage {
   number: boolean;
   sweetPassword: boolean;
  
-  //Show/Hide Password properties
+  //showPassword properties
   isPassword: string = 'password';
   isActive: string = 'eye-off';
 
@@ -46,9 +48,19 @@ export class SignupPage {
     this.createForm();
   }
 
+  onFocus(event){
+    console.log(event)
+    this.userFocused = true;
+  }
+  onBlur(event){
+    console.log(event)
+    this.userFocused = false;
+  }
+
   passwordStrength(event){
-    //event.value holds the entirety of whatever is in the input field.
-    
+    /* event.value = current value 
+    present in password field */
+
     //Independent RegEx strings
     let lengthCheck = new RegExp('^.{8}');
     let capitalCheck = new RegExp('^(?=.*[A-Z])');
