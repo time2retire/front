@@ -8,20 +8,20 @@ import { User } from '../providers/user/user';
 
 
 @Component({
-  template: `<ion-menu [content]="content">
+  template: `<ion-menu [content]="content" type="overlay">
   <ion-header>
     <ion-toolbar>
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+  <ion-content id="sideMenu">
+    <ion-list no-lines>
+      <button menuClose ion-item detail-none *ngFor="let p of pages" (click)="openPage(p)" id="menuBtn">
+        <ion-icon name="{{p.icon}}" class="menu-icon"></ion-icon> {{p.title}}
       </button>
-      <button menuClose ion-item (click)="logoutUser()">
-          Sign Out
+      <button menuClose ion-item detail-none (click)="logoutUser()" id="menuBtn">
+        <ion-icon name="log-out" class="menu-icon"></ion-icon> Sign Out
       </button>
     </ion-list>
   </ion-content>
@@ -37,9 +37,9 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
-    { title: 'Tutorial', component: 'TutorialPage' },
-    { title: 'Profile', component: 'ProfilePage' },
-    { title: 'New Chart', component: 'ChartPage' }
+    { title: 'Tutorial', component: 'TutorialPage', icon: 'paper' },
+    { title: 'Profile', component: 'ProfilePage', icon: 'person' },
+    { title: 'New Chart', component: 'ChartPage', icon: 'podium' }
   ]
 
   constructor(

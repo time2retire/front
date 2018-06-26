@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Chart } from 'chart.js'
 import * as ChartLabels from 'chartjs-plugin-datalabels';
 import { Api } from '../../providers/api/api';
@@ -167,9 +167,10 @@ export class ChartPage {
 
   sendChartData() {
     if (this.inputForm.value.avgIncome > 2788) {
+      this.inputForm.patchValue({avgIncome: 2788})
       let toast = this.toastCtrl.create({
         message: 'The maximum monthly benefit in 2018 is $2,788',
-        duration: 2000,
+        duration: 3000,
         position: 'top'
       });
       toast.present()
@@ -178,7 +179,7 @@ export class ChartPage {
     if (!this.inputForm.valid) {
       let toast = this.toastCtrl.create({
         message: 'Please complete the form',
-        duration: 2000,
+        duration: 3000,
         position: 'top'
       });
       toast.present()
@@ -202,7 +203,7 @@ export class ChartPage {
         loader.dismiss();
         let toast = this.toastCtrl.create({
           message: 'Unable to complete calculations.  Please try again later',
-          duration: 5000,
+          duration: 3000,
           position: 'top'
         })
         toast.present()

@@ -2,12 +2,16 @@ page-profile {
     
     .profile-header {
         background-color: #b4d6c7;
-        padding: 10px;
+        // padding: 10px;
         color: #1a4056;
     }
     .user-info-header {
         display: flex;
+        padding: 0;
         justify-content: space-between;
+        span {
+            padding: 10px 7px;
+        }
     }
     
     .edit-button, .confirm-button {
