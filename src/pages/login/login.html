@@ -29,7 +29,8 @@
       <ion-item>
         <ion-label stacked >Password</ion-label>
         <ion-input formControlName="password" type="{{ isPassword }}" clearOnEdit="false"></ion-input>
-        <button class = "passwordIcon" ion-button clear item-end (click)='showHide()'>
+        <button class = "passwordIcon" ion-button clear item-end 
+            (click)='showHide()' type="button">
           <ion-icon name="{{isActive}}" item-right></ion-icon>
         </button>
       </ion-item>
