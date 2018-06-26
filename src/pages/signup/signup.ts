@@ -20,9 +20,18 @@ export class SignupPage {
   //clean user instance
   newUser: any;
 
-  //live password validation
+  //emptyFields
+  emailEmpty: boolean = true;
+  passwordEmpty: boolean = true;
+  confirmEmailEmpty: boolean = true;
+  confirmPassEmpty: boolean = true;
+
+  //disableFields
+  disableConfirmEmail: string = "false";
+  disableConfirmPass: string = "false";
+
+  //live validation
   userFocused: boolean = false;
-  emptyField: boolean = false;
   testPassword: string = '';
   length: boolean;
   capital: boolean;
@@ -30,12 +39,13 @@ export class SignupPage {
   special: boolean;
   number: boolean;
   sweetPassword: boolean;
+  sweetEmail: boolean;ZZ
  
   //showPassword properties
   isPassword: string = 'password';
   isActive: string = 'eye-off';
 
-  //RegEx strings
+  //RegEx stuff
   passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/
   emailRegEx = '^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
  
@@ -48,6 +58,27 @@ export class SignupPage {
     this.createForm();
   }
 
+  createForm(){
+    this.myForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      birthday: ['', Validators.required],
+      email: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern(this.emailRegEx)
+      ])],
+      confirmEmail: [{value:'', disabled:true}, Validators.required],
+      password: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern(this.passwordRegEx)
+      ])],
+      confirmPassword: [{value:'', disabled:true}, Validators.required]
+    }, {
+      validator: [PasswordValidation.MatchPassword,EmailValidation.MatchEmail]
+    })
+  }
+
+  //handle focus and blur events
   onFocus(event){
     console.log(event)
     this.userFocused = true;
@@ -57,7 +88,27 @@ export class SignupPage {
     this.userFocused = false;
   }
 
-  passwordStrength(event){
+  /*Pretties error messages on confirm fields*/
+  confirmEmailField(event){
+    console.log(event.value)
+    this.confirmEmailEmpty = event.value === '';
+  }
+  confirmPasswordField(event){
+    console.log(event.value)
+    this.confirmPassEmpty = event.value === '';
+  }
+  emailField(event){
+    let emailCheck = new RegExp(this.emailRegEx)
+    this.sweetEmail = emailCheck.test(event.value)
+
+    if (this.sweetEmail){
+      this.myForm.get('confirmEmail').enable()
+    }
+    else{
+      this.myForm.get('confirmEmail').disable()
+    }
+  }
+  passwordField(event){
     /* event.value = current value 
     present in password field */
 
@@ -76,28 +127,17 @@ export class SignupPage {
     this.number = numberCheck.test(event.value)
 
     //final check ensures all regEx checks return true
-    this.sweetPassword = this.capital && this.lower && this.length && this.special && this.number ? true : false;       
+    this.sweetPassword = this.capital && this.lower && this.length 
+        && this.special && this.number; 
+    //If password valid, enable confirm field
+    if (this.sweetPassword){
+      this.myForm.get('confirmPassword').enable()
+    }
+    else{
+      this.myForm.get('confirmPassword').disable()
+    }
   }
 
-  createForm(){
-    this.myForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      birthday: ['', Validators.required],
-      email: ['', Validators.compose([
-        Validators.required,
-        Validators.pattern(this.emailRegEx)
-      ])],
-      confirmEmail: ['', Validators.required],
-      password: ['', Validators.compose([
-        Validators.required,
-        Validators.pattern(this.passwordRegEx)
-      ])],
-      confirmPassword: ['', Validators.required]
-    }, {
-      validator: [PasswordValidation.MatchPassword,EmailValidation.MatchEmail]
-    })
-  }
 
   newSignup() {
     let loader = this.loader.create({})
