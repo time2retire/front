@@ -52,7 +52,14 @@
     </ion-card>
 
     <!-- <ion-card> -->
-      
+      <div *ngIf="chartData.length < 1">
+        <p align="center">
+          You have no saved charts!
+        </p>
+      </div>
+      <div class="profileButtons">
+        <button class ="genButton" ion-button color="primary" (click)="goToInput()">Generate a Chart</button>
+      </div>
       <div *ngIf="chartData">
           <ion-card *ngFor="let chart of chartData, let i=index">
               <ion-card-header class= "profile-header" *ngIf="i === 0">
@@ -75,14 +82,5 @@
               </button>
           </ion-card>
       </div>
-      <div *ngIf="chartData.length < 1">
-        <p align="center">
-          You have no saved charts!
-        </p>
-      </div>
-    <!-- </ion-card> -->
-    <div class="profileButtons">
-      <button ion-button color="primary" (click)="goToInput()">Generate a Chart</button>
-    </div>
   </div>
 </ion-content>
