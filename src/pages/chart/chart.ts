@@ -275,7 +275,10 @@ export class ChartPage {
       }
     )
   }
-
+  navProfile(){
+    console.log("navigating?")
+    this.navCtrl.setRoot("mainPage")
+  }
   ionViewDidLoad() {
     console.log(this._user.user)
     Chart.pluginService.register(ChartLabels);
