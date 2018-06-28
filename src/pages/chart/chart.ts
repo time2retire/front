@@ -28,6 +28,7 @@ export class ChartPage {
   bestYear: number;
   chartSave: any;
   chartData: any;
+  sliderIncrementer: any = 0;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -220,8 +221,18 @@ export class ChartPage {
   }
   restrictValue() {
     /*restricts lower value from going out of the bounds of the bebefitObject*/
-    if (this.slider.lower >= 70) {
+    if (this.slider.lower > 70) {
+      this.sliderIncrementer ++
       this.slider.lower = 70;
+      console.log(this.sliderIncrementer)
+      if (this.sliderIncrementer%10 === 0) {
+        let toast = this.toastCtrl.create({
+          message: 'The Social Security Administration requires you to start taking benefits at 70',
+          duration: 3000,
+          position: 'top'
+        })
+        toast.present();
+      }
     }
   }
 
