@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController, LoadingController, MenuController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidation } from './password-validation';
 import { EmailValidation } from './email-validation';
@@ -56,6 +56,7 @@ export class SignupPage {
               public _user: User,
               public toastCtrl: ToastController,
               public loader: LoadingController,
+              public menuCtrl: MenuController,
               public fb: FormBuilder) {
     this.createForm();
   }
@@ -84,11 +85,9 @@ export class SignupPage {
 
   //Handle focus and blur events
   onFocus(event){
-    console.log(event)
     this.userFocused = true;
   }
   onBlur(event){
-    console.log(event)
     this.userFocused = false;
   }
 
@@ -123,11 +122,9 @@ export class SignupPage {
   }
 
   confirmEmailField(event){
-    console.log(event.value)
     this.confirmEmailEmpty = event.value === '';
   }
   confirmPasswordField(event){
-    console.log(event.value)
     this.confirmPassEmpty = event.value === '';
   }
 
@@ -153,7 +150,6 @@ export class SignupPage {
 
   //Form validation
   submit(){
-    console.log("I'm trying to submit")
     this.signupAttempt = true;
     if(this.myForm.valid){
       this.newUser = {
@@ -163,7 +159,6 @@ export class SignupPage {
         email: this.myForm.controls.email.value.toLowerCase(),
         password: this.myForm.controls.password.value
       }
-      console.log(this.newUser)  
       this.newSignup()
     } 
     else {
@@ -193,6 +188,9 @@ export class SignupPage {
         sessionStorage.setItem('token', newUser.token)
         sessionStorage.setItem('userId', newUser.userId)
         this._user.user = this.newUser;
+
+        this.menuCtrl.enable(true);
+        this.menuCtrl.swipeEnable(true);
         this.navCtrl.setRoot(MainPage);
         loader.dismiss()
       }, (failureObject) => {
