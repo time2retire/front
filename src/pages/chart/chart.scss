@@ -42,11 +42,16 @@ page-chart {
         justify-content: space-around;
         .infoCard{
             margin: 5px;
+            .infoCard-btn {
+                width: 100%;
+            }
             .infoCont{
                 padding:10px;
+                width: 100%;
                 .infoFormat{
                     display:flex;
                     justify-content:space-evenly;
+                    color: Black;
                     //color for left badge
                     .leftBadge{
                         background-color: #1a4056;

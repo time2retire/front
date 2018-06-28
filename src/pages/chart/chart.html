@@ -18,18 +18,22 @@
   <div *ngIf="haveData">
     <div class = "infoLabels">
       <ion-card class= "infoCard">
-        <ion-card-content class="infoCont">
-          <div class="infoFormat">
-            <strong>Best-Age:</strong><p>{{bestYear}}</p>
-          </div>
-        </ion-card-content>
+        <button type='button' ion-button clear class="infoCard-btn" (click)='showModal("left")'>
+          <ion-card-content class="infoCont">
+            <div class="infoFormat">
+              <strong>Best-Age:</strong><p>{{bestYear}}</p>
+            </div>
+          </ion-card-content>
+        </button>
       </ion-card>
       <ion-card class= "infoCard">
-        <ion-card-content class="infoCont">
-          <div class="infoFormat">
-            <strong>Break-Even:</strong><p>{{breakEvenYear}}</p>
-          </div>
-        </ion-card-content>
+        <button type='button' ion-button clear class="infoCard-btn" (click)='showModal("right")'>
+          <ion-card-content class="infoCont">
+            <div class="infoFormat">
+              <strong>Break-Even:</strong><p>{{breakEvenYear}}</p>
+            </div>
+          </ion-card-content>
+        </button>
       </ion-card>
     </div>
     <div style="display: block">

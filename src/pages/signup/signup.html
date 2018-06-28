@@ -32,7 +32,7 @@
         <ion-item>
           <ion-label stacked>Date of Birth</ion-label>
           <ion-datetime displayFormat="MMM DD, YYYY" formControlName="birthday" 
-                        placeholder="MM/DD/YYYY" clearOnEdit="false"></ion-datetime>
+                        placeholder="MM/DD/YYYY" initialValue="1958-01-01" clearOnEdit="false"></ion-datetime>
         </ion-item>
         <div *ngIf="myForm.controls.birthday.pristine && signupAttempt">
           <p class="req">Please enter your Date of Birth.</p>
