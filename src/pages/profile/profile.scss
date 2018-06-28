@@ -43,7 +43,10 @@ page-profile {
  
     .profileButtons{
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
+        .genButton{
+            // justify-self: stretch;
+        }
     }
 
 }

@@ -13,11 +13,13 @@ import { MainPage } from '../';
   templateUrl: 'signup.html'
 })
 export class SignupPage {
-  //Form related stuff
+
+  //Form stuff
   myForm: FormGroup;
   signupAttempt: boolean = false;
 
-  //clean user instance
+  /* new user instance, created 
+  once a valid form is submitted.*/
   newUser: any;
 
   //emptyFields
@@ -59,6 +61,7 @@ export class SignupPage {
     this.createForm();
   }
 
+  //Sets up form and simple validation
   createForm(){
     this.myForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -68,47 +71,33 @@ export class SignupPage {
         Validators.required,
         Validators.pattern(this.emailRegEx)
       ])],
-      confirmEmail: [{value:'', disabled:true}, Validators.required],
+      confirmEmail: ['', Validators.required],
       password: ['', Validators.compose([
         Validators.required,
         Validators.pattern(this.passwordRegEx)
       ])],
-      confirmPassword: [{value:'', disabled:true}, Validators.required]
+      confirmPassword: ['', Validators.required]
     }, {
       validator: [PasswordValidation.MatchPassword,EmailValidation.MatchEmail]
     })
   }
 
-  //handle focus and blur events
+
+  //Handle focus and blur events
   onFocus(event){
-    console.log(event)
     this.userFocused = true;
   }
   onBlur(event){
-    console.log(event)
     this.userFocused = false;
   }
 
-  /*Pretties error messages on confirm fields*/
-  confirmEmailField(event){
-    console.log(event.value)
-    this.confirmEmailEmpty = event.value === '';
-  }
-  confirmPasswordField(event){
-    console.log(event.value)
-    this.confirmPassEmpty = event.value === '';
-  }
+
+  //Live Field Validation
   emailField(event){
     let emailCheck = new RegExp(this.emailRegEx)
     this.sweetEmail = emailCheck.test(event.value)
-
-    if (this.sweetEmail){
-      this.myForm.get('confirmEmail').enable()
-    }
-    else{
-      this.myForm.get('confirmEmail').disable()
-    }
   }
+
   passwordField(event){
     /* event.value = current value 
     present in password field */
@@ -130,17 +119,59 @@ export class SignupPage {
     //final check ensures all regEx checks return true
     this.sweetPassword = this.capital && this.lower && this.length 
         && this.special && this.number; 
-    //If password valid, enable confirm field
-    if (this.sweetPassword){
-      this.myForm.get('confirmPassword').enable()
-    }
-    else{
-      this.myForm.get('confirmPassword').disable()
-    }
+  }
+
+  confirmEmailField(event){
+    this.confirmEmailEmpty = event.value === '';
+  }
+  confirmPasswordField(event){
+    this.confirmPassEmpty = event.value === '';
   }
 
 
+  //showPassword methods
+  showHide() {
+    this.changeEyeIcon();
+    this.changePasswordType();
+  }
+  //changes ion-Icon "name" on click 
+  changeEyeIcon(){
+    this.isActive = 
+      this.isActive === 'eye-off' ?
+        "eye" : "eye-off" 
+  }
+  //changes password "type" on click
+  changePasswordType(){
+    this.isPassword = 
+      this.isPassword === 'password' ?
+        "text" : "password"
+  }
+
+
+  //Form validation
+  submit(){
+    this.signupAttempt = true;
+    if(this.myForm.valid){
+      this.newUser = {
+        firstName: this.myForm.controls.firstName.value,
+        lastName: this.myForm.controls.lastName.value,
+        birthday: this.myForm.controls.birthday.value,
+        email: this.myForm.controls.email.value.toLowerCase(),
+        password: this.myForm.controls.password.value
+      }
+      this.newSignup()
+    } 
+    else {
+      let toast = this.toastCtrl.create({
+        message: 'Registration Unsuccessful',
+        duration: 3000,
+        position: 'top',
+      });
+      toast.present()
+    }
+  }
   newSignup() {
+    console.log("Submit successful")
     let loader = this.loader.create({})
     loader.present();
     return this._user.signupCustom(this.newUser)
@@ -187,44 +218,5 @@ export class SignupPage {
         loader.dismiss();
       }
     )
-  }
-
-  submit(){
-    this.signupAttempt = true;
-    if(this.myForm.valid){
-      this.newUser = {
-        firstName: this.myForm.controls.firstName.value,
-        lastName: this.myForm.controls.lastName.value,
-        birthday: this.myForm.controls.birthday.value,
-        email: this.myForm.controls.email.value.toLowerCase(),
-        password: this.myForm.controls.password.value
-      }
-    } 
-    else {
-      let toast = this.toastCtrl.create({
-        message: 'Registration Unsuccessful',
-        duration: 3000,
-        position: 'top',
-      });
-      toast.present()
-    }     
-  }
-
-  //showPassword methods
-  showHide() {
-    this.changeEyeIcon();
-    this.changePasswordType();
-  }
-  //changes eye Icon "name" on click 
-  changeEyeIcon(){
-    this.isActive = 
-      this.isActive === 'eye-off' ?
-        "eye" : "eye-off" 
-  }
-  //changes password field "type" on click
-  changePasswordType(){
-    this.isPassword = 
-      this.isPassword === 'password' ?
-        "text" : "password"
   }
 }

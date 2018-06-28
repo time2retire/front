@@ -24,19 +24,19 @@
   "TUTORIAL_SLIDE2_DESCRIPTION": "This is your signup and login page <br><br> Tap <b>'SIGN IN'</b> if you already have an account, if not, create a new one by tapping <b>'SIGN UP'</b>",
 
   "TUTORIAL_SLIDE3_TITLE": "",
-  "TUTORIAL_SLIDE3_DESCRIPTION": "Your profile page displays your account details highlighted in <b><font color='blue'>BLUE</font></b>, your saved charts highlighted in <b><font color='green'>GREEN</font></b>, and an expandable sidemenu circled in <b><font color='orange'>ORANGE</font></b> <br><br> You can edit your profile by tapping the pencil icon located in the account details section",
+  "TUTORIAL_SLIDE3_DESCRIPTION": "Your profile page displays your account details and your saved charts in the area highlighted in <b><font color='red'>RED</font></b>, and a sidemenu circled in <b><font color='orange'>ORANGE</font></b> <br><br> You can edit your profile by tapping the pencil icon",
 
   "TUTORIAL_SLIDE5_TITLE": "",
   "TUTORIAL_SLIDE5_DESCRIPTION": "Your sidemenu helps to provide you an easy way to access all of the features in <b>Time2Retire</b>, as well as the place to sign out of our app",
 
   "TUTORIAL_SLIDE6_TITLE": "",
-  "TUTORIAL_SLIDE6_DESCRIPTION": "Our chart feature helps graph out your social security payments based on your date of birth, ammount paid to social security, and what you expect to be paid each month in benefits <br><br> The two info buttons circled in <b><font color='red'>RED</font></b>, display info popups that provides additional details about what you are inputing in each field",
+  "TUTORIAL_SLIDE6_DESCRIPTION": "Generating a new chart is easy, just fill out all of the fields <br><br> The two info buttons circled in <b><font color='red'>RED</font></b>, helps to provide you additional info about what you are entering into those fields",
 
   "TUTORIAL_SLIDE7_TITLE": "",
-  "TUTORIAL_SLIDE7_DESCRIPTION": "Your info is then processed and displayed by this chart, showing your best age to retire at, what age you need be to break even, and what you will receive in monthly benefits in the <b><font color='blue'>BLUE BAR</font></b>, compared to your total benefits in the <b><font color='red'>RED BAR</font></b>",
+  "TUTORIAL_SLIDE7_DESCRIPTION": "Your info is then processed and displayed by this chart, showing your best age to retire at, what age you need be to break even, and what you will receive in monthly benefits in the <b><font color='#B4CEFF'>BLUE BAR</font></b>, compared to your total benefits in the <b><font color='#B4D6C7'>GREEN</font></b>",
 
   "TUTORIAL_SLIDE8_TITLE": "",
-  "TUTORIAL_SLIDE8_DESCRIPTION": "Before saving, you can customize your chart by adjusting the sliders in the area highlighted in <b><font color='green'>GREEN</font></b> below <br><br> The <b><font color='blue'>BLUE</font></b> point adjusts your retirement age while the <b><font color='orange'>ORANGE</font></b> point adjusts your life expectancy",
+  "TUTORIAL_SLIDE8_DESCRIPTION": "Before saving, you can customize your chart by adjusting the sliders in the area highlighted in <b><font color='red'>RED</font></b> below <br><br> The <b><font color='#1F4359'>DARK BLUE</font></b> point adjusts your retirement age while the <b><font color='#FDBA58'>ORANGE</font></b> point adjusts your life expectancy",
 
   "TUTORIAL_SLIDE4_TITLE": "LETS GET STARTED!",
 
