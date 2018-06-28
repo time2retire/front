@@ -84,11 +84,9 @@ export class SignupPage {
 
   //Handle focus and blur events
   onFocus(event){
-    console.log(event)
     this.userFocused = true;
   }
   onBlur(event){
-    console.log(event)
     this.userFocused = false;
   }
 
@@ -123,11 +121,9 @@ export class SignupPage {
   }
 
   confirmEmailField(event){
-    console.log(event.value)
     this.confirmEmailEmpty = event.value === '';
   }
   confirmPasswordField(event){
-    console.log(event.value)
     this.confirmPassEmpty = event.value === '';
   }
 
@@ -153,7 +149,6 @@ export class SignupPage {
 
   //Form validation
   submit(){
-    console.log("I'm trying to submit")
     this.signupAttempt = true;
     if(this.myForm.valid){
       this.newUser = {
@@ -163,7 +158,6 @@ export class SignupPage {
         email: this.myForm.controls.email.value.toLowerCase(),
         password: this.myForm.controls.password.value
       }
-      console.log(this.newUser)  
       this.newSignup()
     } 
     else {
