@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController, MenuController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../providers';
 import { MainPage } from '../';
@@ -26,6 +26,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
               public _user: User,
               public toastCtrl: ToastController,
+              public menuCtrl: MenuController,
               public fb:FormBuilder) {
     this.createForm();
   }
@@ -52,6 +53,8 @@ export class LoginPage {
         sessionStorage.setItem('token', userLog.token)
         sessionStorage.setItem('userId', userLog.userId)
 
+        this.menuCtrl.enable(true);
+        this.menuCtrl.swipeEnable(true);
         this.navCtrl.setRoot(MainPage);
       }, (err) => {
         //Error Handling

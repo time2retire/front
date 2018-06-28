@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Chart } from 'chart.js'
 import * as ChartLabels from 'chartjs-plugin-datalabels';
 import { Api } from '../../providers/api/api';
