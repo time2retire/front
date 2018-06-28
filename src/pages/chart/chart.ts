@@ -277,7 +277,7 @@ export class ChartPage {
   }
   navProfile(){
     console.log("navigating?")
-    this.navCtrl.setRoot("mainPage")
+    this.navCtrl.setRoot("ProfilePage")
   }
   ionViewDidLoad() {
     console.log(this._user.user)
