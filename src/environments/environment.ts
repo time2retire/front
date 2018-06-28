@@ -1,4 +1,4 @@
 export const ENV = {
   mode: 'Production',
-  URL: ''
+  URL: 'https://fast-coast-71929.herokuapp.com/'
 }

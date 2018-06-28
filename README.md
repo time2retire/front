@@ -27,7 +27,7 @@ The app itself is designed with simplicity in mind.
 
 ## <a name="getting-started"></a>Getting Started
 
-<img src="Time2Retire 01 Welcome 01.png" height="600" width="300"/>
+<img src="Time2Retire 01 Welcome 01.png" height="400" width="220"/>
 
 When first opening the app, the user is presented with a simple tutorial displayed through a series of slides. 
 Each of the slides contains a snapshot of each page of the app, followed by a simple description.
@@ -45,7 +45,7 @@ of birth, and password.
 
 ## <a name="profile-page"></a>Profile Page
 
-<img src="Time2Retire 02 Profile.png" height="400" width="220"/>
+<img src="Time2Retire 02 Profile.png" height="400" width="240"/>
 
 Once a user has signed in, they are directed to our profile page. In the top
 section of the profile page, the user is shown their basic account information, 
@@ -72,7 +72,7 @@ tapping the sign out area will allow the user to leave our app, leading them bac
 
 ## <a name="create-chart"></a>Create Chart
 
-<img src="Time2Retire 04 Create Chart.png" height="400" width="220"/>
+<img src="Time2Retire 04 Create Chart.png" height="400" width="240"/>
 
 Whenever a user wants to create a new chart, they must fill in all appropriate fields
 in order to generate a new chart. 
