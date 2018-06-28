@@ -27,7 +27,7 @@ The app itself is designed with simplicity in mind.
 
 ## <a name="getting-started"></a>Getting Started
 
-<img src="Time2Retire 00 Tutorial.png" height="600" width="300"/> <img src="Time2Retire 01 Welcome 01.png" height="600" width="300"/>
+<img src="Time2Retire 00 Tutorial.png" height="600" width="150"/> <img src="Time2Retire 01 Welcome 01.png" height="600" width="300"/>
 
 When first opening the app, the user is presented with a simple tutorial displayed through a series of slides. 
 Each of the slides contains a snapshot of each page of the app, followed by a simple description.
