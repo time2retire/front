@@ -98,6 +98,8 @@ export class MyApp {
     this.nav.setRoot("WelcomePage")
       .then(() => {
         this._user.logout();
+        this.menuCtrl.enable(false);
+        this.menuCtrl.swipeEnable(false);
         console.log("User is logged out", this._user.user)
       });
   }
