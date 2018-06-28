@@ -43,6 +43,8 @@ of birth, and password.
 
 ## <a name="profile-page"></a>Profile Page
 
+<img src="Time2Retire 02 Profile.png"/>
+
 Once a user has signed in, they are directed to our profile page. In the top
 section of the profile page, the user is shown their basic account information, 
 specifically their name, email, and date of birth. The user may change any of their 
@@ -57,6 +59,8 @@ charts to view them.
 
 ## <a name="sidemenu"></a>Sidemenu
 
+<img src="Time2Retire 03 Hamburger-Sidemenu.png"/>
+
 Every page of our app has a hamburger menu icon located at the top left hand side of the 
 screen. Tapping it displays a sidemenu which allows the user to quickly navigate to
 any part of our app.
@@ -65,6 +69,8 @@ The sidemenu is also the only place where the user can sign out of our app. Simp
 tapping the sign out area will allow the user to leave our app, leading them back to the landing page.
 
 ## <a name="create-chart"></a>Create Chart
+
+<img src="Time2Retire 04 Create Chart.png"/>
 
 Whenever a user wants to create a new chart, they must fill in all appropriate fields
 in order to generate a new chart. 
@@ -83,6 +89,8 @@ button at the very bottom to display a completely new chart.
 All of this infomration is used to calculate their best age to retire.
 
 ## <a name="viewing-chart"></a>Viewing Chart
+
+<img src="Time2Retire 05 Show Chart 01.png"/>
 
 Once a user has input all of the required information in the "create a chart"
 page and then tapped the "generate chart" button, the user is then directed to
