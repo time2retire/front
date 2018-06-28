@@ -27,6 +27,8 @@ The app itself is designed with simplicity in mind.
 
 ## <a name="getting-started"></a>Getting Started
 
+<img src="Time2Retire 00 Tutorial.png" height="400" width="200"/> | <img src="Time2Retire 01 Welcome 01.png" height="400" width="200"/>
+
 When first opening the app, the user is presented with a simple tutorial displayed through a series of slides. 
 Each of the slides contains a snapshot of each page of the app, followed by a simple description.
 The user may skip it at any time by tapping "skip" on the top right hand
@@ -43,7 +45,7 @@ of birth, and password.
 
 ## <a name="profile-page"></a>Profile Page
 
-<img src="Time2Retire 02 Profile.png" height="600" width="300"/>
+<img src="Time2Retire 02 Profile.png" height="400" width="200"/>
 
 Once a user has signed in, they are directed to our profile page. In the top
 section of the profile page, the user is shown their basic account information, 
@@ -59,7 +61,7 @@ charts to view them.
 
 ## <a name="sidemenu"></a>Sidemenu
 
-<img src="Time2Retire 03 Hamburger-Sidemenu.png" height="600" width="300"/>
+<img src="Time2Retire 03 Hamburger-Sidemenu.png" height="400" width="200"/>
 
 Every page of our app has a hamburger menu icon located at the top left hand side of the 
 screen. Tapping it displays a sidemenu which allows the user to quickly navigate to
@@ -70,7 +72,7 @@ tapping the sign out area will allow the user to leave our app, leading them bac
 
 ## <a name="create-chart"></a>Create Chart
 
-<img src="Time2Retire 04 Create Chart.png" height="600" width="300"/>
+<img src="Time2Retire 04 Create Chart.png" height="400" width="200"/>
 
 Whenever a user wants to create a new chart, they must fill in all appropriate fields
 in order to generate a new chart. 
@@ -90,7 +92,7 @@ All of this infomration is used to calculate their best age to retire.
 
 ## <a name="viewing-chart"></a>Viewing Chart
 
-<img src="Time2Retire 05 Show Chart 01.png" height="600" width="300"/>
+<img src="Time2Retire 05 Show Chart 01.png" height="400" width="200"/>
 
 Once a user has input all of the required information in the "create a chart"
 page and then tapped the "generate chart" button, the user is then directed to
