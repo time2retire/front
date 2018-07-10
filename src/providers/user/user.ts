@@ -6,8 +6,6 @@ import { ENV } from '@app/env';
 
 @Injectable()
 export class User {
-  //_chart: any;
-  //_user: any;
   base_url: string = ENV.URL;
   appUsers_url: string = "api/appUsers/"
   token_url: string = "?access_token="
@@ -15,13 +13,10 @@ export class User {
   logout_url: string = "logout?access_token="
   register_url: string = "api/appUsers"
   user: any;
+  userBirthday: string = ''
   helloWorld: string = "hello world"
   charts: any[];
   chart_url: string = "/charts?access_token="
-
-
-  // token = sessionStorage.getItem('token');
-  //userID = sessionStorage.getItem('userId');
 
   constructor(public api: Api, public http: HttpClient) { }
 
@@ -41,18 +36,11 @@ export class User {
     let token = sessionStorage.getItem('token');
     this.http.post(this.base_url + this.appUsers_url + this.logout_url + token, this.user)
     .subscribe(() => {
-      console.log('i ran')
       this.user = null;
       sessionStorage.clear();
     })
   }
 
-  /**
-   * Process a login/signup response to store user data
-   */
-  _loggedIn(resp) {
-    // this.user = resp.user;
-  }
   savedChart(chart) {
     let userID = sessionStorage.getItem('userId');
     let token = sessionStorage.getItem('token');
@@ -60,5 +48,11 @@ export class User {
     return this.http.post(this.base_url + this.appUsers_url + userID + this.chart_url + token, chart)
     // https://nameless-wave-33070.herokuapp.com/api/appUsers/5afd09bbd0ac6b3a779a11cb/charts?access_token=jo8H66VjJb9VCn72CR7uk5mUStox9NyqrpRGmfV2F9xEHYvvUHiaxKOSZ9dm6Jr1
 
+  }
+
+  updateUser() {
+    let userID = sessionStorage.getItem('userId')
+    let token = sessionStorage.getItem('token')
+    return this.http.patch(this.base_url + this.appUsers_url + userID + this.token_url + token, this.user)
   }
 }

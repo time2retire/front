@@ -1,4 +1,31 @@
 page-chart {
+    .homeButton{
+        .button-inner{
+            padding-top:8px;
+            padding-right:5px;
+            padding-bottom:5px;
+            font-size: 23px !important;
+        }
+    }
+
+    h1 {
+        font-size: 20px;
+        padding: 0 10px;
+    }
+
+    h2 {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    .chart-questions {
+        margin-top: 16px;
+    }
+
+    .card {
+        margin-top: 0px;
+    }
+
     .impStuff{
         display:flex;
         justify-content: space-around;
@@ -10,36 +37,54 @@ page-chart {
     .info-button {
         align-self: start;
     }
-    .chartLabels{
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        .ret{
-            margin-bottom:2px;
-            margin-top:0px;
+    .infoLabels{
+        display:flex;
+        justify-content: space-around;
+        .infoCard{
+            margin: 5px;
+            .infoCard-btn {
+                width: 100%;
+            }
+            .infoCont{
+                padding:10px;
+                width: 100%;
+                .infoFormat{
+                    display:flex;
+                    justify-content:space-evenly;
+                    color: Black;
+                    //color for left badge
+                    .leftBadge{
+                        background-color: #1a4056;
+                        align-self: center;
+                        justify-self:center;
+                    }
+                    //color for right badge
+                    .rightBadge{
+                        background-color: #ffbb58;
+                        align-self: center;
+                        justify-self: center;
+                    }
+                }
+            }
         }
-        .left{
-            margin-left:25px;
-            padding-right: 10px;
-            margin-top:0px;
-            
-        }
-        .dash{
-            margin-top:0px;
-            
-        }
-        .right{
-            padding-left: 10px;
-            margin-top:0px;
-        }
-        .range{
-            display: flex;
+        .strong{
+            font-size:13px;
         }
     }
 
     .chartSlider{
         padding-top: 0px !important; 
     }
+
+    //Color for left-knob
+    .range-knob-handle > .range-knob {
+        background-color: #1a4056 !important
+    }
+    //color for right-knob
+    .range-knob-handle ~ .range-knob-handle > .range-knob {
+        background-color: #ffbb58 !important
+    }
+
     .chartButtons{
         display: flex;
         justify-content: space-around;

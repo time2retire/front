@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ProfilePage } from './profile';
 import { ChartPage } from '../../pages/chart/chart';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -9,6 +10,7 @@ import { ChartPage } from '../../pages/chart/chart';
   ],
   imports: [
     IonicPageModule.forChild(ProfilePage),
+    PipesModule
   ],
   providers: [
     ChartPage
